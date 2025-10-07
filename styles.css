@@ -1,0 +1,458 @@
+:root {
+  --bg: #0b132b;
+  --bg-soft: #1c2541;
+  --accent: #5bc0be;
+  --accent-strong: #3aafa9;
+  --text: #f5f7ff;
+  --text-muted: rgba(245, 247, 255, 0.7);
+  --surface: rgba(15, 22, 46, 0.75);
+  --border: rgba(91, 192, 190, 0.2);
+  --max-width: 1100px;
+  --shadow: 0 16px 40px rgba(15, 17, 36, 0.35);
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+  font-family: "Inter", "Segoe UI", Roboto, -apple-system, BlinkMacSystemFont,
+    "Helvetica Neue", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  font-family: "Inter", "Segoe UI", Roboto, -apple-system, BlinkMacSystemFont,
+    "Helvetica Neue", sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: var(--accent);
+}
+
+img {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  background: var(--bg-soft);
+}
+
+.container {
+  width: min(100% - 3rem, var(--max-width));
+  margin: 0 auto;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.75rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+p + p {
+  margin-top: 1rem;
+}
+
+ul {
+  list-style: disc;
+  padding-left: 1.2rem;
+  margin-top: 1rem;
+  color: var(--text-muted);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.4rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  transition: transform 120ms ease, box-shadow 120ms ease,
+    background-color 150ms ease;
+}
+
+.button.primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: #041221;
+  box-shadow: 0 12px 24px rgba(59, 161, 156, 0.35);
+}
+
+.button.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(59, 161, 156, 0.4);
+}
+
+.button.secondary {
+  border: 1px solid rgba(91, 192, 190, 0.45);
+  color: var(--accent);
+  background: transparent;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(16px);
+  background: rgba(11, 19, 43, 0.72);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 0;
+}
+
+.branding {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+}
+
+.logo-mark {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: #071021;
+  font-weight: 700;
+}
+
+.site-nav {
+  display: flex;
+  gap: 1.25rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.site-nav a {
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 150ms ease;
+}
+
+.site-nav a:hover::after,
+.site-nav a:focus::after {
+  transform: scaleX(1);
+}
+
+.hero {
+  padding: 6rem 0 5rem;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(91, 192, 190, 0.16), transparent 55%),
+    radial-gradient(circle at 90% 10%, rgba(91, 192, 190, 0.1), transparent 45%);
+}
+
+.hero .container {
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 4vw, 3.25rem);
+  margin-bottom: 1.25rem;
+}
+
+.hero p {
+  color: var(--text-muted);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.product,
+.features,
+.downloads,
+.roadmap,
+.about,
+.contact {
+  padding: 5rem 0;
+}
+
+.product .container,
+.about .container {
+  display: grid;
+  gap: 3.5rem;
+  align-items: center;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.product ul li {
+  margin-bottom: 0.6rem;
+}
+
+.product-visual {
+  background: var(--surface);
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.product-visual figcaption {
+  color: var(--text-muted);
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.features .feature-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 2.5rem;
+}
+
+.features article {
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  border: 1px solid rgba(91, 192, 190, 0.25);
+  box-shadow: 0 12px 28px rgba(9, 15, 32, 0.3);
+}
+
+.features h3 {
+  margin-bottom: 1rem;
+}
+
+.downloads {
+  background: rgba(20, 30, 60, 0.65);
+}
+
+.download-grid {
+  display: grid;
+  gap: 1.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-top: 2.5rem;
+}
+
+.download-grid article {
+  background: var(--surface);
+  padding: 2rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(91, 192, 190, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 10px 24px rgba(7, 12, 29, 0.35);
+}
+
+.download-grid .coming-soon {
+  align-items: flex-start;
+  color: var(--text-muted);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(91, 192, 190, 0.12);
+  color: var(--accent);
+  border: 1px solid rgba(91, 192, 190, 0.3);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.roadmap-list {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2.4rem;
+}
+
+.milestone {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  background: var(--surface);
+  padding: 1.5rem 1.8rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(91, 192, 190, 0.15);
+}
+
+.timeframe {
+  min-width: 76px;
+  display: inline-block;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.about .about-visual {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.contact {
+  background: linear-gradient(160deg, rgba(91, 192, 190, 0.16), transparent);
+}
+
+.contact-card {
+  background: rgba(6, 10, 24, 0.85);
+  border-radius: var(--radius-lg);
+  padding: 3rem;
+  border: 1px solid rgba(91, 192, 190, 0.2);
+  box-shadow: var(--shadow);
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.contact form {
+  margin-top: 2rem;
+}
+
+.contact label {
+  display: block;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.input-group {
+  display: flex;
+  gap: 0.75rem;
+}
+
+input[type="email"] {
+  flex: 1;
+  padding: 0.85rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(91, 192, 190, 0.4);
+  background: rgba(8, 13, 29, 0.85);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+input[type="email"]::placeholder {
+  color: rgba(245, 247, 255, 0.4);
+}
+
+.legal {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.site-footer {
+  padding: 3rem 0;
+  border-top: 1px solid var(--border);
+  background: rgba(6, 10, 24, 0.9);
+}
+
+.site-footer .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer-branding {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.footer-meta {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 960px) {
+  .hero .container,
+  .product .container,
+  .about .container {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual {
+    order: -1;
+  }
+
+  .site-nav {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .container {
+    width: min(100% - 2.2rem, var(--max-width));
+  }
+
+  .contact-card {
+    padding: 2.4rem;
+  }
+
+  .input-group {
+    flex-direction: column;
+  }
+
+  input[type="email"],
+  .button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 540px) {
+  .features .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .download-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding-top: 4.5rem;
+  }
+}
