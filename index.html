@@ -14,11 +14,9 @@
           <span class="logo-type">Synthetic Insights</span>
         </div>
         <nav class="site-nav">
-          <a href="#product">Product</a>
           <a href="#features">Features</a>
           <a href="#downloads">Downloads</a>
           <a href="#about">About</a>
-          <a href="#contact">Contact</a>
         </nav>
       </div>
     </header>
@@ -35,42 +33,15 @@
             </p>
             <div class="hero-actions">
               <a class="button primary" href="#downloads">Get Smartodo</a>
-              <a class="button secondary" href="#product">Explore the product</a>
+              <a class="button secondary" href="#features">Explore the features</a>
             </div>
           </div>
           <div class="hero-visual">
             <img
-              src="https://via.placeholder.com/520x420.png?text=Smartodo+Workspace"
-              alt="Preview of Smartodo interface"
+              src="smartodo_assets/kanban.png"
+              alt="Smartodo overview Kanban board"
             />
           </div>
-        </div>
-      </section>
-
-      <section class="product" id="product">
-        <div class="container">
-          <div class="product-copy">
-            <p class="eyebrow">Introducing Smartodo</p>
-            <h2>One task system across every Apple device</h2>
-            <p>
-              Smartodo unifies your tasks, notes, and projects with instant sync
-              between Mac, iPhone, and iPad. Work offline, stay in control of
-              your data, and rely on your personal AI agent when you need an
-              extra hand.
-            </p>
-            <ul>
-              <li>Capture ideas in seconds with natural language input.</li>
-              <li>Let the AI agent break plans into actionable steps.</li>
-              <li>Keep everything secure with on-device storage.</li>
-            </ul>
-          </div>
-          <figure class="product-visual">
-            <img
-              src="https://via.placeholder.com/600x400.png?text=Unified+Task+View"
-              alt="Smartodo cross-device experience"
-            />
-            <figcaption>Designed for clarity across Mac, iPhone, and iPad.</figcaption>
-          </figure>
         </div>
       </section>
 
@@ -78,28 +49,87 @@
         <div class="container">
           <p class="eyebrow">Why Smartodo</p>
           <h2>Privacy-first productivity with an AI boost</h2>
-          <div class="feature-grid">
-            <article>
-              <h3>Local sync</h3>
-              <p>
-                Your data lives on your devices. Smartodo keeps everything in
-                sync over local networks or encrypted peer-to-peer connections.
-              </p>
+          <div class="feature-list">
+            <article class="feature-item">
+              <div class="feature-copy">
+                <h3>Local-first, smooth sync all the devices</h3>
+                <p>
+                  Smartodo keeps every task on-device and syncs securely through
+                  your own WebDAV storage—privacy matters, so your work stays
+                  yours.
+                </p>
+                <p>
+                  Native OneDrive and other providers are on the roadmap, and
+                  you can already stay fully in control by hosting storage you
+                  trust.
+                </p>
+              </div>
+              <div class="feature-media">
+                <img
+                  src="smartodo_assets/local_privacy_shield.svg"
+                  alt="Illustration of local-first, privacy safeguarded workspace"
+                />
+              </div>
             </article>
-            <article>
-              <h3>Privacy by design</h3>
-              <p>
-                No ads, no tracking, no surprise uploads. You stay in control
-                while the app adapts to your workflows.
-              </p>
+            <article class="feature-item">
+              <div class="feature-copy">
+                <h3>Dependency graph</h3>
+                <p>
+                  Visualize relationships, uncover blockers, and keep complex
+                  initiatives moving with a live dependency graph that stays in
+                  sync with your boards.
+                </p>
+                <p>
+                  Zoom in on priority chains or step back to see the whole
+                  network so critical work never slips.
+                </p>
+              </div>
+              <div class="feature-media">
+                <img
+                  src="smartodo_assets/graph.png"
+                  alt="Dependency graph view of Smartodo tasks"
+                />
+              </div>
             </article>
-            <article>
-              <h3>Embedded AI agent</h3>
-              <p>
-                Delegate planning, summarizing, or follow-ups to an AI partner
-                that learns from context you approve, without leaving your
-                digital workspace.
-              </p>
+            <article class="feature-item">
+              <div class="feature-copy">
+                <h3>AI agent</h3>
+                <p>
+                  Collaborate with a secure cloud AI agent that drafts plans,
+                  recommends next steps, and keeps context aligned with your
+                  goals.
+                </p>
+                <p>
+                  You decide what leaves your workspace—we redact sensitive
+                  details, encrypt requests, and never store your prompts or
+                  responses beyond each session.
+                </p>
+              </div>
+              <div class="feature-media">
+                <img
+                  src="smartodo_assets/ai_agent.png"
+                  alt="Smartodo AI agent assisting with task planning"
+                />
+              </div>
+            </article>
+            <article class="feature-item">
+              <div class="feature-copy">
+                <h3>Filters</h3>
+                <p>
+                  Slice work by status, title keywords, owners, and dependency
+                  relationships to spotlight exactly what matters right now.
+                </p>
+                <p>
+                  Save reusable filters for reviews, roadmap checkpoints, or
+                  dependency sweeps and keep every teammate aligned in seconds.
+                </p>
+              </div>
+              <div class="feature-media">
+                <img
+                  src="smartodo_assets/filter.png"
+                  alt="Smartodo filter view highlighting task segments"
+                />
+              </div>
             </article>
           </div>
         </div>
@@ -110,20 +140,20 @@
           <p class="eyebrow">Download Smartodo</p>
           <h2>Start on Apple devices today</h2>
           <div class="download-grid">
-            <article>
+            <article class="coming-soon">
               <h3>macOS</h3>
               <p>Optimized for Sonoma and Ventura with native shortcuts.</p>
-              <a class="button primary" href="#">Download for Mac</a>
+              <span class="tag">Coming soon</span>
             </article>
-            <article>
+            <article class="coming-soon">
               <h3>iOS</h3>
               <p>Capture tasks anywhere with widgets and voice capture.</p>
-              <a class="button primary" href="#">Download for iPhone</a>
+              <span class="tag">Coming soon</span>
             </article>
-            <article>
+            <article class="coming-soon">
               <h3>iPadOS</h3>
               <p>Focus on deep work with split view and pencil support.</p>
-              <a class="button primary" href="#">Download for iPad</a>
+              <span class="tag">Coming soon</span>
             </article>
             <article class="coming-soon">
               <h3>Windows</h3>
@@ -135,27 +165,6 @@
               <p>Be the first to know when we launch cross-platform support.</p>
               <span class="tag">Coming soon</span>
             </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="roadmap" id="roadmap">
-        <div class="container">
-          <p class="eyebrow">Product roadmap</p>
-          <h2>Built to scale with your ambitions</h2>
-          <div class="roadmap-list">
-            <div class="milestone">
-              <span class="timeframe">Now</span>
-              <p>macOS, iOS, and iPadOS apps with seamless local sync.</p>
-            </div>
-            <div class="milestone">
-              <span class="timeframe">Next</span>
-              <p>Team workspaces and collaborative AI planning sessions.</p>
-            </div>
-            <div class="milestone">
-              <span class="timeframe">Later</span>
-              <p>Windows and Android apps with cross-platform encrypted sync.</p>
-            </div>
           </div>
         </div>
       </section>
@@ -181,29 +190,6 @@
               src="https://via.placeholder.com/460x380.png?text=Team+at+Work"
               alt="Synthetic Insights team collaboration"
             />
-          </div>
-        </div>
-      </section>
-
-      <section class="contact" id="contact">
-        <div class="container">
-          <div class="contact-card">
-            <h2>Stay in the loop</h2>
-            <p>
-              Share your email and we will keep you updated on product releases
-              and beta invitations.
-            </p>
-            <form>
-              <label for="email">Email address</label>
-              <div class="input-group">
-                <input type="email" id="email" name="email" placeholder="you@example.com" required />
-                <button type="submit" class="button primary">Notify me</button>
-              </div>
-            </form>
-            <p class="legal">
-              We respect your inbox. Expect occasional updates packed with
-              substance, no spam.
-            </p>
           </div>
         </div>
       </section>
