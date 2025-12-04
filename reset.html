@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Reset Password | Synthetic Insights</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="container">
+                <div class="branding">
+                    <img
+                        class="logo-mark"
+                        src="smartodo_assets/icon.svg"
+                        alt="Smartodo icon"
+                    />
+                    <span class="logo-type">Synthetic Insights</span>
+                </div>
+                <nav class="site-nav">
+                    <a href="index.html#features">Features</a>
+                    <a href="index.html#downloads">Downloads</a>
+                    <a href="index.html#about">About</a>
+                    <a href="privacy.html">Privacy</a>
+                    <a href="reset.html">Reset password</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="auth-page">
+            <div class="container">
+                <div class="auth-card">
+                    <p class="eyebrow">Reset password</p>
+                    <h1>Set a new password</h1>
+                    <p class="lead">
+                        Open this page from the reset email so the secure token
+                        is included. After updating, sign in again with your new
+                        password.
+                    </p>
+
+                    <div class="field">
+                        <label for="password">New password</label>
+                        <input
+                            id="password"
+                            type="password"
+                            placeholder="Enter a new password"
+                            autocomplete="new-password"
+                        />
+                    </div>
+
+                    <div class="field">
+                        <label for="confirm">Confirm new password</label>
+                        <input
+                            id="confirm"
+                            type="password"
+                            placeholder="Re-enter the password"
+                            autocomplete="new-password"
+                        />
+                    </div>
+
+                    <div class="form-actions">
+                        <button
+                            id="submit"
+                            class="button primary"
+                            type="button"
+                        >
+                            Update password
+                        </button>
+                        <a class="button secondary" href="index.html"
+                            >Back home</a
+                        >
+                    </div>
+
+                    <p class="status" id="status">Checking your reset link…</p>
+                    <p class="status note">
+                        如果直接访问本页，请回到邮箱点击重置链接；部署前替换
+                        Supabase URL 和 Anon Key。
+                    </p>
+                </div>
+            </div>
+        </main>
+
+        <script type="module">
+            import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+            const SUPABASE_URL = "https://xjsyhejacfndraryyqaq.supabase.co";
+            const SUPABASE_ANON_KEY =
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhqc3loZWphY2ZuZHJhcnl5cWFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU4MjcxODAsImV4cCI6MjA2MTQwMzE4MH0.xaY6wwxMZqi_zkICjXS4H3IDNwV9z3YGGXIBzve2eEM";
+
+            const statusEl = document.getElementById("status");
+            const passwordInput = document.getElementById("password");
+            const confirmInput = document.getElementById("confirm");
+            const submitBtn = document.getElementById("submit");
+
+            const setStatus = (message, type = "info") => {
+                statusEl.textContent = message;
+                statusEl.className = `status${type === "info" ? "" : " " + type}`;
+            };
+
+            const toggleForm = (enabled) => {
+                passwordInput.disabled = !enabled;
+                confirmInput.disabled = !enabled;
+                submitBtn.disabled = !enabled;
+            };
+
+            const guardSupabaseConfig = () => {
+                const missingUrl = SUPABASE_URL.includes("your-project-ref");
+                const missingKey = SUPABASE_ANON_KEY.includes(
+                    "YOUR_SUPABASE_ANON_KEY",
+                );
+                if (missingUrl || missingKey) {
+                    setStatus(
+                        "Replace SUPABASE_URL and SUPABASE_ANON_KEY before deploying.",
+                        "error",
+                    );
+                    toggleForm(false);
+                    throw new Error("Supabase credentials must be configured.");
+                }
+            };
+
+            const cleanUrlHash = () => {
+                const url =
+                    window.location.origin +
+                    window.location.pathname +
+                    window.location.search;
+                window.history.replaceState({}, document.title, url);
+            };
+
+            const validateLinkAndEnableForm = async (supabase) => {
+                const hasToken =
+                    window.location.hash &&
+                    window.location.hash.includes("access_token");
+                if (!hasToken) {
+                    setStatus(
+                        "Open this page from the reset email so the token is included.",
+                        "error",
+                    );
+                    toggleForm(false);
+                    return false;
+                }
+
+                setStatus("Validating your link…");
+                const { data, error } = await supabase.auth.getSessionFromUrl({
+                    storeSession: true,
+                });
+                if (error) {
+                    setStatus(
+                        error.message || "Reset link is invalid or expired.",
+                        "error",
+                    );
+                    toggleForm(false);
+                    return false;
+                }
+
+                if (!data?.session) {
+                    setStatus(
+                        "Reset link is missing or expired. Request a new one.",
+                        "error",
+                    );
+                    toggleForm(false);
+                    return false;
+                }
+
+                cleanUrlHash();
+                setStatus("Link verified. Set a new password to continue.");
+                toggleForm(true);
+                return true;
+            };
+
+            const run = async () => {
+                try {
+                    guardSupabaseConfig();
+                    const supabase = createClient(
+                        SUPABASE_URL,
+                        SUPABASE_ANON_KEY,
+                    );
+
+                    const isReady = await validateLinkAndEnableForm(supabase);
+                    if (!isReady) return;
+
+                    submitBtn.addEventListener("click", async () => {
+                        const password = passwordInput.value.trim();
+                        const confirm = confirmInput.value.trim();
+
+                        if (password.length < 8) {
+                            setStatus(
+                                "Password must be at least 8 characters.",
+                                "error",
+                            );
+                            return;
+                        }
+
+                        if (password !== confirm) {
+                            setStatus("Passwords do not match.", "error");
+                            return;
+                        }
+
+                        toggleForm(false);
+                        submitBtn.textContent = "Updating…";
+                        const { error } = await supabase.auth.updateUser({
+                            password,
+                        });
+                        if (error) {
+                            setStatus(
+                                error.message ||
+                                    "Could not update password. Try again.",
+                                "error",
+                            );
+                            toggleForm(true);
+                            submitBtn.textContent = "Update password";
+                            return;
+                        }
+
+                        setStatus(
+                            "Password updated. You can close this page and sign in again.",
+                            "success",
+                        );
+                        submitBtn.textContent = "Updated";
+                    });
+                } catch (err) {
+                    console.error(err);
+                    // status already set inside guard/validators
+                }
+            };
+
+            toggleForm(false);
+            run();
+        </script>
+    </body>
+</html>

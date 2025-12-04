@@ -386,7 +386,9 @@ ul {
   gap: 0.75rem;
 }
 
-input[type="email"] {
+input[type="email"],
+input[type="password"],
+input[type="text"] {
   flex: 1;
   padding: 0.85rem 1rem;
   border-radius: 999px;
@@ -396,7 +398,9 @@ input[type="email"] {
   font-size: 1rem;
 }
 
-input[type="email"]::placeholder {
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
+input[type="text"]::placeholder {
   color: rgba(15, 23, 42, 0.45);
 }
 
@@ -404,6 +408,76 @@ input[type="email"]::placeholder {
   margin-top: 1.5rem;
   font-size: 0.85rem;
   color: var(--text-muted);
+}
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 6rem 0;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(37, 99, 235, 0.12), transparent 45%),
+    radial-gradient(circle at 88% 16%, rgba(29, 78, 216, 0.1), transparent 40%),
+    var(--bg);
+}
+
+.auth-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.12);
+  padding: 2.6rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.auth-card h1 {
+  margin: 0.3rem 0 0.75rem;
+}
+
+.auth-card p.lead {
+  color: var(--text-muted);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 1.4rem;
+}
+
+.field label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.field input {
+  width: 100%;
+}
+
+.form-actions {
+  margin-top: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.status {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.status.error {
+  color: #b91c1c;
+}
+
+.status.success {
+  color: #047857;
+}
+
+.status.note {
+  font-size: 0.85rem;
 }
 
 .site-footer {
