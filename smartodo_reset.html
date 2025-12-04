@@ -67,6 +67,7 @@
         <script type="module">
             import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
+            // Project config — keep anon key on frontend
             const SUPABASE_URL = "https://xjsyhejacfndraryyqaq.supabase.co";
             const SUPABASE_ANON_KEY =
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhqc3loZWphY2ZuZHJhcnl5cWFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU4MjcxODAsImV4cCI6MjA2MTQwMzE4MH0.xaY6wwxMZqi_zkICjXS4H3IDNwV9z3YGGXIBzve2eEM";
@@ -87,125 +88,95 @@
                 submitBtn.disabled = !enabled;
             };
 
-            const guardSupabaseConfig = () => {
-                const missingUrl = SUPABASE_URL.includes("your-project-ref");
-                const missingKey = SUPABASE_ANON_KEY.includes(
-                    "YOUR_SUPABASE_ANON_KEY",
-                );
-                if (missingUrl || missingKey) {
-                    setStatus("Supabase credentials must be configured.", "error");
-                    toggleForm(false);
-                    throw new Error("Supabase credentials must be configured.");
-                }
-            };
-
             const cleanUrl = () => {
                 const url = `${window.location.origin}${window.location.pathname}`;
                 window.history.replaceState({}, document.title, url);
             };
 
-            const getCodeFromQuery = () =>
-                new URLSearchParams(window.location.search).get("code");
+            const getTokenFromQuery = () => new URLSearchParams(window.location.search).get("token");
+            const getTokenHashFromQuery = () => new URLSearchParams(window.location.search).get("token_hash");
 
-            const validateLinkAndEnableForm = async (supabase) => {
-                const hasHashToken =
-                    window.location.hash &&
-                    window.location.hash.includes("access_token");
-                const code = getCodeFromQuery();
+            // Validate link using token_hash first, then token. This page targets links
+            // that include ?token=...&token_hash=... (as in received email).
+            const validateRecoveryLink = async (supabase) => {
+                const tokenHash = getTokenHashFromQuery();
+                const token = getTokenFromQuery();
 
-                if (!hasHashToken && !code) {
-                    setStatus("Reset link is missing. Request a new email.", "error");
+                if (!token && !tokenHash) {
+                    setStatus("Reset link is missing token. Request a new reset email.", "error");
                     toggleForm(false);
                     return false;
                 }
 
-                setStatus("Validating your link…");
+                setStatus("Verifying reset link…");
+
+                // Try token_hash first (preferred), then token (short OTP style)
                 try {
-                    if (hasHashToken) {
-                        const { data, error } = await supabase.auth.getSessionFromUrl({
-                            storeSession: true,
+                    if (tokenHash) {
+                        const { data, error } = await supabase.auth.verifyOtp({
+                            type: "recovery",
+                            token_hash: tokenHash,
                         });
-                        if (error || !data?.session) {
-                            throw error || new Error("Missing session from link.");
-                        }
+                        if (error) throw error;
+                        if (!data?.session) throw new Error("Verification did not return a session.");
                     } else {
-                        const { data, error } =
-                            await supabase.auth.exchangeCodeForSession(code);
-                        if (error || !data?.session) {
-                            throw error || new Error("Missing session from code.");
-                        }
+                        const { data, error } = await supabase.auth.verifyOtp({
+                            type: "recovery",
+                            token: token,
+                        });
+                        if (error) throw error;
+                        if (!data?.session) throw new Error("Verification did not return a session.");
                     }
 
+                    // Remove tokens from URL for privacy
                     cleanUrl();
-                    setStatus("Link verified. Set your new password to continue.");
+                    setStatus("Link verified. Please enter a new password.");
                     toggleForm(true);
                     return true;
                 } catch (err) {
                     console.error(err);
-                    setStatus(
-                        err?.message || "Reset link is invalid or expired.",
-                        "error",
-                    );
+                    setStatus(err?.message || "Reset link is invalid or expired.", "error");
                     toggleForm(false);
                     return false;
                 }
             };
 
             const run = async () => {
-                try {
-                    guardSupabaseConfig();
-                    const supabase = createClient(
-                        SUPABASE_URL,
-                        SUPABASE_ANON_KEY,
-                    );
+                const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                toggleForm(false);
+                setStatus("Checking reset link...");
 
-                    setStatus("Verifying reset link…");
-                    const isReady = await validateLinkAndEnableForm(supabase);
-                    if (!isReady) return;
+                const ok = await validateRecoveryLink(supabase);
+                if (!ok) return;
 
-                    submitBtn.addEventListener("click", async () => {
-                        const password = passwordInput.value.trim();
-                        const confirm = confirmInput.value.trim();
+                submitBtn.addEventListener("click", async () => {
+                    const password = passwordInput.value.trim();
+                    const confirm = confirmInput.value.trim();
 
-                        if (password.length < 8) {
-                            setStatus(
-                                "Password must be at least 8 characters.",
-                                "error",
-                            );
-                            return;
-                        }
+                    if (password.length < 8) {
+                        setStatus("Password must be at least 8 characters.", "error");
+                        return;
+                    }
+                    if (password !== confirm) {
+                        setStatus("Passwords do not match.", "error");
+                        return;
+                    }
 
-                        if (password !== confirm) {
-                            setStatus("Passwords do not match.", "error");
-                            return;
-                        }
+                    toggleForm(false);
+                    submitBtn.textContent = "Updating…";
 
-                        toggleForm(false);
-                        submitBtn.textContent = "Updating…";
-                        const { error } = await supabase.auth.updateUser({
-                            password,
-                        });
-                        if (error) {
-                            setStatus(
-                                error.message ||
-                                    "Could not update password. Try again.",
-                                "error",
-                            );
-                            toggleForm(true);
-                            submitBtn.textContent = "Update password";
-                            return;
-                        }
+                    const { error } = await supabase.auth.updateUser({ password });
+                    if (error) {
+                        console.error(error);
+                        setStatus(error.message || "Could not update password. Try again.", "error");
+                        toggleForm(true);
+                        submitBtn.textContent = "Update password";
+                        return;
+                    }
 
-                        setStatus(
-                            "Password updated. You can close this page and sign in again.",
-                            "success",
-                        );
-                        submitBtn.textContent = "Updated";
-                    });
-                } catch (err) {
-                    console.error(err);
-                    // status already set inside guard/validators
-                }
+                    setStatus("Password updated. You can close this page and sign in again.", "success");
+                    submitBtn.textContent = "Updated";
+                });
             };
 
             run();
