@@ -99,50 +99,56 @@
                 }
             };
 
-            const cleanUrlHash = () => {
-                const url =
-                    window.location.origin +
-                    window.location.pathname +
-                    window.location.search;
+            const cleanUrl = () => {
+                const url = `${window.location.origin}${window.location.pathname}`;
                 window.history.replaceState({}, document.title, url);
             };
 
+            const getCodeFromQuery = () =>
+                new URLSearchParams(window.location.search).get("code");
+
             const validateLinkAndEnableForm = async (supabase) => {
-                const hasToken =
+                const hasHashToken =
                     window.location.hash &&
                     window.location.hash.includes("access_token");
-                if (!hasToken) {
+                const code = getCodeFromQuery();
+
+                if (!hasHashToken && !code) {
                     setStatus("Reset link is missing. Request a new email.", "error");
                     toggleForm(false);
                     return false;
                 }
 
                 setStatus("Validating your link…");
-                const { data, error } = await supabase.auth.getSessionFromUrl({
-                    storeSession: true,
-                });
-                if (error) {
+                try {
+                    if (hasHashToken) {
+                        const { data, error } = await supabase.auth.getSessionFromUrl({
+                            storeSession: true,
+                        });
+                        if (error || !data?.session) {
+                            throw error || new Error("Missing session from link.");
+                        }
+                    } else {
+                        const { data, error } =
+                            await supabase.auth.exchangeCodeForSession(code);
+                        if (error || !data?.session) {
+                            throw error || new Error("Missing session from code.");
+                        }
+                    }
+
+                    cleanUrl();
+                    setStatus("Link verified. Set your new password to continue.");
+                    toggleForm(true);
+                    return true;
+                } catch (err) {
+                    console.error(err);
                     setStatus(
-                        error.message || "Reset link is invalid or expired.",
+                        err?.message || "Reset link is invalid or expired.",
                         "error",
                     );
                     toggleForm(false);
                     return false;
                 }
-
-                if (!data?.session) {
-                    setStatus(
-                        "Reset link is missing or expired. Request a new one.",
-                        "error",
-                    );
-                    toggleForm(false);
-                    return false;
-                }
-
-                cleanUrlHash();
-                setStatus("Link verified. Set your new password to continue.");
-                toggleForm(true);
-                return true;
             };
 
             const run = async () => {
