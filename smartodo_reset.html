@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Reset Password | Synthetic Insights</title>
+        <title>Reset Password | Smartodo</title>
         <link rel="stylesheet" href="styles.css" />
     </head>
     <body>
@@ -15,14 +15,13 @@
                         src="smartodo_assets/icon.svg"
                         alt="Smartodo icon"
                     />
-                    <span class="logo-type">Synthetic Insights</span>
+                    <span class="logo-type">Smartodo</span>
                 </div>
                 <nav class="site-nav">
                     <a href="index.html#features">Features</a>
                     <a href="index.html#downloads">Downloads</a>
                     <a href="index.html#about">About</a>
                     <a href="privacy.html">Privacy</a>
-                    <a href="reset.html">Reset password</a>
                 </nav>
             </div>
         </header>
@@ -32,11 +31,7 @@
                 <div class="auth-card">
                     <p class="eyebrow">Reset password</p>
                     <h1>Set a new password</h1>
-                    <p class="lead">
-                        Open this page from the reset email so the secure token
-                        is included. After updating, sign in again with your new
-                        password.
-                    </p>
+                    <p class="lead">Update your Smartodo password and sign in again.</p>
 
                     <div class="field">
                         <label for="password">New password</label>
@@ -59,23 +54,12 @@
                     </div>
 
                     <div class="form-actions">
-                        <button
-                            id="submit"
-                            class="button primary"
-                            type="button"
-                        >
+                        <button id="submit" class="button primary" type="button">
                             Update password
                         </button>
-                        <a class="button secondary" href="index.html"
-                            >Back home</a
-                        >
                     </div>
 
-                    <p class="status" id="status">Checking your reset link…</p>
-                    <p class="status note">
-                        如果直接访问本页，请回到邮箱点击重置链接；部署前替换
-                        Supabase URL 和 Anon Key。
-                    </p>
+                    <p class="status" id="status"></p>
                 </div>
             </div>
         </main>
@@ -109,10 +93,7 @@
                     "YOUR_SUPABASE_ANON_KEY",
                 );
                 if (missingUrl || missingKey) {
-                    setStatus(
-                        "Replace SUPABASE_URL and SUPABASE_ANON_KEY before deploying.",
-                        "error",
-                    );
+                    setStatus("Supabase credentials must be configured.", "error");
                     toggleForm(false);
                     throw new Error("Supabase credentials must be configured.");
                 }
@@ -131,10 +112,7 @@
                     window.location.hash &&
                     window.location.hash.includes("access_token");
                 if (!hasToken) {
-                    setStatus(
-                        "Open this page from the reset email so the token is included.",
-                        "error",
-                    );
+                    setStatus("Reset link is missing. Request a new email.", "error");
                     toggleForm(false);
                     return false;
                 }
@@ -162,7 +140,7 @@
                 }
 
                 cleanUrlHash();
-                setStatus("Link verified. Set a new password to continue.");
+                setStatus("Link verified. Set your new password to continue.");
                 toggleForm(true);
                 return true;
             };
@@ -175,6 +153,7 @@
                         SUPABASE_ANON_KEY,
                     );
 
+                    setStatus("Verifying reset link…");
                     const isReady = await validateLinkAndEnableForm(supabase);
                     if (!isReady) return;
 
@@ -223,7 +202,6 @@
                 }
             };
 
-            toggleForm(false);
             run();
         </script>
     </body>
