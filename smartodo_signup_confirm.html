@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Confirm Signup | Smartodo</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="container">
+                <div class="branding">
+                    <img
+                        class="logo-mark"
+                        src="smartodo_assets/icon.svg"
+                        alt="Smartodo icon"
+                    />
+                    <span class="logo-type">Smartodo</span>
+                </div>
+                <nav class="site-nav">
+                    <a href="index.html#features">Features</a>
+                    <a href="index.html#downloads">Downloads</a>
+                    <a href="index.html#about">About</a>
+                    <a href="privacy.html">Privacy</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="auth-page">
+            <div class="container">
+                <div class="auth-card">
+                    <p class="eyebrow">Confirm email</p>
+                    <h1>Verify your account</h1>
+                    <p class="lead">
+                        We are confirming your email address. This may take a few seconds.
+                    </p>
+
+                    <p class="status" id="status"></p>
+                </div>
+            </div>
+        </main>
+
+        <script type="module">
+            import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+            const SUPABASE_URL = "https://xjsyhejacfndraryyqaq.supabase.co";
+            const SUPABASE_ANON_KEY =
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhqc3loZWphY2ZuZHJhcnl5cWFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU4MjcxODAsImV4cCI6MjA2MTQwMzE4MH0.xaY6wwxMZqi_zkICjXS4H3IDNwV9z3YGGXIBzve2eEM";
+
+            const statusEl = document.getElementById("status");
+
+            const setStatus = (message, type = "info") => {
+                statusEl.textContent = message;
+                statusEl.className = `status${type === "info" ? "" : " " + type}`;
+            };
+
+            const cleanUrl = () => {
+                const url = `${window.location.origin}${window.location.pathname}`;
+                window.history.replaceState({}, document.title, url);
+            };
+
+            const getTokenFromQuery = () => new URLSearchParams(window.location.search).get("token");
+            const getTokenHashFromQuery = () => new URLSearchParams(window.location.search).get("token_hash");
+
+            const verifySignup = async (supabase) => {
+                const tokenHash = getTokenHashFromQuery();
+                const token = getTokenFromQuery();
+
+                if (!token && !tokenHash) {
+                    setStatus("Confirmation link is missing token. Please request a new email.", "error");
+                    return false;
+                }
+
+                setStatus("Verifying your email…");
+
+                try {
+                    if (tokenHash) {
+                        const { data, error } = await supabase.auth.verifyOtp({
+                            type: "signup",
+                            token_hash: tokenHash,
+                        });
+                        if (error) throw error;
+                        if (!data?.session) throw new Error("Verification did not return a session.");
+                    } else {
+                        const { data, error } = await supabase.auth.verifyOtp({
+                            type: "signup",
+                            token,
+                        });
+                        if (error) throw error;
+                        if (!data?.session) throw new Error("Verification did not return a session.");
+                    }
+
+                    cleanUrl();
+                    setStatus("Email confirmed. You can return to the app and sign in.", "success");
+                    return true;
+                } catch (err) {
+                    console.error(err);
+                    setStatus(err?.message || "Confirmation link is invalid or expired.", "error");
+                    return false;
+                }
+            };
+
+            const run = async () => {
+                setStatus("Preparing verification…");
+                const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                await verifySignup(supabase);
+            };
+
+            run();
+        </script>
+    </body>
+</html>
