@@ -1,71 +1,79 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- 1. 背景的高级渐变：基于你的 Primary Blue，加入一点青色提亮，一点紫色加深 -->
-    <linearGradient id="bg_gradient" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#3B82F6" /> <!-- 亮蓝 (比原色亮一点) -->
-      <stop offset="50%" stop-color="#1E4BFF" /> <!-- 你的原色 Primary -->
-      <stop offset="100%" stop-color="#102A99" /> <!-- 深蓝 (增加厚重感) -->
+    <!-- 明亮活力的渐变 -->
+    <linearGradient id="bright_bg" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#60A5FA"/>    <!-- Sky Blue 400 - 明亮 -->
+      <stop offset="100%" stop-color="#2563EB"/>  <!-- Blue 600 - 饱和 -->
     </linearGradient>
-
-    <!-- 2. AI星星的渐变：融合你的 Secondary(橙) 和 Accent(粉) -->
-    <linearGradient id="star_gradient" x1="280" y1="80" x2="420" y2="220" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#FFB74D" /> <!-- 亮橙 -->
-      <stop offset="40%" stop-color="#FFFF8746" /> <!-- 你的 Secondary -->
-      <stop offset="100%" stop-color="#FF4667" /> <!-- 你的 Accent -->
+    
+    <!-- 对勾渐变 -->
+    <linearGradient id="check_white" x1="150" y1="200" x2="360" y2="340">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#E0F2FE"/>
     </linearGradient>
-
-    <!-- 3. 柔和投影滤镜 -->
-    <filter id="soft_shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="8"/>
-      <feOffset dx="0" dy="8" result="offsetblur"/>
+    
+    <!-- AI 星星的鲜艳渐变 -->
+    <radialGradient id="star_bright">
+      <stop offset="0%" stop-color="#FEF08A"/>   <!-- 亮黄 -->
+      <stop offset="60%" stop-color="#FBBF24"/>  <!-- 金黄 -->
+      <stop offset="100%" stop-color="#F59E0B"/> <!-- 深橙黄 -->
+    </radialGradient>
+    
+    <!-- 柔和投影 -->
+    <filter id="soft_shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="5"/>
+      <feOffset dx="0" dy="3"/>
       <feComponentTransfer>
-        <feFuncA type="linear" slope="0.3"/> <!-- 投影透明度 -->
+        <feFuncA type="linear" slope="0.2"/>
       </feComponentTransfer>
       <feMerge>
         <feMergeNode/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    
-    <!-- 4. 顶部高光滤镜 (模拟玻璃质感) -->
-    <linearGradient id="glass_highlight" x1="0" y1="0" x2="0" y2="512" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="white" stop-opacity="0.2"/>
-      <stop offset="100%" stop-color="white" stop-opacity="0"/>
-    </linearGradient>
   </defs>
-
-  <!-- 背景容器 -->
-  <rect x="0" y="0" width="512" height="512" rx="115" fill="url(#bg_gradient)"/>
   
-  <!-- 顶部微妙的高光层，增加立体感 -->
-  <rect x="0" y="0" width="512" height="512" rx="115" fill="url(#glass_highlight)"/>
-
-  <!-- 核心图形：对勾 (带投影) -->
-  <!-- 线条稍微改圆润了一点 -->
+  <!-- 明亮的背景 -->
+  <rect width="512" height="512" rx="115" fill="url(#bright_bg)"/>
+  
+  <!-- 顶部高光 - 增加立体感 -->
+  <ellipse cx="256" cy="100" rx="240" ry="120" fill="white" opacity="0.15"/>
+  
+  <!-- 主对勾 -->
   <g filter="url(#soft_shadow)">
-      <path d="M146 265 L226 345 L346 185" stroke="white" stroke-width="56" stroke-linecap="round" stroke-linejoin="round"/>
+    <path 
+      d="M 135 260 L 215 340 L 377 178" 
+      stroke="url(#check_white)" 
+      stroke-width="58" 
+      stroke-linecap="round" 
+      stroke-linejoin="round"
+      fill="none"/>
   </g>
   
-  <!-- AI 元素：现代风格四角星 (Sparkles) -->
-  <!-- 这种四角星形状目前在UI界主要代表 "AI" 或 "Magic"，形状比普通五角星更现代 -->
-  
-  <!-- 主星 (右上) -->
-  <g filter="url(#soft_shadow)">
-    <path d="M390 90 
-             C 390 90, 385 130, 355 145 
-             C 385 160, 390 200, 390 200 
-             C 390 200, 395 160, 425 145 
-             C 395 130, 390 90, 390 90 Z" 
-          fill="url(#star_gradient)"/>
-  </g>
-  
-  <!-- 次星 (左侧小星，增加平衡感) -->
-  <g opacity="0.8">
-    <path d="M300 110 
-             C 300 110, 297 125, 285 130 
-             C 297 135, 300 150, 300 150 
-             C 300 150, 303 135, 315 130 
-             C 303 125, 300 110, 300 110 Z" 
-          fill="white"/>
+  <!-- AI 星星组 - 简洁版 -->
+  <g>
+    <!-- 主星 -->
+    <g transform="translate(385, 135)">
+      <path 
+        d="M 0 -26 
+           C -1.5 -7, -7 -1.5, -26 0 
+           C -7 1.5, -1.5 7, 0 26 
+           C 1.5 7, 7 1.5, 26 0 
+           C 7 -1.5, 1.5 -7, 0 -26 Z" 
+        fill="url(#star_bright)"/>
+      <!-- 高光 -->
+      <circle r="7" fill="white" opacity="0.7"/>
+    </g>
+    
+    <!-- 小装饰星 -->
+    <g transform="translate(320, 110)" opacity="0.9">
+      <path 
+        d="M 0 -10 
+           C -1 -3, -3 -1, -10 0 
+           C -3 1, -1 3, 0 10 
+           C 1 3, 3 1, 10 0 
+           C 3 -1, 1 -3, 0 -10 Z" 
+        fill="#FDE047"/>
+    </g>
   </g>
 </svg>
