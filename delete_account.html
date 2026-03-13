@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Delete Account | Smartodo</title>
+    <link rel="icon" href="smartodo_assets/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <div class="branding">
+          <img class="logo-mark" src="smartodo_assets/icon.svg" alt="Smartodo icon" />
+          <span class="logo-type">Smartodo</span>
+        </div>
+        <nav class="site-nav">
+          <a href="index.html#features">Features</a>
+          <a href="index.html#downloads">Downloads</a>
+          <a href="index.html#about">About</a>
+          <a href="privacy.html">Privacy</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="auth-page">
+      <div class="container">
+        <div class="auth-card">
+          <p class="eyebrow">Account removal</p>
+          <h1>Delete account</h1>
+          <p class="lead">
+            Deleting your account removes all app data associated with it. Active
+            subscriptions must be canceled in the App Store or Google Play.
+          </p>
+
+          <div class="status note">
+            This action is permanent. Sign in with your Smartodo account email and
+            password, then type <strong>confirm delete</strong> to proceed.
+          </div>
+
+          <div class="field">
+            <label for="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              placeholder="Enter your account email"
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+            />
+          </div>
+
+          <div class="field">
+            <label for="confirm">Confirmation phrase</label>
+            <input
+              id="confirm"
+              type="text"
+              placeholder="confirm delete"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="form-actions">
+            <button id="submit" class="button primary" type="button">
+              Delete account
+            </button>
+          </div>
+
+          <p class="status" id="status"></p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-branding">
+          <img class="logo-mark" src="smartodo_assets/icon.svg" alt="Smartodo icon" />
+          <span class="logo-type">Synthetic Insights</span>
+        </div>
+        <div class="footer-meta">
+          <p>&copy; 2025 Synthetic Insights LLC. All rights reserved.</p>
+          <p><a href="privacy.html">Privacy policy</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module">
+      import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+      const SUPABASE_URL = "https://xjsyhejacfndraryyqaq.supabase.co";
+      const SUPABASE_ANON_KEY =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhqc3loZWphY2ZuZHJhcnl5cWFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU4MjcxODAsImV4cCI6MjA2MTQwMzE4MH0.xaY6wwxMZqi_zkICjXS4H3IDNwV9z3YGGXIBzve2eEM";
+
+      const statusEl = document.getElementById("status");
+      const emailInput = document.getElementById("email");
+      const passwordInput = document.getElementById("password");
+      const confirmInput = document.getElementById("confirm");
+      const submitBtn = document.getElementById("submit");
+      const confirmationKeyword = "confirm delete";
+
+      const supabase = createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY,
+      );
+
+      const setStatus = (message, type = "info") => {
+        statusEl.textContent = message;
+        statusEl.className = `status${type === "info" ? "" : " " + type}`;
+      };
+
+      const toggleForm = (enabled) => {
+        emailInput.disabled = !enabled;
+        passwordInput.disabled = !enabled;
+        confirmInput.disabled = !enabled;
+        submitBtn.disabled = !enabled;
+      };
+
+      const readMessage = async (response) => {
+        try {
+          const payload = await response.json();
+          if (payload?.message) {
+            return payload.message;
+          }
+        } catch (_) {
+          // Fall back to generic message below.
+        }
+        return "Could not delete your account. Please try again.";
+      };
+
+      submitBtn.addEventListener("click", async () => {
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+        const confirmation = confirmInput.value.trim().toLowerCase();
+
+        if (!email) {
+          setStatus("Enter the email address for the account you want to delete.", "error");
+          return;
+        }
+        if (!password) {
+          setStatus("Enter your password.", "error");
+          return;
+        }
+        if (confirmation !== confirmationKeyword) {
+          setStatus(`Type "${confirmationKeyword}" exactly to continue.`, "error");
+          return;
+        }
+
+        toggleForm(false);
+        submitBtn.textContent = "Deleting…";
+        setStatus("Signing in and deleting your account…");
+
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+
+        if (error || !data.session?.access_token) {
+          setStatus(error?.message || "Could not verify your account credentials.", "error");
+          toggleForm(true);
+          submitBtn.textContent = "Delete account";
+          return;
+        }
+
+        const response = await fetch(`${SUPABASE_URL}/functions/v1/delete_user`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${data.session.access_token}`,
+            apikey: SUPABASE_ANON_KEY,
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          const message = await readMessage(response);
+          setStatus(message, "error");
+          toggleForm(true);
+          submitBtn.textContent = "Delete account";
+          await supabase.auth.signOut();
+          return;
+        }
+
+        await supabase.auth.signOut();
+        setStatus("Your account has been permanently deleted.", "success");
+        submitBtn.textContent = "Deleted";
+      });
+    </script>
+  </body>
+</html>
