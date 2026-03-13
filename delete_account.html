@@ -29,52 +29,88 @@
           <p class="eyebrow">Account removal</p>
           <h1>Delete account</h1>
           <p class="lead">
-            Deleting your account removes all app data associated with it. Active
-            subscriptions must be canceled in the App Store or Google Play.
+            This is the official Smartodo account deletion page provided by
+            Synthetic Insights LLC.
           </p>
 
-          <div class="status note">
-            This action is permanent. Sign in with your Smartodo account email and
-            password, then type <strong>confirm delete</strong> to proceed.
+          <div class="info-panel warning-panel">
+            <div class="info-panel__title">Important</div>
+            <p>
+              This action is permanent. Sign in with your Smartodo account email and
+              password, then type <strong>confirm delete</strong> to proceed.
+            </p>
           </div>
 
-          <div class="field">
-            <label for="email">Email</label>
-            <input
-              id="email"
-              type="email"
-              placeholder="Enter your account email"
-              autocomplete="email"
-            />
+          <div class="info-grid">
+            <section class="info-panel">
+              <div class="info-panel__title">How it works</div>
+              <div class="step-list">
+                <div class="step-item">
+                  <div class="step-item__index">1</div>
+                  <p>Sign in with your Smartodo account email and password.</p>
+                </div>
+                <div class="step-item">
+                  <div class="step-item__index">2</div>
+                  <p>Type <strong>confirm delete</strong> and submit the request.</p>
+                </div>
+                <div class="step-item">
+                  <div class="step-item__index">3</div>
+                  <p>Your Smartodo account and account-related data will be permanently deleted.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="info-panel">
+              <div class="info-panel__title">What gets deleted</div>
+              <ul class="info-list">
+                <li>Account-related Smartodo data associated with your account will be deleted.</li>
+                <li>Active subscriptions must be managed separately in the App Store or Google Play.</li>
+                <li>Task data and files stored locally on your devices or in your own cloud storage remain under your control and are not automatically removed by deleting your account.</li>
+              </ul>
+            </section>
           </div>
 
-          <div class="field">
-            <label for="password">Password</label>
-            <input
-              id="password"
-              type="password"
-              placeholder="Enter your password"
-              autocomplete="current-password"
-            />
-          </div>
+          <div class="form-block">
+            <div class="form-block__title">Confirm your account</div>
 
-          <div class="field">
-            <label for="confirm">Confirmation phrase</label>
-            <input
-              id="confirm"
-              type="text"
-              placeholder="confirm delete"
-              autocomplete="off"
-            />
-          </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                type="email"
+                placeholder="Enter your account email"
+                autocomplete="email"
+              />
+            </div>
 
-          <div class="form-actions">
-            <button id="submit" class="button primary" type="button">
-              Delete account
-            </button>
-          </div>
+            <div class="field">
+              <label for="password">Password</label>
+              <input
+                id="password"
+                type="password"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+              />
+            </div>
 
-          <p class="status" id="status"></p>
+            <div class="field">
+              <label for="confirm">Confirmation phrase</label>
+              <input
+                id="confirm"
+                type="text"
+                placeholder="confirm delete"
+                autocomplete="off"
+              />
+            </div>
+
+            <div class="form-actions">
+              <button id="submit" class="button primary" type="button">
+                Delete account
+              </button>
+            </div>
+
+            <p class="status" id="status"></p>
+          </div>
         </div>
       </div>
     </main>
