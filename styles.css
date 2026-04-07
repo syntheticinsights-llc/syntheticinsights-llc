@@ -11,6 +11,9 @@
   --text-muted: rgba(15, 23, 42, 0.6);
   --surface: rgba(255, 255, 255, 0.88);
   --border: rgba(var(--accent-rgb), 0.18);
+  --primary-container: #ecddff;
+  --primary-container-hover: #e3d0ff;
+  --on-primary-container: #34125f;
   --max-width: 1100px;
   --shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
   --radius-lg: 24px;
@@ -101,30 +104,39 @@ ul {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  padding: 0.5rem 0.95rem;
-  border-radius: 0.85rem;
-  background: rgba(255, 255, 255, 0.9);
-  color: #111111;
-  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
-  border: 1px solid rgba(var(--accent-rgb), 0.14);
-  transition: transform 120ms ease, box-shadow 120ms ease,
-    background-color 150ms ease, border-color 150ms ease;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0.625rem 1rem;
+  border-radius: 20px;
+  background: var(--primary-container);
+  color: var(--on-primary-container);
+  border: none;
+  box-shadow: none;
+  transition: background-color 150ms ease, color 150ms ease;
 }
 
 .app-store-badge:hover {
-  transform: translateY(-2px);
-  background: #ffffff;
-  border-color: rgba(var(--accent-rgb), 0.22);
-  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.16);
+  background: var(--primary-container-hover);
+  color: var(--on-primary-container);
+}
+
+.app-store-badge:active {
+  background: #dac3ff;
+  color: var(--on-primary-container);
+}
+
+.app-store-badge:focus-visible {
+  outline: 3px solid rgba(var(--accent-rgb), 0.26);
+  outline-offset: 2px;
 }
 
 .app-store-badge__icon {
-  width: 1.4rem;
-  height: 1.4rem;
+  width: 1.1rem;
+  height: 1.1rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #111111;
+  color: currentColor;
 }
 
 .app-store-badge__icon svg {
@@ -132,26 +144,11 @@ ul {
   height: 100%;
 }
 
-.app-store-badge__text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.05;
-  font-size: 0.62rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: #111111;
-}
-
-.app-store-badge__text span:first-child {
+.app-store-badge__label {
+  font-size: 0.95rem;
   font-weight: 600;
-  opacity: 0.82;
-}
-
-.app-store-badge__text strong {
-  font-size: 0.9rem;
-  text-transform: none;
-  letter-spacing: 0;
-  font-weight: 700;
+  line-height: 1;
+  color: currentColor;
 }
 
 .button.primary {
@@ -290,7 +287,7 @@ ul {
 .product-visual {
   background: var(--surface);
   padding: 1.5rem;
-  border-radius: var(--radius-lg);
+  border-radius: 12px;
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
 }
@@ -330,13 +327,37 @@ ul {
   gap: 1rem;
 }
 
+.features .feature-item--text-only .feature-copy {
+  max-width: 52rem;
+}
+
 .features h3 {
   margin-bottom: 0.25rem;
 }
 
+.features .feature-lead {
+  max-width: 44rem;
+  color: var(--text);
+}
+
+.features .feature-points {
+  margin-top: 0.25rem;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.features .feature-points li {
+  color: var(--text-muted);
+}
+
+.features .feature-points strong {
+  color: var(--text);
+}
+
 .features .feature-media {
   flex: 1 1 360px;
-  border-radius: var(--radius-lg);
+  border-radius: 12px;
   overflow: hidden;
   border: 1px solid rgba(var(--accent-rgb), 0.12);
   box-shadow: 0 16px 32px rgba(15, 23, 42, 0.14);
@@ -346,6 +367,7 @@ ul {
   display: block;
   width: 100%;
   height: 100%;
+  border-radius: 12px;
   object-fit: cover;
 }
 
