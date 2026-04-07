@@ -15,7 +15,7 @@
         <div class="brand-chip">双端</div>
         <div class="brand-text">
           <h1>SmartTodo 商店截图工作台</h1>
-          <p>统一预览 iOS 与 Android 商店宣传图，当前导出仍使用 iOS 规格。</p>
+          <p>统一预览并导出 iOS 与 Android 商店宣传图，优先复用同一套内容布局。</p>
         </div>
       </div>
       <div class="spec-list">
@@ -53,7 +53,7 @@
         <h3>导出规格</h3>
         <ul>
           <li>每个功能点按同一列展示 iOS 与 Android 两个平台。</li>
-          <li>Android 当前只做预览对照，导出能力仍沿用 iOS。</li>
+          <li>导出根目录下平行生成 iOS 与 Play，两端再按语言拆分。</li>
           <li>两端共用同一套文案与素材，只调整外框和画板高度。</li>
         </ul>
       </aside>
@@ -62,10 +62,20 @@
         <div class="workspace-header">
           <div>
             <h2>iOS / Android 对照工作台</h2>
-            <p>每列对应一个功能点，上方 iOS，下方 Android，便于直接比对复用效果。</p>
+            <p>每列对应一个功能点，上方 iOS，下方 Android；导出时按勾选的平台生成对应目录。</p>
           </div>
           <div class="workspace-actions">
             <select class="language-selector" id="language-selector"></select>
+            <div class="platform-selector" role="group" aria-label="导出平台">
+              <label class="platform-option">
+                <input type="checkbox" value="ios" data-export-platform checked>
+                <span>iOS</span>
+              </label>
+              <label class="platform-option">
+                <input type="checkbox" value="android" data-export-platform checked>
+                <span>Android</span>
+              </label>
+            </div>
             <button class="action-button" id="export-current-button" type="button">导出当前语言</button>
             <button class="action-button action-button-secondary" id="export-all-button" type="button">导出全部语言</button>
             <div class="workspace-badge" id="workspace-badge">5 张待导出</div>

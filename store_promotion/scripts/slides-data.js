@@ -87,13 +87,63 @@ const slides = [
 
 let currentLanguage = 'en';
 
-const exportFolderName = 'iOS';
+const exportRootFolderName = 'StorePromotion';
 const imageSourceCache = new Map();
 const exportFontFamily = '"SF Pro Display", "Helvetica Neue", Arial, sans-serif';
-const deviceAspectRatio = 926 / 430;
-const deviceShellColor = '#f7f2fa';
-const deviceBorderColor = 'rgba(214, 203, 232, 0.96)';
-const screenBorderColor = 'rgba(226, 218, 239, 0.95)';
+const baseExportSpec = iosSpec;
+
+const exportPlatforms = {
+  ios: {
+    code: 'ios',
+    label: 'iOS',
+    folderName: 'iOS',
+    spec: iosSpec,
+    frame: {
+      aspectRatio: 926 / 430,
+      shellRadiusRatio: 80 / 612,
+      screenInsetXRatio: 0.042,
+      screenInsetYRatio: 0.0195,
+      screenRadiusRatio: 64 / 612,
+      shellColor: '#f7f2fa',
+      borderColor: 'rgba(214, 203, 232, 0.96)',
+      screenBorderColor: 'rgba(226, 218, 239, 0.95)',
+      cameraWidthRatio: 0,
+      cameraHeightRatio: 0,
+      cameraOffsetYRatio: 0,
+      cameraColor: 'transparent',
+    },
+  },
+  android: {
+    code: 'android',
+    label: 'Android',
+    folderName: 'Play',
+    spec: androidSpec,
+    frame: {
+      aspectRatio: 2,
+      shellRadiusRatio: 72 / 612,
+      screenInsetXRatio: 0.034,
+      screenInsetYRatio: 0.015,
+      screenRadiusRatio: 58 / 612,
+      shellColor: '#edf2f8',
+      borderColor: 'rgba(182, 190, 205, 0.92)',
+      screenBorderColor: 'rgba(198, 206, 219, 0.92)',
+      cameraWidthRatio: 92 / 612,
+      cameraHeightRatio: 18 / 1224,
+      cameraOffsetYRatio: 28 / 1224,
+      cameraColor: 'rgba(18, 21, 28, 0.88)',
+    },
+  },
+};
+
+function getExportPlatform(code) {
+  const platform = exportPlatforms[code];
+
+  if (!platform) {
+    throw new Error(`未知导出平台: ${code}`);
+  }
+
+  return platform;
+}
 
 function getSlideText(slide, lang) {
   const language = lang ?? currentLanguage;

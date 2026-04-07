@@ -286,6 +286,42 @@ body {
   box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
+.platform-selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(48, 41, 34, 0.08);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.platform-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: var(--text-primary);
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.platform-option input {
+  margin: 0;
+  accent-color: #ba4b22;
+}
+
+.platform-option:has(input:checked) {
+  background: rgba(198, 95, 44, 0.12);
+}
+
+.platform-option:has(input:disabled) {
+  opacity: 0.6;
+  cursor: wait;
+}
+
 .action-button-secondary {
   background: linear-gradient(135deg, #8b7355 0%, #6b5640 100%);
   box-shadow: 0 14px 30px rgba(107, 86, 64, 0.2);

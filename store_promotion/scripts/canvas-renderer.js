@@ -26,25 +26,25 @@ function drawRadialGlow(context, x, y, radius, color) {
   context.fillRect(x - radius, y - radius, radius * 2, radius * 2);
 }
 
-function drawArtboardBackground(context, slide) {
-  const background = context.createLinearGradient(0, 0, 0, iosSpec.height);
+function drawArtboardBackground(context, slide, spec) {
+  const background = context.createLinearGradient(0, 0, 0, spec.height);
   background.addColorStop(0, slide.primary);
   background.addColorStop(0.54, slide.secondary);
   background.addColorStop(1, slide.accent);
   context.fillStyle = background;
-  context.fillRect(0, 0, iosSpec.width, iosSpec.height);
+  context.fillRect(0, 0, spec.width, spec.height);
 
-  drawRadialGlow(context, iosSpec.width * 0.14, iosSpec.height * 0.1, 360, 'rgba(255,255,255,0.78)');
-  drawRadialGlow(context, iosSpec.width * 0.78, iosSpec.height * 0.18, 420, slide.highlight);
-  drawRadialGlow(context, iosSpec.width * 0.26, iosSpec.height * 0.74, 420, slide.bloom);
-  drawRadialGlow(context, iosSpec.width * 0.88, iosSpec.height * 0.78, 340, 'rgba(255,255,255,0.34)');
+  drawRadialGlow(context, spec.width * 0.14, spec.height * 0.1, 360, 'rgba(255,255,255,0.78)');
+  drawRadialGlow(context, spec.width * 0.78, spec.height * 0.18, 420, slide.highlight);
+  drawRadialGlow(context, spec.width * 0.26, spec.height * 0.74, 420, slide.bloom);
+  drawRadialGlow(context, spec.width * 0.88, spec.height * 0.78, 340, 'rgba(255,255,255,0.34)');
 
-  const veil = context.createLinearGradient(0, 0, iosSpec.width, iosSpec.height);
+  const veil = context.createLinearGradient(0, 0, spec.width, spec.height);
   veil.addColorStop(0, 'rgba(255,255,255,0.68)');
   veil.addColorStop(0.34, 'rgba(255,255,255,0.12)');
   veil.addColorStop(0.58, 'rgba(255,255,255,0)');
   context.fillStyle = veil;
-  context.fillRect(0, 0, iosSpec.width, iosSpec.height);
+  context.fillRect(0, 0, spec.width, spec.height);
 }
 
 function drawMultilineText(context, {
@@ -94,29 +94,31 @@ function drawDeviceFrame(context, {
   x,
   y,
   width,
+  platform = 'ios',
   background = '#ffffff',
   image = null,
 }) {
-  const height = width * deviceAspectRatio;
-  const shellRadius = width * (80 / 612);
-  const screenInsetX = width * 0.042;
-  const screenInsetY = height * 0.0195;
+  const frame = getExportPlatform(platform).frame;
+  const height = width * frame.aspectRatio;
+  const shellRadius = width * frame.shellRadiusRatio;
+  const screenInsetX = width * frame.screenInsetXRatio;
+  const screenInsetY = height * frame.screenInsetYRatio;
   const screenX = x + screenInsetX;
   const screenY = y + screenInsetY;
   const screenWidth = width - screenInsetX * 2;
   const screenHeight = height - screenInsetY * 2;
-  const screenRadius = width * (64 / 612);
+  const screenRadius = width * frame.screenRadiusRatio;
 
   context.save();
   context.shadowColor = 'rgba(13, 8, 4, 0.18)';
   context.shadowBlur = 48;
   context.shadowOffsetY = 28;
-  fillRoundedRect(context, x, y, width, height, shellRadius, deviceShellColor);
+  fillRoundedRect(context, x, y, width, height, shellRadius, frame.shellColor);
   context.restore();
 
   context.save();
   context.lineWidth = 1.5;
-  context.strokeStyle = deviceBorderColor;
+  context.strokeStyle = frame.borderColor;
   roundedRectPath(context, x, y, width, height, shellRadius);
   context.stroke();
   context.restore();
@@ -138,9 +140,26 @@ function drawDeviceFrame(context, {
     context.restore();
   }
 
+  if (frame.cameraWidthRatio > 0 && frame.cameraHeightRatio > 0) {
+    const cameraWidth = width * frame.cameraWidthRatio;
+    const cameraHeight = height * frame.cameraHeightRatio;
+    const cameraX = x + (width - cameraWidth) / 2;
+    const cameraY = y + height * frame.cameraOffsetYRatio;
+
+    fillRoundedRect(
+      context,
+      cameraX,
+      cameraY,
+      cameraWidth,
+      cameraHeight,
+      cameraHeight / 2,
+      frame.cameraColor,
+    );
+  }
+
   context.save();
   context.lineWidth = 1.5;
-  context.strokeStyle = screenBorderColor;
+  context.strokeStyle = frame.screenBorderColor;
   roundedRectPath(context, screenX, screenY, screenWidth, screenHeight, screenRadius);
   context.stroke();
   context.restore();
