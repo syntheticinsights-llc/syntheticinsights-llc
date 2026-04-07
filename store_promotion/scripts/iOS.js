@@ -440,20 +440,12 @@ async function renderArtboardToPng(slide, lang) {
   });
 }
 
-async function exportSlidesForLanguage(exportDirectory, lang, progressPrefix) {
+async function exportSlidesForLanguage(exportDirectory, lang, progress) {
   const langDirectory = await exportDirectory.getDirectoryHandle(lang, {
     create: true,
   });
 
-  for (let index = 0; index < slides.length; index += 1) {
-    const slide = slides[index];
-    const langName = SUPPORTED_LANGUAGES.find((l) => l.code === lang)?.name ?? lang;
-
-    setExportState({
-      badgeText: `${progressPrefix}正在导出 ${langName} ${index + 1}/${slides.length}`,
-      busy: true,
-    });
-
+  await Promise.all(slides.map(async (slide) => {
     const pngBlob = await renderArtboardToPng(slide, lang);
     const fileHandle = await langDirectory.getFileHandle(buildExportFilename(slide), {
       create: true,
@@ -462,7 +454,12 @@ async function exportSlidesForLanguage(exportDirectory, lang, progressPrefix) {
 
     await writable.write(pngBlob);
     await writable.close();
-  }
+
+    if (progress) {
+      progress.done += 1;
+      badge.textContent = `正在导出 ${progress.done}/${progress.total}`;
+    }
+  }));
 }
 
 async function exportCurrentLanguage() {
@@ -476,7 +473,14 @@ async function exportCurrentLanguage() {
     create: true,
   });
 
-  await exportSlidesForLanguage(exportDirectory, currentLanguage, '');
+  const progress = { done: 0, total: slides.length };
+
+  setExportState({
+    badgeText: `正在导出 0/${progress.total}`,
+    busy: true,
+  });
+
+  await exportSlidesForLanguage(exportDirectory, currentLanguage, progress);
 
   const langName = SUPPORTED_LANGUAGES.find((l) => l.code === currentLanguage)?.name ?? currentLanguage;
 
@@ -499,12 +503,17 @@ async function exportAllLanguages() {
     create: true,
   });
 
-  for (let langIndex = 0; langIndex < SUPPORTED_LANGUAGES.length; langIndex += 1) {
-    const lang = SUPPORTED_LANGUAGES[langIndex];
-    const progressPrefix = `[${langIndex + 1}/${SUPPORTED_LANGUAGES.length}] `;
+  const total = SUPPORTED_LANGUAGES.length * slides.length;
+  const progress = { done: 0, total };
 
-    await exportSlidesForLanguage(exportDirectory, lang.code, progressPrefix);
-  }
+  setExportState({
+    badgeText: `正在导出 0/${total}`,
+    busy: true,
+  });
+
+  await Promise.all(SUPPORTED_LANGUAGES.map((lang) =>
+    exportSlidesForLanguage(exportDirectory, lang.code, progress),
+  ));
 
   setExportState({
     badgeText: `${SUPPORTED_LANGUAGES.length} 种语言 × ${slides.length} 张已导出`,
