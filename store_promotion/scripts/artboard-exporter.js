@@ -22,6 +22,12 @@ function loadExportImage(rawSrc) {
   return imageSourceCache.get(absoluteSrc);
 }
 
+const baseArtboardCache = new Map();
+const exportTaskConcurrency = Math.max(
+  2,
+  Math.min(4, Math.floor((navigator.hardwareConcurrency || 8) / 2)),
+);
+
 function buildExportFilename(slide) {
   const safeLabel = slide.label.replace(/\s+/g, '-');
   return `${slide.id}-${safeLabel}.png`;
@@ -70,20 +76,71 @@ function drawDescription(context, spec, scaler, text, options) {
   });
 }
 
-async function renderArtboardToPng(slide, lang, platformCode) {
-  const platform = getExportPlatform(platformCode);
-  const spec = platform.spec;
-  const scaler = createExportScaler(spec);
-  const text = getSlideText(slide, lang);
+function createExportCanvas(spec) {
   const outputCanvas = document.createElement('canvas');
-  const context = outputCanvas.getContext('2d');
+
+  outputCanvas.width = spec.width;
+  outputCanvas.height = spec.height;
+
+  return outputCanvas;
+}
+
+function getCanvasContext(canvas) {
+  const context = canvas.getContext('2d');
 
   if (!context) {
     throw new Error('画布上下文创建失败');
   }
 
-  outputCanvas.width = spec.width;
-  outputCanvas.height = spec.height;
+  return context;
+}
+
+function drawFilterStackText(context, spec, scaler, text) {
+  context.save();
+  context.font = `700 ${Math.round(scaler.h(122))}px ${exportFontFamily}`;
+  context.fillStyle = '#20181b';
+  context.textAlign = 'center';
+  context.textBaseline = 'top';
+  context.fillText(text.title, spec.width / 2, scaler.y(1040));
+  context.restore();
+
+  drawDescription(context, spec, scaler, text, {
+    y: 1228,
+    maxWidth: 980,
+    lineHeight: 84,
+  });
+}
+
+function drawSlideText(context, slide, spec, scaler, text) {
+  if (slide.layout === 'filter-stack') {
+    drawFilterStackText(context, spec, scaler, text);
+    return;
+  }
+
+  drawTitle(context, spec, scaler, text);
+
+  if (slide.layout === 'corner-phone') {
+    drawDescription(context, spec, scaler, text, {
+      y: 316,
+      maxWidth: 900,
+      lineHeight: 84,
+    });
+    return;
+  }
+
+  drawDescription(context, spec, scaler, text, {
+    y: 316,
+    maxWidth: 1020,
+    lineHeight: 86,
+  });
+}
+
+async function createBaseArtboard(slide, platformCode) {
+  const platform = getExportPlatform(platformCode);
+  const spec = platform.spec;
+  const scaler = createExportScaler(spec);
+  const outputCanvas = createExportCanvas(spec);
+  const context = getCanvasContext(outputCanvas);
 
   drawArtboardBackground(context, slide, spec);
 
@@ -102,20 +159,6 @@ async function renderArtboardToPng(slide, lang, platformCode) {
       image: topImage,
     });
 
-    context.save();
-    context.font = `700 ${Math.round(scaler.h(122))}px ${exportFontFamily}`;
-    context.fillStyle = '#20181b';
-    context.textAlign = 'center';
-    context.textBaseline = 'top';
-    context.fillText(text.title, spec.width / 2, scaler.y(1040));
-    context.restore();
-
-    drawDescription(context, spec, scaler, text, {
-      y: 1228,
-      maxWidth: 980,
-      lineHeight: 84,
-    });
-
     drawDeviceFrame(context, {
       x: (spec.width - scaler.w(920)) / 2,
       y: scaler.y(1848),
@@ -126,14 +169,6 @@ async function renderArtboardToPng(slide, lang, platformCode) {
     });
   } else if (slide.layout === 'corner-phone') {
     const image = await loadExportImage(slide.imageSrc);
-
-    drawTitle(context, spec, scaler, text);
-
-    drawDescription(context, spec, scaler, text, {
-      y: 316,
-      maxWidth: 900,
-      lineHeight: 84,
-    });
 
     drawRadialGlow(
       context,
@@ -153,14 +188,6 @@ async function renderArtboardToPng(slide, lang, platformCode) {
   } else {
     const image = await loadExportImage(slide.imageSrc);
 
-    drawTitle(context, spec, scaler, text);
-
-    drawDescription(context, spec, scaler, text, {
-      y: 316,
-      maxWidth: 1020,
-      lineHeight: 86,
-    });
-
     drawDeviceFrame(context, {
       x: (spec.width - scaler.w(940)) / 2,
       y: scaler.y(712),
@@ -171,8 +198,22 @@ async function renderArtboardToPng(slide, lang, platformCode) {
     });
   }
 
-  return await new Promise((resolve, reject) => {
-    outputCanvas.toBlob((blob) => {
+  return outputCanvas;
+}
+
+function getBaseArtboard(slide, platformCode) {
+  const cacheKey = `${platformCode}:${slide.id}`;
+
+  if (!baseArtboardCache.has(cacheKey)) {
+    baseArtboardCache.set(cacheKey, createBaseArtboard(slide, platformCode));
+  }
+
+  return baseArtboardCache.get(cacheKey);
+}
+
+function renderCanvasToBlob(canvas) {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((blob) => {
       if (!blob) {
         reject(new Error('PNG 导出失败'));
         return;
@@ -183,35 +224,84 @@ async function renderArtboardToPng(slide, lang, platformCode) {
   });
 }
 
-async function exportSlidesForLanguage(platformDirectory, lang, platformCode, progress) {
-  const langDirectory = await platformDirectory.getDirectoryHandle(lang, {
-    create: true,
-  });
+async function renderArtboardToPng(slide, lang, platformCode) {
+  const platform = getExportPlatform(platformCode);
+  const spec = platform.spec;
+  const scaler = createExportScaler(spec);
+  const text = getSlideText(slide, lang);
+  const baseArtboard = await getBaseArtboard(slide, platformCode);
+  const outputCanvas = createExportCanvas(spec);
+  const context = getCanvasContext(outputCanvas);
 
-  await Promise.all(slides.map(async (slide) => {
-    const pngBlob = await renderArtboardToPng(slide, lang, platformCode);
-    const fileHandle = await langDirectory.getFileHandle(buildExportFilename(slide), {
-      create: true,
-    });
-    const writable = await fileHandle.createWritable();
+  context.drawImage(baseArtboard, 0, 0);
+  drawSlideText(context, slide, spec, scaler, text);
 
-    await writable.write(pngBlob);
-    await writable.close();
-
-    progress.done += 1;
-    badge.textContent = `正在导出 ${progress.done}/${progress.total}`;
-  }));
+  return renderCanvasToBlob(outputCanvas);
 }
 
-async function exportPlatformsForLanguage(exportDirectory, lang, platformCodes, progress) {
-  await Promise.all(platformCodes.map(async (platformCode) => {
+async function prepareExportAssets(platformCodes) {
+  const tasks = [];
+
+  for (const platformCode of platformCodes) {
+    for (const slide of slides) {
+      tasks.push(getBaseArtboard(slide, platformCode));
+    }
+  }
+
+  await Promise.all(tasks);
+}
+
+async function runTasksWithConcurrency(taskFactories, concurrency) {
+  let nextIndex = 0;
+
+  async function worker() {
+    while (nextIndex < taskFactories.length) {
+      const currentIndex = nextIndex;
+
+      nextIndex += 1;
+      await taskFactories[currentIndex]();
+    }
+  }
+
+  const workerCount = Math.min(concurrency, taskFactories.length);
+  const workers = Array.from({ length: workerCount }, () => worker());
+
+  await Promise.all(workers);
+}
+
+async function buildExportTasks(exportDirectory, languageCodes, platformCodes, progress) {
+  const tasks = [];
+
+  for (const platformCode of platformCodes) {
     const platform = getExportPlatform(platformCode);
     const platformDirectory = await exportDirectory.getDirectoryHandle(platform.folderName, {
       create: true,
     });
 
-    await exportSlidesForLanguage(platformDirectory, lang, platformCode, progress);
-  }));
+    for (const lang of languageCodes) {
+      const langDirectory = await platformDirectory.getDirectoryHandle(lang, {
+        create: true,
+      });
+
+      for (const slide of slides) {
+        tasks.push(async () => {
+          const pngBlob = await renderArtboardToPng(slide, lang, platformCode);
+          const fileHandle = await langDirectory.getFileHandle(buildExportFilename(slide), {
+            create: true,
+          });
+          const writable = await fileHandle.createWritable();
+
+          await writable.write(pngBlob);
+          await writable.close();
+
+          progress.done += 1;
+          badge.textContent = `正在导出 ${progress.done}/${progress.total}`;
+        });
+      }
+    }
+  }
+
+  return tasks;
 }
 
 async function exportCurrentLanguage() {
@@ -238,7 +328,9 @@ async function exportCurrentLanguage() {
     busy: true,
   });
 
-  await exportPlatformsForLanguage(exportDirectory, currentLanguage, platformCodes, progress);
+  await prepareExportAssets(platformCodes);
+  const tasks = await buildExportTasks(exportDirectory, [currentLanguage], platformCodes, progress);
+  await runTasksWithConcurrency(tasks, exportTaskConcurrency);
 
   const langName = SUPPORTED_LANGUAGES.find((l) => l.code === currentLanguage)?.name ?? currentLanguage;
   const platformLabel = platformCodes.map((code) => getExportPlatform(code).label).join(' / ');
@@ -276,9 +368,14 @@ async function exportAllLanguages() {
     busy: true,
   });
 
-  await Promise.all(SUPPORTED_LANGUAGES.map((lang) =>
-    exportPlatformsForLanguage(exportDirectory, lang.code, platformCodes, progress),
-  ));
+  await prepareExportAssets(platformCodes);
+  const tasks = await buildExportTasks(
+    exportDirectory,
+    SUPPORTED_LANGUAGES.map((lang) => lang.code),
+    platformCodes,
+    progress,
+  );
+  await runTasksWithConcurrency(tasks, exportTaskConcurrency);
 
   setExportState({
     badgeText: `${platformCodes.length} 平台 × ${SUPPORTED_LANGUAGES.length} 种语言 × ${slides.length} 张已导出`,
