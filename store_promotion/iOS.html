@@ -1,0 +1,843 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartTodo iOS Store Promotion</title>
+  <style>
+    :root {
+      --canvas-background: #f3efe8;
+      --panel-background: rgba(255, 255, 255, 0.82);
+      --panel-border: rgba(48, 41, 34, 0.1);
+      --text-primary: #1f1a17;
+      --text-secondary: #63584f;
+      --accent: #c65f2c;
+      --accent-soft: #f5d0b8;
+      --shadow: 0 24px 60px rgba(45, 31, 17, 0.12);
+      --artboard-width: 1320;
+      --artboard-height: 2868;
+      --artboard-width-px: 1320px;
+      --artboard-height-px: 2868px;
+      --preview-scale: 0.17;
+      --preview-width-px: 224.4px;
+      --preview-height-px: 487.56px;
+      --radius-large: 28px;
+      --radius-medium: 20px;
+      --radius-small: 14px;
+      --gap-large: 32px;
+      --gap-medium: 20px;
+      --gap-small: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+      color: var(--text-primary);
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.8), transparent 34%),
+        linear-gradient(180deg, #fcfaf7 0%, var(--canvas-background) 100%);
+    }
+
+    .app-shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 18px 24px;
+      backdrop-filter: blur(20px);
+      background: rgba(250, 246, 239, 0.88);
+      border-bottom: 1px solid rgba(48, 41, 34, 0.08);
+    }
+
+    .brand-block {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .brand-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff8f2;
+      background: linear-gradient(135deg, #d87343 0%, #a9421f 100%);
+      box-shadow: 0 12px 28px rgba(169, 66, 31, 0.28);
+    }
+
+    .brand-text h1 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-text p {
+      margin: 4px 0 0;
+      color: var(--text-secondary);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .spec-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .spec-pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(48, 41, 34, 0.08);
+      background: rgba(255, 255, 255, 0.86);
+      color: var(--text-secondary);
+      font-size: 13px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .workspace-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 20px;
+      padding: 24px;
+      min-height: 0;
+    }
+
+    .sidebar {
+      align-self: start;
+      position: sticky;
+      top: 92px;
+      padding: 22px;
+      border-radius: var(--radius-large);
+      background: var(--panel-background);
+      border: 1px solid var(--panel-border);
+      box-shadow: var(--shadow);
+    }
+
+    .sidebar h2,
+    .sidebar h3 {
+      margin: 0;
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      line-height: 1.2;
+    }
+
+    .sidebar h3 {
+      margin-top: 22px;
+      font-size: 14px;
+      line-height: 1.3;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .sidebar p {
+      margin: 10px 0 0;
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .sidebar ul {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .stat-card {
+      padding: 14px;
+      border-radius: var(--radius-medium);
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(48, 41, 34, 0.06);
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 20px;
+      line-height: 1.1;
+    }
+
+    .stat-card span {
+      display: block;
+      margin-top: 4px;
+      color: var(--text-secondary);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .workspace-panel {
+      min-width: 0;
+      border-radius: 36px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.22)),
+        rgba(255, 255, 255, 0.36);
+      border: 1px solid rgba(48, 41, 34, 0.08);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .workspace-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(48, 41, 34, 0.06);
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .workspace-header h2 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.2;
+    }
+
+    .workspace-header p {
+      margin: 6px 0 0;
+      color: var(--text-secondary);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .workspace-badge {
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: #fff8f2;
+      font-size: 13px;
+      line-height: 1;
+      background: linear-gradient(135deg, #d87343 0%, #ba4b22 100%);
+    }
+
+    .workspace-scroll {
+      overflow: auto;
+      padding: 28px;
+    }
+
+    .workspace-canvas {
+      display: flex;
+      align-items: flex-start;
+      gap: 36px;
+      min-width: max-content;
+      padding-bottom: 16px;
+    }
+
+    .slide-column {
+      width: var(--preview-width-px);
+      display: grid;
+      gap: 12px;
+    }
+
+    .slide-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(48, 41, 34, 0.06);
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .slide-meta strong {
+      color: var(--text-primary);
+      font-size: 13px;
+    }
+
+    .preview-frame {
+      position: relative;
+      width: var(--preview-width-px);
+      height: var(--preview-height-px);
+      border-radius: 32px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(48, 41, 34, 0.08);
+      box-shadow: 0 28px 64px rgba(45, 31, 17, 0.16);
+    }
+
+    .artboard {
+      position: absolute;
+      inset: 0;
+      width: var(--artboard-width-px);
+      height: var(--artboard-height-px);
+      transform: scale(var(--preview-scale));
+      transform-origin: top left;
+      overflow: hidden;
+      border-radius: 188px;
+      isolation: isolate;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0));
+    }
+
+    .artboard::before,
+    .artboard::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .artboard::before {
+      background:
+        radial-gradient(circle at 14% 10%, rgba(255, 255, 255, 0.78), transparent 22%),
+        radial-gradient(circle at 78% 18%, var(--slide-highlight) 0%, transparent 28%),
+        radial-gradient(circle at 26% 74%, var(--slide-bloom) 0%, transparent 30%),
+        radial-gradient(circle at 88% 78%, rgba(255, 255, 255, 0.34), transparent 24%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.44), rgba(255, 255, 255, 0.08));
+    }
+
+    .artboard::after {
+      background:
+        linear-gradient(155deg, rgba(255, 255, 255, 0.68) 0%, rgba(255, 255, 255, 0.12) 34%, transparent 58%),
+        linear-gradient(180deg, var(--slide-primary) 0%, var(--slide-secondary) 54%, var(--slide-accent) 100%);
+    }
+
+    .artboard-content {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      height: 100%;
+      padding: 154px 108px 120px;
+      color: #20181b;
+    }
+
+    .artboard-copy {
+      margin-top: 0;
+      max-width: 960px;
+    }
+
+    .artboard-copy h3 {
+      margin: 0;
+      font-size: 126px;
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+    }
+
+    .artboard-copy p {
+      margin: 34px 0 0;
+      max-width: 860px;
+      font-size: 48px;
+      line-height: 1.42;
+      color: rgba(49, 37, 42, 0.74);
+    }
+
+    .artboard.feature-phone .artboard-content {
+      grid-template-rows: auto auto;
+      align-content: start;
+      padding: 150px 90px 90px;
+    }
+
+    .artboard.feature-phone .artboard-copy {
+      margin-top: 0;
+      max-width: none;
+      text-align: center;
+    }
+
+    .artboard.feature-phone .artboard-copy h3 {
+      font-size: 124px;
+    }
+
+    .artboard.feature-phone .artboard-copy p {
+      margin: 42px auto 0;
+      max-width: 1020px;
+      font-size: 62px;
+      line-height: 1.38;
+      min-height: calc(62px * 1.38 * 3);
+    }
+
+    .artboard.feature-phone .device-stage {
+      align-self: start;
+      margin-top: 56px;
+      transform: none;
+    }
+
+    .artboard.feature-phone .promotion-device {
+      --device-width: 940px;
+    }
+
+    .artboard.feature-phone .footer-strip {
+      display: none;
+    }
+
+    .artboard.filter-stack .artboard-content {
+      grid-template-rows: 760px auto 760px;
+      align-content: stretch;
+      padding: 0 90px;
+    }
+
+    .artboard.filter-stack .artboard-copy {
+      align-self: center;
+      max-width: none;
+      text-align: center;
+      transform: translateY(150px);
+    }
+
+    .artboard.filter-stack .artboard-copy h3 {
+      font-size: 122px;
+    }
+
+    .artboard.filter-stack .artboard-copy p {
+      margin: 40px auto 0;
+      max-width: 980px;
+      font-size: 62px;
+      line-height: 1.36;
+    }
+
+    .artboard.filter-stack .device-stage {
+      margin-top: 0;
+      overflow: hidden;
+    }
+
+    .artboard.filter-stack .device-stage::before {
+      width: 680px;
+      height: 680px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent 64%);
+    }
+
+    .artboard.filter-stack .device-stage-top {
+      align-self: start;
+    }
+
+    .artboard.filter-stack .device-stage-bottom {
+      align-self: end;
+    }
+
+    .artboard.filter-stack .promotion-device {
+      --device-width: 920px;
+    }
+
+    .artboard.filter-stack .device-stage-top .promotion-device {
+      transform: translateY(-660px);
+    }
+
+    .artboard.filter-stack .device-stage-bottom .promotion-device {
+      transform: translateY(960px);
+    }
+
+    .artboard.filter-stack .footer-strip {
+      display: none;
+    }
+
+    .artboard.corner-phone .artboard-content {
+      grid-template-rows: auto 1fr;
+      align-content: start;
+      padding: 150px 90px 0;
+    }
+
+    .artboard.corner-phone .artboard-copy {
+      max-width: none;
+      text-align: center;
+    }
+
+    .artboard.corner-phone .artboard-copy h3 {
+      font-size: 124px;
+    }
+
+    .artboard.corner-phone .artboard-copy p {
+      margin: 42px auto 0;
+      max-width: 900px;
+      font-size: 62px;
+      line-height: 1.36;
+      min-height: calc(62px * 1.36 * 3);
+    }
+
+    .artboard.corner-phone .device-stage {
+      align-self: end;
+      justify-self: stretch;
+      margin-top: 36px;
+      overflow: hidden;
+      place-items: end;
+    }
+
+    .artboard.corner-phone .device-stage::before {
+      width: 720px;
+      height: 720px;
+      right: 120px;
+      bottom: 180px;
+      left: auto;
+      top: auto;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.42), transparent 64%);
+    }
+
+    .artboard.corner-phone .promotion-device {
+      --device-width: 1060px;
+      transform: translate(220px, 220px);
+    }
+
+    .artboard.corner-phone .footer-strip {
+      display: none;
+    }
+
+    .device-stage {
+      position: relative;
+      display: grid;
+      place-items: center;
+      margin-top: 64px;
+    }
+
+    .device-stage::before {
+      content: "";
+      position: absolute;
+      width: 760px;
+      height: 760px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.58), transparent 62%);
+      filter: blur(20px);
+    }
+
+    .promotion-device {
+      --device-width: 612px;
+      filter: drop-shadow(0 28px 48px rgba(13, 8, 4, 0.18));
+    }
+
+    .footer-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .feature-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .feature-tag {
+      padding: 18px 26px;
+      border-radius: 999px;
+      font-size: 30px;
+      color: rgba(37, 24, 30, 0.84);
+      background: rgba(255, 255, 255, 0.5);
+      border: 2px solid rgba(255, 255, 255, 0.44);
+      backdrop-filter: blur(12px);
+    }
+
+    .footer-mark {
+      padding: 18px 24px;
+      border-radius: 26px;
+      font-size: 28px;
+      line-height: 1.2;
+      color: rgba(37, 24, 30, 0.76);
+      background: rgba(255, 255, 255, 0.36);
+      border: 2px solid rgba(255, 255, 255, 0.36);
+    }
+
+    @media (max-width: 1200px) {
+      .workspace-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script defer src="./components/iphone-device-frame.js"></script>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-block">
+        <div class="brand-chip">iOS</div>
+        <div class="brand-text">
+          <h1>SmartTodo App Store 截图工作台</h1>
+          <p>统一预览、编辑和导出 iPhone App Store 宣传图。</p>
+        </div>
+      </div>
+      <div class="spec-list">
+        <div class="spec-pill">目标尺寸: 1320 × 2868</div>
+        <div class="spec-pill">画板数量: 5</div>
+        <div class="spec-pill">预览模式: 单页横向工作台</div>
+      </div>
+    </header>
+
+    <main class="workspace-layout">
+      <aside class="sidebar">
+        <h2>项目规格</h2>
+        <p>当前工作台面向 iPhone 6.9 英寸 App Store 截图，统一按真实比例构建。</p>
+
+        <div class="stat-grid">
+          <div class="stat-card">
+            <strong>5</strong>
+            <span>独立截图</span>
+          </div>
+          <div class="stat-card">
+            <strong>6.9"</strong>
+            <span>iPhone 主尺寸</span>
+          </div>
+          <div class="stat-card">
+            <strong>1320</strong>
+            <span>宽度像素</span>
+          </div>
+          <div class="stat-card">
+            <strong>2868</strong>
+            <span>高度像素</span>
+          </div>
+        </div>
+
+        <h3>导出规格</h3>
+        <ul>
+          <li>每个画板单独对应一张上架截图。</li>
+          <li>页面内统一预览 5 张截图，最终分别导出。</li>
+          <li>所有画板保持同一尺寸标准，便于批量处理。</li>
+        </ul>
+      </aside>
+
+      <section class="workspace-panel">
+        <div class="workspace-header">
+          <div>
+            <h2>iPhone 6.9" 工作台</h2>
+            <p>5 张独立画板统一按真实尺寸构建，当前页面提供缩放预览。</p>
+          </div>
+          <div class="workspace-badge" id="workspace-badge">5 Slides Ready</div>
+        </div>
+        <div class="workspace-scroll">
+          <div class="workspace-canvas" id="workspace-canvas"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const iosSpec = {
+      device: 'iPhone 6.9"',
+      frameDevice: 'iPhone 15 Pro Max',
+      width: 1320,
+      height: 2868,
+      ratio: '1320 × 2868',
+      previewScale: 0.17,
+    };
+
+    const slides = [
+      {
+        id: '01',
+        label: 'Kanban',
+        title: 'Kanban',
+        description: 'Track progress and manage tasks with drag and drop',
+        layout: 'feature-phone',
+        primary: '#9ed4ff',
+        secondary: '#bfdcff',
+        accent: '#dff4ff',
+        highlight: 'rgba(194, 172, 255, 0.42)',
+        bloom: 'rgba(255, 214, 242, 0.34)',
+        imageSrc: './assets/ios_screen/kanban.png',
+        screenBackground: '#ffffff',
+        tags: ['Quick Capture', 'Inbox First'],
+      },
+      {
+        id: '02',
+        label: 'Assistant',
+        title: 'Assistant',
+        description: 'Your AI agent for managing tasks, changing icons, generating summaries, and more.',
+        layout: 'feature-phone',
+        primary: '#ffd1de',
+        secondary: '#f3d8ff',
+        accent: '#ffe8d9',
+        highlight: 'rgba(255, 160, 202, 0.38)',
+        bloom: 'rgba(190, 173, 255, 0.28)',
+        imageSrc: './assets/ios_screen/assistant.png',
+        screenBackground: '#ffffff',
+        tags: ['AI Rewrite', 'Task Polish'],
+      },
+      {
+        id: '03',
+        label: 'Filter',
+        title: 'Powerful filters',
+        description: 'Build powerful filters with 10+ conditions and flexible combinations',
+        layout: 'filter-stack',
+        primary: '#8ecff0',
+        secondary: '#a7dcf7',
+        accent: '#4f86c8',
+        highlight: 'rgba(196, 186, 255, 0.26)',
+        bloom: 'rgba(214, 235, 255, 0.24)',
+        topImageSrc: './assets/ios_screen/filter1.jpg',
+        bottomImageSrc: './assets/ios_screen/filter2.jpg',
+        screenBackground: '#ffffff',
+        tags: ['Advanced Rules', 'Flexible Logic'],
+      },
+      {
+        id: '04',
+        label: 'Graph',
+        title: 'Graph',
+        description: 'Understand task structure and relationships at a glance',
+        layout: 'feature-phone',
+        primary: '#efd0ff',
+        secondary: '#ffd5e7',
+        accent: '#e7d8ff',
+        highlight: 'rgba(255, 145, 204, 0.34)',
+        bloom: 'rgba(174, 209, 255, 0.22)',
+        imageSrc: './assets/ios_screen/graph.png',
+        screenBackground: '#ffffff',
+        tags: ['Graph View', 'Task Links'],
+      },
+      {
+        id: '05',
+        label: 'Local first',
+        title: 'Local first',
+        description: 'Super fast, privacy-friendly, and seamlessly synced.',
+        layout: 'corner-phone',
+        primary: '#d9f0e6',
+        secondary: '#d7ebff',
+        accent: '#eef6cf',
+        highlight: 'rgba(214, 235, 149, 0.34)',
+        bloom: 'rgba(157, 211, 255, 0.22)',
+        imageSrc: './assets/ios_screen/sync.jpg',
+        screenBackground: '#ffffff',
+        tags: ['Sync', 'Cross Device'],
+      },
+    ];
+
+    const canvas = document.getElementById('workspace-canvas');
+    const badge = document.getElementById('workspace-badge');
+    function renderSlide(slide) {
+      const column = document.createElement('section');
+      column.className = 'slide-column';
+      const deviceBlock = slide.layout === 'filter-stack'
+        ? `
+            <div class="device-stage device-stage-top">
+              <iphone-device-frame
+                class="promotion-device"
+                image-src="${slide.topImageSrc ?? ''}"
+                screen-background="${slide.screenBackground}"
+              ></iphone-device-frame>
+            </div>
+
+            <div class="artboard-copy">
+              <h3>${slide.title}</h3>
+              <p>${slide.description}</p>
+            </div>
+
+            <div class="device-stage device-stage-bottom">
+              <iphone-device-frame
+                class="promotion-device"
+                image-src="${slide.bottomImageSrc ?? ''}"
+                screen-background="${slide.screenBackground}"
+              ></iphone-device-frame>
+            </div>
+          `
+        : slide.layout === 'corner-phone'
+        ? `
+            <div class="artboard-copy">
+              <h3>${slide.title}</h3>
+              <p>${slide.description}</p>
+            </div>
+
+            <div class="device-stage">
+              <iphone-device-frame
+                class="promotion-device"
+                image-src="${slide.imageSrc ?? ''}"
+                screen-background="${slide.screenBackground}"
+              ></iphone-device-frame>
+            </div>
+          `
+        : `
+            <div class="artboard-copy">
+              <h3>${slide.title}</h3>
+              <p>${slide.description}</p>
+            </div>
+
+            <div class="device-stage">
+              <iphone-device-frame
+                class="promotion-device"
+                image-src="${slide.imageSrc ?? ''}"
+                screen-background="${slide.screenBackground}"
+              ></iphone-device-frame>
+            </div>
+
+            <div class="footer-strip">
+              <div class="feature-tags">
+                ${slide.tags
+                  .map((tag) => `<span class="feature-tag">${tag}</span>`)
+                  .join('')}
+              </div>
+              <div class="footer-mark">${iosSpec.frameDevice}</div>
+            </div>
+          `;
+      column.innerHTML = `
+        <div class="slide-meta">
+          <strong>#${slide.id} ${slide.label}</strong>
+          <span>${iosSpec.ratio}</span>
+        </div>
+        <div class="preview-frame">
+          <article
+            class="artboard ${slide.layout ?? ''}"
+            style="
+              --slide-primary: ${slide.primary};
+              --slide-secondary: ${slide.secondary};
+              --slide-accent: ${slide.accent};
+              --slide-highlight: ${slide.highlight};
+              --slide-bloom: ${slide.bloom};
+            "
+          >
+            <div class="artboard-content">
+              ${deviceBlock}
+            </div>
+          </article>
+        </div>
+      `;
+      return column;
+    }
+
+    slides.forEach((slide) => {
+      canvas.appendChild(renderSlide(slide));
+    });
+
+    badge.textContent = `${slides.length} Slides Ready`;
+    document.documentElement.style.setProperty(
+      '--preview-scale',
+      String(iosSpec.previewScale),
+    );
+    document.documentElement.style.setProperty(
+      '--artboard-width-px',
+      `${iosSpec.width}px`,
+    );
+    document.documentElement.style.setProperty(
+      '--artboard-height-px',
+      `${iosSpec.height}px`,
+    );
+    document.documentElement.style.setProperty(
+      '--preview-width-px',
+      `${iosSpec.width * iosSpec.previewScale}px`,
+    );
+    document.documentElement.style.setProperty(
+      '--preview-height-px',
+      `${iosSpec.height * iosSpec.previewScale}px`,
+    );
+  </script>
+</body>
+</html>
