@@ -8,7 +8,7 @@ PORT="${PORT:-8000}"
 cd "$ROOT_DIR"
 
 build_url() {
-  echo "http://localhost:${1}/store_promotion/iOS.html"
+  echo "http://localhost:${1}/store_promotion/"
 }
 
 port_is_listening() {
@@ -42,7 +42,7 @@ fi
 URL="$(build_url "$PORT")"
 echo "URL: $URL"
 
-python3 -m http.server "$PORT" >/tmp/ios_promotion_server.log 2>&1 &
+python3 -m http.server "$PORT" >/tmp/store_promotion_server.log 2>&1 &
 SERVER_PID=$!
 
 cleanup() {
@@ -56,7 +56,7 @@ trap cleanup EXIT INT TERM
 sleep 1
 
 if ! kill -0 "$SERVER_PID" >/dev/null 2>&1; then
-  echo "http.server 启动失败，日志在 /tmp/ios_promotion_server.log"
+  echo "http.server 启动失败，日志在 /tmp/store_promotion_server.log"
   exit 1
 fi
 
