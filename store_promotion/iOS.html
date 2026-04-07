@@ -3,31 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SmartTodo iOS Store Promotion</title>
+  <title>SmartTodo Store Promotion</title>
   <link rel="stylesheet" href="./styles/iOS.css">
 </head>
 <body>
   <script defer src="./components/iphone-device-frame.js"></script>
+  <script defer src="./components/android-device-frame.js"></script>
   <div class="app-shell">
     <header class="topbar">
       <div class="brand-block">
-        <div class="brand-chip">iOS</div>
+        <div class="brand-chip">双端</div>
         <div class="brand-text">
-          <h1>SmartTodo App Store 截图工作台</h1>
-          <p>统一预览、编辑和导出 iPhone App Store 宣传图。</p>
+          <h1>SmartTodo 商店截图工作台</h1>
+          <p>统一预览 iOS 与 Android 商店宣传图，当前导出仍使用 iOS 规格。</p>
         </div>
       </div>
       <div class="spec-list">
-        <div class="spec-pill">目标尺寸: 1320 × 2868</div>
+        <div class="spec-pill">iOS: 1320 × 2868</div>
+        <div class="spec-pill">Android: 1320 × 2640</div>
         <div class="spec-pill">画板数量: 5</div>
-        <div class="spec-pill">预览模式: 单页横向工作台</div>
+        <div class="spec-pill">预览模式: 双平台对照</div>
       </div>
     </header>
 
     <main class="workspace-layout">
       <aside class="sidebar">
         <h2>项目规格</h2>
-        <p>当前工作台面向 iPhone 6.9 英寸 App Store 截图，统一按真实比例构建。</p>
+        <p>当前工作台同时预览 iPhone 6.9 英寸截图与 Android Play 竖图，优先复用同一套内容布局。</p>
 
         <div class="stat-grid">
           <div class="stat-card">
@@ -43,24 +45,24 @@
             <span>宽度像素</span>
           </div>
           <div class="stat-card">
-            <strong>2868</strong>
-            <span>高度像素</span>
+            <strong>2868 / 2640</strong>
+            <span>iOS / Android 高度</span>
           </div>
         </div>
 
         <h3>导出规格</h3>
         <ul>
-          <li>每个画板单独对应一张上架截图。</li>
-          <li>页面内统一预览 5 张截图，最终分别导出。</li>
-          <li>所有画板保持同一尺寸标准，便于批量处理。</li>
+          <li>每个功能点按同一列展示 iOS 与 Android 两个平台。</li>
+          <li>Android 当前只做预览对照，导出能力仍沿用 iOS。</li>
+          <li>两端共用同一套文案与素材，只调整外框和画板高度。</li>
         </ul>
       </aside>
 
       <section class="workspace-panel">
         <div class="workspace-header">
           <div>
-            <h2>iPhone 6.9" 工作台</h2>
-            <p>5 张独立画板统一按真实尺寸构建，当前页面提供缩放预览。</p>
+            <h2>iOS / Android 对照工作台</h2>
+            <p>每列对应一个功能点，上方 iOS，下方 Android，便于直接比对复用效果。</p>
           </div>
           <div class="workspace-actions">
             <select class="language-selector" id="language-selector"></select>

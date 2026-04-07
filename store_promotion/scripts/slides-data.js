@@ -7,6 +7,15 @@ const iosSpec = {
   previewScale: 0.17,
 };
 
+const androidSpec = {
+  device: 'Android Phone',
+  frameDevice: 'Android 1:2',
+  width: 1320,
+  height: 2640,
+  ratio: '1320 × 2640',
+  previewScale: 0.17,
+};
+
 const slides = [
   {
     id: '01',
