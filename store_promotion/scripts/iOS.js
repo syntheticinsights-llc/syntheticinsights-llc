@@ -10,9 +10,8 @@ const iosSpec = {
 const slides = [
   {
     id: '01',
+    key: 'kanban',
     label: 'Kanban',
-    title: 'Kanban',
-    description: 'Track progress and manage tasks with drag and drop',
     layout: 'feature-phone',
     primary: '#9ed4ff',
     secondary: '#bfdcff',
@@ -21,13 +20,11 @@ const slides = [
     bloom: 'rgba(255, 214, 242, 0.34)',
     imageSrc: './assets/ios_screen/kanban.png',
     screenBackground: '#ffffff',
-    tags: ['Quick Capture', 'Inbox First'],
   },
   {
     id: '02',
+    key: 'assistant',
     label: 'Assistant',
-    title: 'Assistant',
-    description: 'Your AI agent for managing tasks, changing icons, generating summaries, and more.',
     layout: 'feature-phone',
     primary: '#ffd1de',
     secondary: '#f3d8ff',
@@ -36,13 +33,11 @@ const slides = [
     bloom: 'rgba(190, 173, 255, 0.28)',
     imageSrc: './assets/ios_screen/assistant.png',
     screenBackground: '#ffffff',
-    tags: ['AI Rewrite', 'Task Polish'],
   },
   {
     id: '03',
+    key: 'filter',
     label: 'Filter',
-    title: 'Powerful filters',
-    description: 'Build powerful filters with 10+ conditions and flexible combinations',
     layout: 'filter-stack',
     primary: '#8ecff0',
     secondary: '#a7dcf7',
@@ -52,13 +47,11 @@ const slides = [
     topImageSrc: './assets/ios_screen/filter1.jpg',
     bottomImageSrc: './assets/ios_screen/filter2.jpg',
     screenBackground: '#ffffff',
-    tags: ['Advanced Rules', 'Flexible Logic'],
   },
   {
     id: '04',
+    key: 'graph',
     label: 'Graph',
-    title: 'Graph',
-    description: 'Understand task structure and relationships at a glance',
     layout: 'feature-phone',
     primary: '#efd0ff',
     secondary: '#ffd5e7',
@@ -67,13 +60,11 @@ const slides = [
     bloom: 'rgba(174, 209, 255, 0.22)',
     imageSrc: './assets/ios_screen/graph.png',
     screenBackground: '#ffffff',
-    tags: ['Graph View', 'Task Links'],
   },
   {
     id: '05',
+    key: 'localFirst',
     label: 'Local first',
-    title: 'Local first',
-    description: 'Super fast, privacy-friendly, and seamlessly synced.',
     layout: 'corner-phone',
     primary: '#d9f0e6',
     secondary: '#d7ebff',
@@ -82,13 +73,16 @@ const slides = [
     bloom: 'rgba(157, 211, 255, 0.22)',
     imageSrc: './assets/ios_screen/sync.jpg',
     screenBackground: '#ffffff',
-    tags: ['Sync', 'Cross Device'],
   },
 ];
 
+let currentLanguage = 'en';
+
 const canvas = document.getElementById('workspace-canvas');
 const badge = document.getElementById('workspace-badge');
-const exportButton = document.getElementById('export-button');
+const exportCurrentButton = document.getElementById('export-current-button');
+const exportAllButton = document.getElementById('export-all-button');
+const languageSelector = document.getElementById('language-selector');
 const exportFolderName = 'iOS';
 const imageSourceCache = new Map();
 const exportFontFamily = '"SF Pro Display", "Helvetica Neue", Arial, sans-serif';
@@ -97,10 +91,49 @@ const deviceShellColor = '#f7f2fa';
 const deviceBorderColor = 'rgba(214, 203, 232, 0.96)';
 const screenBorderColor = 'rgba(226, 218, 239, 0.95)';
 
-function setExportState({ badgeText, buttonText, busy }) {
+function getSlideText(slide, lang) {
+  const language = lang ?? currentLanguage;
+  const t = slideTranslations[slide.key]?.[language];
+
+  if (t) {
+    return { title: t.title, description: t.description, tags: t.tags };
+  }
+
+  const en = slideTranslations[slide.key]?.en;
+
+  if (en) {
+    return { title: en.title, description: en.description, tags: en.tags };
+  }
+
+  return { title: slide.label, description: '', tags: [] };
+}
+
+function initLanguageSelector() {
+  SUPPORTED_LANGUAGES.forEach((lang) => {
+    const option = document.createElement('option');
+
+    option.value = lang.code;
+    option.textContent = `${lang.name}`;
+    languageSelector.appendChild(option);
+  });
+
+  languageSelector.value = currentLanguage;
+}
+
+function setExportState({ badgeText, currentButtonText, allButtonText, busy }) {
   badge.textContent = badgeText;
-  exportButton.textContent = buttonText;
-  exportButton.disabled = busy;
+
+  if (currentButtonText != null) {
+    exportCurrentButton.textContent = currentButtonText;
+  }
+
+  if (allButtonText != null) {
+    exportAllButton.textContent = allButtonText;
+  }
+
+  exportCurrentButton.disabled = busy;
+  exportAllButton.disabled = busy;
+  languageSelector.disabled = busy;
 }
 
 function buildExportFilename(slide) {
@@ -280,7 +313,8 @@ function drawDeviceFrame(context, {
   context.restore();
 }
 
-async function renderArtboardToPng(slide) {
+async function renderArtboardToPng(slide, lang) {
+  const text = getSlideText(slide, lang);
   const outputCanvas = document.createElement('canvas');
   const context = outputCanvas.getContext('2d');
 
@@ -312,11 +346,11 @@ async function renderArtboardToPng(slide) {
     context.fillStyle = '#20181b';
     context.textAlign = 'center';
     context.textBaseline = 'top';
-    context.fillText(slide.title, iosSpec.width / 2, 1040);
+    context.fillText(text.title, iosSpec.width / 2, 1040);
     context.restore();
 
     drawMultilineText(context, {
-      text: slide.description,
+      text: text.description,
       x: iosSpec.width / 2,
       y: 1228,
       maxWidth: 980,
@@ -341,11 +375,11 @@ async function renderArtboardToPng(slide) {
     context.fillStyle = '#20181b';
     context.textAlign = 'center';
     context.textBaseline = 'top';
-    context.fillText(slide.title, iosSpec.width / 2, 150);
+    context.fillText(text.title, iosSpec.width / 2, 150);
     context.restore();
 
     drawMultilineText(context, {
-      text: slide.description,
+      text: text.description,
       x: iosSpec.width / 2,
       y: 316,
       maxWidth: 900,
@@ -371,11 +405,11 @@ async function renderArtboardToPng(slide) {
     context.fillStyle = '#20181b';
     context.textAlign = 'center';
     context.textBaseline = 'top';
-    context.fillText(slide.title, iosSpec.width / 2, 150);
+    context.fillText(text.title, iosSpec.width / 2, 150);
     context.restore();
 
     drawMultilineText(context, {
-      text: slide.description,
+      text: text.description,
       x: iosSpec.width / 2,
       y: 316,
       maxWidth: 1020,
@@ -406,7 +440,32 @@ async function renderArtboardToPng(slide) {
   });
 }
 
-async function exportAllSlides() {
+async function exportSlidesForLanguage(exportDirectory, lang, progressPrefix) {
+  const langDirectory = await exportDirectory.getDirectoryHandle(lang, {
+    create: true,
+  });
+
+  for (let index = 0; index < slides.length; index += 1) {
+    const slide = slides[index];
+    const langName = SUPPORTED_LANGUAGES.find((l) => l.code === lang)?.name ?? lang;
+
+    setExportState({
+      badgeText: `${progressPrefix}正在导出 ${langName} ${index + 1}/${slides.length}`,
+      busy: true,
+    });
+
+    const pngBlob = await renderArtboardToPng(slide, lang);
+    const fileHandle = await langDirectory.getFileHandle(buildExportFilename(slide), {
+      create: true,
+    });
+    const writable = await fileHandle.createWritable();
+
+    await writable.write(pngBlob);
+    await writable.close();
+  }
+}
+
+async function exportCurrentLanguage() {
   if (typeof window.showDirectoryPicker !== 'function') {
     throw new Error('当前浏览器不支持目录选择');
   }
@@ -416,33 +475,47 @@ async function exportAllSlides() {
   const exportDirectory = await parentDirectory.getDirectoryHandle(exportFolderName, {
     create: true,
   });
-  for (let index = 0; index < slides.length; index += 1) {
-    const slide = slides[index];
 
-    setExportState({
-      badgeText: `正在导出 ${index + 1}/${slides.length}`,
-      buttonText: '导出中...',
-      busy: true,
-    });
+  await exportSlidesForLanguage(exportDirectory, currentLanguage, '');
 
-    const pngBlob = await renderArtboardToPng(slide);
-    const fileHandle = await exportDirectory.getFileHandle(buildExportFilename(slide), {
-      create: true,
-    });
-    const writable = await fileHandle.createWritable();
+  const langName = SUPPORTED_LANGUAGES.find((l) => l.code === currentLanguage)?.name ?? currentLanguage;
 
-    await writable.write(pngBlob);
-    await writable.close();
+  setExportState({
+    badgeText: `${langName} ${slides.length} 张已导出`,
+    currentButtonText: '再次导出当前语言',
+    allButtonText: '导出全部语言',
+    busy: false,
+  });
+}
+
+async function exportAllLanguages() {
+  if (typeof window.showDirectoryPicker !== 'function') {
+    throw new Error('当前浏览器不支持目录选择');
+  }
+
+  await document.fonts.ready;
+  const parentDirectory = await window.showDirectoryPicker({ mode: 'readwrite' });
+  const exportDirectory = await parentDirectory.getDirectoryHandle(exportFolderName, {
+    create: true,
+  });
+
+  for (let langIndex = 0; langIndex < SUPPORTED_LANGUAGES.length; langIndex += 1) {
+    const lang = SUPPORTED_LANGUAGES[langIndex];
+    const progressPrefix = `[${langIndex + 1}/${SUPPORTED_LANGUAGES.length}] `;
+
+    await exportSlidesForLanguage(exportDirectory, lang.code, progressPrefix);
   }
 
   setExportState({
-    badgeText: `${slides.length} 张已导出`,
-    buttonText: '再次导出到 iOS',
+    badgeText: `${SUPPORTED_LANGUAGES.length} 种语言 × ${slides.length} 张已导出`,
+    currentButtonText: '导出当前语言',
+    allButtonText: '再次导出全部语言',
     busy: false,
   });
 }
 
 function renderSlide(slide) {
+  const text = getSlideText(slide);
   const column = document.createElement('section');
   column.className = 'slide-column';
   const deviceBlock = slide.layout === 'filter-stack'
@@ -456,8 +529,8 @@ function renderSlide(slide) {
         </div>
 
         <div class="artboard-copy">
-          <h3>${slide.title}</h3>
-          <p>${slide.description}</p>
+          <h3>${text.title}</h3>
+          <p>${text.description}</p>
         </div>
 
         <div class="device-stage device-stage-bottom">
@@ -471,8 +544,8 @@ function renderSlide(slide) {
     : slide.layout === 'corner-phone'
     ? `
         <div class="artboard-copy">
-          <h3>${slide.title}</h3>
-          <p>${slide.description}</p>
+          <h3>${text.title}</h3>
+          <p>${text.description}</p>
         </div>
 
         <div class="device-stage">
@@ -485,8 +558,8 @@ function renderSlide(slide) {
       `
     : `
         <div class="artboard-copy">
-          <h3>${slide.title}</h3>
-          <p>${slide.description}</p>
+          <h3>${text.title}</h3>
+          <p>${text.description}</p>
         </div>
 
         <div class="device-stage">
@@ -499,7 +572,7 @@ function renderSlide(slide) {
 
         <div class="footer-strip">
           <div class="feature-tags">
-            ${slide.tags
+            ${text.tags
               .map((tag) => `<span class="feature-tag">${tag}</span>`)
               .join('')}
           </div>
@@ -531,9 +604,16 @@ function renderSlide(slide) {
   return column;
 }
 
-slides.forEach((slide) => {
-  canvas.appendChild(renderSlide(slide));
-});
+function renderAllSlides() {
+  canvas.innerHTML = '';
+
+  slides.forEach((slide) => {
+    canvas.appendChild(renderSlide(slide));
+  });
+}
+
+initLanguageSelector();
+renderAllSlides();
 
 badge.textContent = `${slides.length} 张待导出`;
 document.documentElement.style.setProperty(
@@ -557,28 +637,41 @@ document.documentElement.style.setProperty(
   `${iosSpec.height * iosSpec.previewScale}px`,
 );
 
-exportButton.addEventListener('click', async () => {
-  setExportState({
-    badgeText: '准备导出',
-    buttonText: '导出中...',
-    busy: true,
-  });
-
-  try {
-    await exportAllSlides();
-  } catch (error) {
-    const message =
-      error?.name === 'AbortError'
-        ? '已取消导出'
-        : error instanceof Error
-        ? error.message
-        : '导出失败';
-
-    setExportState({
-      badgeText: message,
-      buttonText: '重新导出到 iOS',
-      busy: false,
-    });
-    console.error(error);
-  }
+languageSelector.addEventListener('change', () => {
+  currentLanguage = languageSelector.value;
+  renderAllSlides();
+  badge.textContent = `${slides.length} 张待导出`;
 });
+
+function handleExport(exportFn) {
+  return async () => {
+    setExportState({
+      badgeText: '准备导出',
+      currentButtonText: '导出中...',
+      allButtonText: '导出中...',
+      busy: true,
+    });
+
+    try {
+      await exportFn();
+    } catch (error) {
+      const message =
+        error?.name === 'AbortError'
+          ? '已取消导出'
+          : error instanceof Error
+          ? error.message
+          : '导出失败';
+
+      setExportState({
+        badgeText: message,
+        currentButtonText: '导出当前语言',
+        allButtonText: '导出全部语言',
+        busy: false,
+      });
+      console.error(error);
+    }
+  };
+}
+
+exportCurrentButton.addEventListener('click', handleExport(exportCurrentLanguage));
+exportAllButton.addEventListener('click', handleExport(exportAllLanguages));

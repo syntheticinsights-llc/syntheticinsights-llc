@@ -63,7 +63,9 @@
             <p>5 张独立画板统一按真实尺寸构建，当前页面提供缩放预览。</p>
           </div>
           <div class="workspace-actions">
-            <button class="action-button" id="export-button" type="button">导出到 iOS</button>
+            <select class="language-selector" id="language-selector"></select>
+            <button class="action-button" id="export-current-button" type="button">导出当前语言</button>
+            <button class="action-button action-button-secondary" id="export-all-button" type="button">导出全部语言</button>
             <div class="workspace-badge" id="workspace-badge">5 张待导出</div>
           </div>
         </div>
@@ -74,6 +76,7 @@
     </main>
   </div>
 
+  <script defer src="./scripts/translations.js"></script>
   <script defer src="./scripts/iOS.js"></script>
 </body>
 </html>
