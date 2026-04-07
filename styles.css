@@ -1,5 +1,6 @@
 :root {
   --bg: #faf7ff;
+  --bg-elevated: #f8f4fe;
   --bg-rgb: 250, 247, 255;
   --bg-soft: #f1e8ff;
   --bg-soft-rgb: 241, 232, 255;
@@ -313,32 +314,35 @@ ul {
   flex-direction: column;
   align-items: stretch;
   gap: 1.5rem;
-  background: var(--surface);
+  padding: 1.5rem;
+  background: var(--bg-elevated);
   border-radius: var(--radius-lg);
-  padding: 2rem;
-  border: 1px solid rgba(var(--accent-rgb), 0.16);
-  box-shadow: 0 20px 44px rgba(15, 23, 42, 0.12);
+  border: 1px solid rgba(var(--accent-rgb), 0.08);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
 }
 
 .features .feature-body {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
   align-items: center;
-  gap: 2.5rem;
-}
-
-.features .feature-item:nth-child(even) .feature-body {
-  flex-direction: row-reverse;
+  gap: 2rem;
 }
 
 .features .feature-copy {
-  flex: 1 1 320px;
+  flex: none;
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
+  max-width: none;
 }
 
 .features .feature-item--text-only .feature-copy {
   max-width: 48rem;
+}
+
+.features .feature-item:not(.feature-item--text-only) .feature-copy {
+  padding-left: 1rem;
+  border-left: 2px solid rgba(var(--accent-rgb), 0.14);
 }
 
 .features .feature-title {
@@ -367,8 +371,25 @@ ul {
   color: var(--text);
 }
 
+.features .feature-copy__lead {
+  margin: 0;
+  font-size: 1.18rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.features .feature-copy__body {
+  margin: 0;
+  max-width: 22rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
 .features .feature-media {
-  flex: 1 1 360px;
+  width: 100%;
+  min-width: 0;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid rgba(var(--accent-rgb), 0.12);
@@ -378,9 +399,8 @@ ul {
 .features .feature-media img {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
   border-radius: 12px;
-  object-fit: cover;
 }
 
 .downloads {
@@ -707,10 +727,8 @@ input[type="text"]::placeholder {
     padding: 1.75rem;
   }
 
-  .features .feature-body,
-  .features .feature-item:nth-child(even) .feature-body {
-    flex-direction: column;
-    align-items: stretch;
+  .features .feature-body {
+    grid-template-columns: 1fr;
     gap: 1.5rem;
   }
 
