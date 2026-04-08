@@ -6,7 +6,9 @@ const languageSelector = document.getElementById('language-selector');
 const platformSelectors = [...document.querySelectorAll('[data-export-platform]')];
 const exportApiEndpoint = '/api/store-promotion/export';
 const directoryPickerApiEndpoint = '/api/store-promotion/pick-directory';
+const exportStatusApiEndpoint = '/api/store-promotion/export-status';
 let exportBusy = false;
+let exportProgressController = null;
 
 function initLanguageSelector() {
   SUPPORTED_LANGUAGES.forEach((lang) => {
@@ -50,6 +52,11 @@ function syncExportControls() {
 }
 
 function setExportState({ badgeText, currentButtonText, allButtonText, busy }) {
+  if (!busy && exportProgressController) {
+    exportProgressController.abort();
+    exportProgressController = null;
+  }
+
   exportBusy = busy;
 
   if (badgeText != null) {
@@ -116,6 +123,76 @@ async function requestJson(url, payload = {}) {
   return result;
 }
 
+async function requestExportStatus(signal) {
+  const response = await fetch(exportStatusApiEndpoint, {
+    method: 'GET',
+    headers: {
+      'Cache-Control': 'no-store',
+    },
+    signal,
+  });
+  const result = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(result.error ?? '请求失败');
+  }
+
+  return result;
+}
+
+function wait(ms, signal) {
+  return new Promise((resolve, reject) => {
+    const timer = window.setTimeout(() => {
+      signal?.removeEventListener('abort', onAbort);
+      resolve();
+    }, ms);
+
+    function onAbort() {
+      window.clearTimeout(timer);
+      reject(new DOMException('Aborted', 'AbortError'));
+    }
+
+    if (signal) {
+      signal.addEventListener('abort', onAbort, { once: true });
+    }
+  });
+}
+
+function startExportProgressPolling(total) {
+  if (exportProgressController) {
+    exportProgressController.abort();
+  }
+
+  exportProgressController = new AbortController();
+  const { signal } = exportProgressController;
+
+  (async () => {
+    while (!signal.aborted) {
+      try {
+        const status = await requestExportStatus(signal);
+        const done = Math.min(status.done ?? 0, status.total || total);
+        const finalTotal = status.total || total;
+
+        if (exportBusy && finalTotal > 0) {
+          badge.textContent = `导出中 ${done} / ${finalTotal}`;
+        }
+      } catch (error) {
+        if (error?.name === 'AbortError') {
+          return;
+        }
+      }
+
+      try {
+        await wait(400, signal);
+      } catch (error) {
+        if (error?.name === 'AbortError') {
+          return;
+        }
+      }
+    }
+  })();
+}
+
 async function pickExportDirectory() {
   return requestJson(directoryPickerApiEndpoint);
 }
@@ -130,6 +207,8 @@ async function exportCurrentLanguage(pickedDirectory) {
   if (platformCodes.length === 0) {
     throw new Error('请至少选择一个导出平台');
   }
+
+  startExportProgressPolling(platformCodes.length * slides.length);
 
   const result = await requestLocalExport({
     mode: 'current',
@@ -154,6 +233,8 @@ async function exportAllLanguages(pickedDirectory) {
   if (platformCodes.length === 0) {
     throw new Error('请至少选择一个导出平台');
   }
+
+  startExportProgressPolling(platformCodes.length * SUPPORTED_LANGUAGES.length * slides.length);
 
   const result = await requestLocalExport({
     mode: 'all',

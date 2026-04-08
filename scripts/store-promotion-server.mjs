@@ -28,6 +28,7 @@ const MIME_TYPES = {
 
 let activeExport = null;
 let activeJobId = 0;
+let activeExportState = null;
 const execFileAsync = promisify(execFile);
 
 function readArgValue(name) {
@@ -203,16 +204,54 @@ async function handleExportRequest(request, response) {
 
   activeJobId += 1;
   const jobId = activeJobId;
+  activeExportState = {
+    jobId,
+    status: 'running',
+    done: 0,
+    total: 0,
+    outputDir: exportRequest.outputDir,
+    languages: [],
+    platforms: exportRequest.platforms,
+    slides: [],
+    error: null,
+  };
 
   activeExport = exportStorePromotion({
     baseUrl: `http://${HOST}:${getPort()}/store_promotion/`,
     outputDir: exportRequest.outputDir,
     languages: exportRequest.languages,
     platforms: exportRequest.platforms,
+    onStart(progress) {
+      activeExportState = {
+        ...activeExportState,
+        total: progress.total,
+        languages: progress.languages,
+        platforms: progress.platforms,
+        slides: progress.slides,
+      };
+    },
+    onProgress(progress) {
+      activeExportState = {
+        ...activeExportState,
+        done: progress.done,
+        total: progress.total,
+      };
+    },
   });
 
   try {
     const result = await activeExport;
+    activeExportState = {
+      ...activeExportState,
+      status: 'completed',
+      done: result.total,
+      total: result.total,
+      outputDir: result.outputDir,
+      languages: result.languages,
+      platforms: result.platforms,
+      slides: result.slides,
+      error: null,
+    };
 
     sendJson(response, 200, {
       jobId,
@@ -223,6 +262,11 @@ async function handleExportRequest(request, response) {
       slides: result.slides,
     });
   } catch (error) {
+    activeExportState = {
+      ...activeExportState,
+      status: 'failed',
+      error: error instanceof Error ? error.message : '导出失败',
+    };
     sendJson(response, 500, {
       jobId,
       error: error instanceof Error ? error.message : '导出失败',
@@ -257,6 +301,24 @@ async function handleRequest(request, response) {
       ok: true,
       outputDir: DEFAULT_OUTPUT_DIR,
       busy: activeExport != null,
+    });
+    return;
+  }
+
+  if (request.method === 'GET' && url.pathname === '/api/store-promotion/export-status') {
+    sendJson(response, 200, {
+      busy: activeExport != null,
+      ...(activeExportState ?? {
+        jobId: null,
+        status: 'idle',
+        done: 0,
+        total: 0,
+        outputDir: null,
+        languages: [],
+        platforms: [],
+        slides: [],
+        error: null,
+      }),
     });
     return;
   }

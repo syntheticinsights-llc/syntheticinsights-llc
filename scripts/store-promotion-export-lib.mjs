@@ -6,6 +6,7 @@ export const DEFAULT_BASE_URL = 'http://127.0.0.1:8000/store_promotion/';
 export const DEFAULT_OUTPUT_DIR = path.resolve('store_promotion/exports/playwright');
 export const EXPORT_ROOT_FOLDER_NAME = 'StorePromotion';
 
+const DEFAULT_EXPORT_CONCURRENCY = 4;
 const DEFAULT_VIEWPORT = { width: 1600, height: 3200 };
 const MAC_CHROME_PATH = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
@@ -68,10 +69,14 @@ async function captureArtboard(page, options) {
 
   const artboard = page.locator('.artboard-standalone');
   const platformDirectory = path.join(outputDir, platform.folderName, language.code);
+  const languageTag = language.code.toUpperCase();
 
   await fs.mkdir(platformDirectory, { recursive: true });
 
-  const filePath = path.join(platformDirectory, `${slide.id}-${slide.label.replace(/\s+/g, '-')}.png`);
+  const filePath = path.join(
+    platformDirectory,
+    `${languageTag}-${slide.id}-${slide.label.replace(/\s+/g, '-')}.png`,
+  );
 
   await artboard.screenshot({
     animations: 'disabled',
@@ -88,6 +93,7 @@ export async function exportStorePromotion(options = {}) {
     languages: requestedLanguages = [],
     platforms: requestedPlatforms = [],
     slides: requestedSlides = [],
+    onStart,
     onProgress,
   } = options;
 
@@ -106,42 +112,82 @@ export async function exportStorePromotion(options = {}) {
     const languages = pickRequestedItems(meta.languages, requestedLanguages, '语言');
     const platforms = pickRequestedItems(meta.platforms, requestedPlatforms, '平台');
     const slidesToExport = pickRequestedItems(meta.slides, requestedSlides, '画板');
-    const files = [];
-    let done = 0;
     const total = languages.length * platforms.length * slidesToExport.length;
+    const concurrency = Math.min(DEFAULT_EXPORT_CONCURRENCY, total || 1);
+    const tasks = [];
+    const files = new Array(total);
+    let nextTaskIndex = 0;
+    let done = 0;
+
+    if (onStart) {
+      await onStart({
+        total,
+        languages: languages.map((item) => item.code),
+        platforms: platforms.map((item) => item.code),
+        slides: slidesToExport.map((item) => item.key),
+      });
+    }
 
     for (const platform of platforms) {
       for (const language of languages) {
         for (const slide of slidesToExport) {
-          const filePath = await captureArtboard(page, {
-            baseUrl,
-            outputDir: normalizedOutputDir,
+          tasks.push({
             platform,
             language,
             slide,
           });
+        }
+      }
+    }
+
+    await page.close();
+
+    async function runWorker() {
+      const workerPage = await browser.newPage({
+        deviceScaleFactor: 1,
+        viewport: DEFAULT_VIEWPORT,
+      });
+
+      try {
+        while (nextTaskIndex < tasks.length) {
+          const taskIndex = nextTaskIndex;
+
+          nextTaskIndex += 1;
+
+          const task = tasks[taskIndex];
+          const filePath = await captureArtboard(workerPage, {
+            baseUrl,
+            outputDir: normalizedOutputDir,
+            platform: task.platform,
+            language: task.language,
+            slide: task.slide,
+          });
 
           done += 1;
-          files.push({
+          files[taskIndex] = {
             path: filePath,
-            platform: platform.code,
-            language: language.code,
-            slide: slide.key,
-          });
+            platform: task.platform.code,
+            language: task.language.code,
+            slide: task.slide.key,
+          };
 
           if (onProgress) {
             await onProgress({
               done,
               total,
               filePath,
-              platform: platform.code,
-              language: language.code,
-              slide: slide.key,
+              platform: task.platform.code,
+              language: task.language.code,
+              slide: task.slide.key,
             });
           }
         }
+      } finally {
+        await workerPage.close();
       }
     }
+
+    await Promise.all(Array.from({ length: concurrency }, () => runWorker()));
 
     return {
       outputDir: normalizedOutputDir,
