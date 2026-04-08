@@ -1,0 +1,12 @@
+{
+  "name": "syntheticinsights-llc",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "store-promotion:serve": "node ./scripts/store-promotion-server.mjs",
+    "store-promotion:export": "node ./scripts/export-store-promotion.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.59.1"
+  }
+}

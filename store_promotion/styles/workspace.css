@@ -36,6 +36,12 @@ body {
     linear-gradient(180deg, #fcfaf7 0%, var(--canvas-background) 100%);
 }
 
+body.capture-mode {
+  min-height: auto;
+  display: block;
+  background: transparent;
+}
+
 .app-shell {
   min-height: 100vh;
   display: grid;
@@ -344,6 +350,23 @@ body {
   background: linear-gradient(135deg, #d87343 0%, #ba4b22 100%);
 }
 
+.capture-shell {
+  display: block;
+  width: fit-content;
+}
+
+#capture-root {
+  display: block;
+  width: fit-content;
+}
+
+.capture-error {
+  margin: 0;
+  padding: 20px;
+  color: #7a2816;
+  background: #fff3f0;
+}
+
 .workspace-scroll {
   overflow: auto;
   padding: 28px;
@@ -428,6 +451,13 @@ body {
   border-radius: 188px;
   isolation: isolate;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0));
+}
+
+.artboard-standalone {
+  position: relative;
+  inset: auto;
+  display: block;
+  transform: none;
 }
 
 .artboard::before,

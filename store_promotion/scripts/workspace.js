@@ -4,6 +4,8 @@ const exportCurrentButton = document.getElementById('export-current-button');
 const exportAllButton = document.getElementById('export-all-button');
 const languageSelector = document.getElementById('language-selector');
 const platformSelectors = [...document.querySelectorAll('[data-export-platform]')];
+const exportApiEndpoint = '/api/store-promotion/export';
+const directoryPickerApiEndpoint = '/api/store-promotion/pick-directory';
 let exportBusy = false;
 
 function initLanguageSelector() {
@@ -67,15 +69,17 @@ function setExportState({ badgeText, currentButtonText, allButtonText, busy }) {
 
 function handleExport(exportFn) {
   return async () => {
-    setExportState({
-      badgeText: '准备导出',
-      currentButtonText: '导出中...',
-      allButtonText: '导出中...',
-      busy: true,
-    });
-
     try {
-      await exportFn();
+      const pickedDirectory = await pickExportDirectory();
+
+      setExportState({
+        badgeText: `准备导出，结果保存到 ${pickedDirectory.outputDir}`,
+        currentButtonText: '导出中...',
+        allButtonText: '导出中...',
+        busy: true,
+      });
+
+      await exportFn(pickedDirectory);
     } catch (error) {
       const message =
         error?.name === 'AbortError'
@@ -93,6 +97,78 @@ function handleExport(exportFn) {
       console.error(error);
     }
   };
+}
+
+async function requestJson(url, payload = {}) {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
+  const result = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(result.error ?? '请求失败');
+  }
+
+  return result;
+}
+
+async function pickExportDirectory() {
+  return requestJson(directoryPickerApiEndpoint);
+}
+
+async function requestLocalExport(payload) {
+  return requestJson(exportApiEndpoint, payload);
+}
+
+async function exportCurrentLanguage(pickedDirectory) {
+  const platformCodes = getSelectedPlatformCodes();
+
+  if (platformCodes.length === 0) {
+    throw new Error('请至少选择一个导出平台');
+  }
+
+  const result = await requestLocalExport({
+    mode: 'current',
+    language: currentLanguage,
+    platforms: platformCodes,
+    outputDir: pickedDirectory.outputDir,
+  });
+  const langName = SUPPORTED_LANGUAGES.find((lang) => lang.code === currentLanguage)?.name ?? currentLanguage;
+  const platformLabel = platformCodes.map((code) => getExportPlatform(code).label).join(' / ');
+
+  setExportState({
+    badgeText: `${langName} ${platformLabel} ${result.total} 张已导出 · ${result.outputDir}`,
+    currentButtonText: '再次导出当前语言',
+    allButtonText: '导出全部语言',
+    busy: false,
+  });
+}
+
+async function exportAllLanguages(pickedDirectory) {
+  const platformCodes = getSelectedPlatformCodes();
+
+  if (platformCodes.length === 0) {
+    throw new Error('请至少选择一个导出平台');
+  }
+
+  const result = await requestLocalExport({
+    mode: 'all',
+    platforms: platformCodes,
+    outputDir: pickedDirectory.outputDir,
+  });
+
+  setExportState({
+    badgeText: `${platformCodes.length} 平台 × ${SUPPORTED_LANGUAGES.length} 种语言 × ${slides.length} 张已导出 · ${result.outputDir}`,
+    currentButtonText: '导出当前语言',
+    allButtonText: '再次导出全部语言',
+    busy: false,
+  });
+
+  console.info(`导出目录: ${result.outputDir}`);
 }
 
 initLanguageSelector();

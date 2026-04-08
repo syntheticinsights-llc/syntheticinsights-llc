@@ -16,6 +16,19 @@ function buildPreviewStyle(spec) {
   `;
 }
 
+function buildArtboardStyle(slide, spec, previewScale) {
+  return `
+    --artboard-width-px: ${spec.width}px;
+    --artboard-height-px: ${spec.height}px;
+    ${previewScale != null ? `--preview-scale: ${previewScale};` : ''}
+    --slide-primary: ${slide.primary};
+    --slide-secondary: ${slide.secondary};
+    --slide-accent: ${slide.accent};
+    --slide-highlight: ${slide.highlight};
+    --slide-bloom: ${slide.bloom};
+  `;
+}
+
 function renderDeviceFrame(tagName, imageSrc, screenBackground) {
   return `
     <${tagName}
@@ -26,54 +39,82 @@ function renderDeviceFrame(tagName, imageSrc, screenBackground) {
   `;
 }
 
-function renderPlatformPreview(slide, spec, platform, text) {
+function buildDeviceBlock(slide, spec, deviceTag, text) {
+  if (slide.layout === 'filter-stack') {
+    return `
+      <div class="device-stage device-stage-top">
+        ${renderDeviceFrame(deviceTag, slide.topImageSrc, slide.screenBackground)}
+      </div>
+
+      <div class="artboard-copy">
+        <h3>${text.title}</h3>
+        <p>${text.description}</p>
+      </div>
+
+      <div class="device-stage device-stage-bottom">
+        ${renderDeviceFrame(deviceTag, slide.bottomImageSrc, slide.screenBackground)}
+      </div>
+    `;
+  }
+
+  if (slide.layout === 'corner-phone') {
+    return `
+      <div class="artboard-copy">
+        <h3>${text.title}</h3>
+        <p>${text.description}</p>
+      </div>
+
+      <div class="device-stage">
+        ${renderDeviceFrame(deviceTag, slide.imageSrc, slide.screenBackground)}
+      </div>
+    `;
+  }
+
+  return `
+    <div class="artboard-copy">
+      <h3>${text.title}</h3>
+      <p>${text.description}</p>
+    </div>
+
+    <div class="device-stage">
+      ${renderDeviceFrame(deviceTag, slide.imageSrc, slide.screenBackground)}
+    </div>
+
+    <div class="footer-strip">
+      <div class="feature-tags">
+        ${text.tags
+          .map((tag) => `<span class="feature-tag">${tag}</span>`)
+          .join('')}
+      </div>
+      <div class="footer-mark">${spec.frameDevice}</div>
+    </div>
+  `;
+}
+
+function renderArtboardMarkup(slide, spec, platform, text, options = {}) {
   const deviceTag = getPlatformDeviceTag(platform);
-  const deviceBlock = slide.layout === 'filter-stack'
-    ? `
-        <div class="device-stage device-stage-top">
-          ${renderDeviceFrame(deviceTag, slide.topImageSrc, slide.screenBackground)}
-        </div>
+  const classes = ['artboard', slide.layout ?? '', options.className ?? ''].filter(Boolean).join(' ');
 
-        <div class="artboard-copy">
-          <h3>${text.title}</h3>
-          <p>${text.description}</p>
-        </div>
+  return `
+    <article
+      class="${classes}"
+      style="${buildArtboardStyle(slide, spec, options.previewScale)}"
+    >
+      <div class="artboard-content">
+        ${buildDeviceBlock(slide, spec, deviceTag, text)}
+      </div>
+    </article>
+  `;
+}
 
-        <div class="device-stage device-stage-bottom">
-          ${renderDeviceFrame(deviceTag, slide.bottomImageSrc, slide.screenBackground)}
-        </div>
-      `
-    : slide.layout === 'corner-phone'
-    ? `
-        <div class="artboard-copy">
-          <h3>${text.title}</h3>
-          <p>${text.description}</p>
-        </div>
+function renderStandaloneArtboard(slide, spec, platform, text) {
+  return renderArtboardMarkup(slide, spec, platform, text, {
+    className: 'artboard-standalone',
+    previewScale: 1,
+  });
+}
 
-        <div class="device-stage">
-          ${renderDeviceFrame(deviceTag, slide.imageSrc, slide.screenBackground)}
-        </div>
-      `
-    : `
-        <div class="artboard-copy">
-          <h3>${text.title}</h3>
-          <p>${text.description}</p>
-        </div>
-
-        <div class="device-stage">
-          ${renderDeviceFrame(deviceTag, slide.imageSrc, slide.screenBackground)}
-        </div>
-
-        <div class="footer-strip">
-          <div class="feature-tags">
-            ${text.tags
-              .map((tag) => `<span class="feature-tag">${tag}</span>`)
-              .join('')}
-          </div>
-          <div class="footer-mark">${spec.frameDevice}</div>
-        </div>
-      `;
-
+function renderPlatformPreview(slide, spec, platform, text) {
   return `
     <section class="platform-preview platform-preview-${platform}">
       <div class="platform-label">
@@ -81,20 +122,7 @@ function renderPlatformPreview(slide, spec, platform, text) {
         <span>${spec.ratio}</span>
       </div>
       <div class="preview-frame" style="${buildPreviewStyle(spec)}">
-        <article
-          class="artboard ${slide.layout ?? ''}"
-          style="
-            --slide-primary: ${slide.primary};
-            --slide-secondary: ${slide.secondary};
-            --slide-accent: ${slide.accent};
-            --slide-highlight: ${slide.highlight};
-            --slide-bloom: ${slide.bloom};
-          "
-        >
-          <div class="artboard-content">
-            ${deviceBlock}
-          </div>
-        </article>
+        ${renderArtboardMarkup(slide, spec, platform, text)}
       </div>
     </section>
   `;
