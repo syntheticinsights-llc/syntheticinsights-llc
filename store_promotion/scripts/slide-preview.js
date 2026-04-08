@@ -93,7 +93,12 @@ function buildDeviceBlock(slide, spec, deviceTag, text) {
 
 function renderArtboardMarkup(slide, spec, platform, text, options = {}) {
   const deviceTag = getPlatformDeviceTag(platform);
-  const classes = ['artboard', slide.layout ?? '', options.className ?? ''].filter(Boolean).join(' ');
+  const classes = [
+    'artboard',
+    `artboard-platform-${platform}`,
+    slide.layout ?? '',
+    options.className ?? '',
+  ].filter(Boolean).join(' ');
 
   return `
     <article

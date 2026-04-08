@@ -440,6 +440,10 @@ body.capture-mode {
   box-shadow: 0 28px 64px rgba(45, 31, 17, 0.16);
 }
 
+.platform-preview-android .preview-frame {
+  border-radius: 0;
+}
+
 .artboard {
   position: absolute;
   inset: 0;
@@ -451,6 +455,10 @@ body.capture-mode {
   border-radius: 188px;
   isolation: isolate;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0));
+}
+
+.artboard-platform-android {
+  border-radius: 0;
 }
 
 .artboard-standalone {
