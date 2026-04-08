@@ -96,18 +96,66 @@ function getCanvasContext(canvas) {
 }
 
 function drawFilterStackText(context, spec, scaler, text) {
+  const titleFontSize = Math.round(scaler.h(122));
+  const descFontSize = Math.round(scaler.h(62));
+  const descLineHeight = scaler.h(84);
+  const descMaxWidth = scaler.w(980);
+  const titleDescGap = scaler.h(40);
+  const descFont = `400 ${descFontSize}px ${exportFontFamily}`;
+
+  // Pre-measure description line count for centering
   context.save();
-  context.font = `700 ${Math.round(scaler.h(122))}px ${exportFontFamily}`;
+  context.font = descFont;
+  const chars = [...text.description];
+  let descLineCount = 0;
+  let currentLine = '';
+
+  for (const char of chars) {
+    const nextLine = currentLine + char;
+
+    if (currentLine && context.measureText(nextLine).width > descMaxWidth) {
+      descLineCount += 1;
+      currentLine = char;
+    } else {
+      currentLine = nextLine;
+    }
+  }
+
+  if (currentLine) {
+    descLineCount += 1;
+  }
+
+  context.restore();
+
+  const titleHeight = titleFontSize;
+  const descHeight = descLineCount * descLineHeight;
+  const blockHeight = titleHeight + titleDescGap + descHeight;
+
+  // Mirror CSS: grid-template-rows 760px auto 760px, align-self center, translateY(150px)
+  const middleTop = scaler.y(760);
+  const middleHeight = scaler.h(1348);
+  const offset = scaler.h(150);
+  const blockTop = middleTop + (middleHeight - blockHeight) / 2 + offset;
+
+  // Draw title
+  context.save();
+  context.font = `700 ${titleFontSize}px ${exportFontFamily}`;
   context.fillStyle = '#20181b';
   context.textAlign = 'center';
   context.textBaseline = 'top';
-  context.fillText(text.title, spec.width / 2, scaler.y(1040));
+  context.fillText(text.title, spec.width / 2, blockTop);
   context.restore();
 
-  drawDescription(context, spec, scaler, text, {
-    y: 1228,
-    maxWidth: 980,
-    lineHeight: 84,
+  // Draw description
+  drawMultilineText(context, {
+    text: text.description,
+    x: spec.width / 2,
+    y: blockTop + titleHeight + titleDescGap,
+    maxWidth: descMaxWidth,
+    lineHeight: descLineHeight,
+    align: 'center',
+    color: 'rgba(49, 37, 42, 0.74)',
+    font: descFont,
   });
 }
 
