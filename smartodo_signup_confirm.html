@@ -19,10 +19,10 @@
                     <span class="logo-type">Smartodo</span>
                 </div>
                 <nav class="site-nav">
-                    <a href="index.html#features">Features</a>
-                    <a href="index.html#downloads">Downloads</a>
-                    <a href="index.html#about">About</a>
-                    <a href="privacy.html">Privacy</a>
+                    <a href="index.html#features" data-i18n="features">Features</a>
+                    <a href="index.html#downloads" data-i18n="downloads">Downloads</a>
+                    <a href="index.html#about" data-i18n="about">About</a>
+                    <a href="privacy.html" data-i18n="privacy">Privacy</a>
                 </nav>
             </div>
         </header>
@@ -30,9 +30,9 @@
         <main class="auth-page">
             <div class="container">
                 <div class="auth-card">
-                    <p class="eyebrow">Confirm email</p>
-                    <h1>Verify your account</h1>
-                    <p class="lead">
+                    <p class="eyebrow" data-i18n="eyebrow">Confirm email</p>
+                    <h1 data-i18n="heading">Verify your account</h1>
+                    <p class="lead" data-i18n="lead">
                         We are confirming your email address. This may take a few seconds.
                     </p>
 
@@ -48,6 +48,196 @@
             const SUPABASE_ANON_KEY =
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhqc3loZWphY2ZuZHJhcnl5cWFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU4MjcxODAsImV4cCI6MjA2MTQwMzE4MH0.xaY6wwxMZqi_zkICjXS4H3IDNwV9z3YGGXIBzve2eEM";
 
+            const translations = {
+                en: {
+                    htmlLang: "en",
+                    title: "Confirm Signup | Smartodo",
+                    features: "Features",
+                    downloads: "Downloads",
+                    about: "About",
+                    privacy: "Privacy",
+                    eyebrow: "Confirm email",
+                    heading: "Verify your account",
+                    lead: "We are confirming your email address. This may take a few seconds.",
+                    preparing: "Preparing verification…",
+                    verifying: "Verifying your email…",
+                    missingToken: "Confirmation link is missing token. Please request a new email.",
+                    verificationFailed: "Confirmation link is invalid or expired.",
+                    success: "Email confirmed. You can return to the app and sign in.",
+                },
+                de: {
+                    htmlLang: "de",
+                    title: "Registrierung bestätigen | Smartodo",
+                    features: "Funktionen",
+                    downloads: "Downloads",
+                    about: "Über uns",
+                    privacy: "Datenschutz",
+                    eyebrow: "E-Mail bestätigen",
+                    heading: "Bestätige dein Konto",
+                    lead: "Deine E-Mail-Adresse wird bestätigt. Dies kann einige Sekunden dauern.",
+                    preparing: "Bestätigung wird vorbereitet…",
+                    verifying: "Deine E-Mail-Adresse wird bestätigt…",
+                    missingToken: "Im Bestätigungslink fehlt ein Token. Bitte fordere eine neue E-Mail an.",
+                    verificationFailed: "Der Bestätigungslink ist ungültig oder abgelaufen.",
+                    success: "E-Mail bestätigt. Du kannst zur App zurückkehren und dich anmelden.",
+                },
+                es: {
+                    htmlLang: "es",
+                    title: "Confirmar registro | Smartodo",
+                    features: "Funciones",
+                    downloads: "Descargas",
+                    about: "Acerca de",
+                    privacy: "Privacidad",
+                    eyebrow: "Confirmar correo electrónico",
+                    heading: "Verifica tu cuenta",
+                    lead: "Estamos confirmando tu correo electrónico. Esto puede tardar unos segundos.",
+                    preparing: "Preparando la verificación…",
+                    verifying: "Verificando tu correo electrónico…",
+                    missingToken: "Falta el token en el enlace de confirmación. Solicita un nuevo correo.",
+                    verificationFailed: "El enlace de confirmación no es válido o ha caducado.",
+                    success: "Correo electrónico confirmado. Puedes volver a la aplicación e iniciar sesión.",
+                },
+                fr: {
+                    htmlLang: "fr",
+                    title: "Confirmer l’inscription | Smartodo",
+                    features: "Fonctionnalités",
+                    downloads: "Téléchargements",
+                    about: "À propos",
+                    privacy: "Confidentialité",
+                    eyebrow: "Confirmer l’adresse e-mail",
+                    heading: "Vérifiez votre compte",
+                    lead: "Nous confirmons votre adresse e-mail. Cela peut prendre quelques secondes.",
+                    preparing: "Préparation de la vérification…",
+                    verifying: "Vérification de votre adresse e-mail…",
+                    missingToken: "Le lien de confirmation ne contient pas de jeton. Demandez un nouvel e-mail.",
+                    verificationFailed: "Le lien de confirmation est invalide ou a expiré.",
+                    success: "Adresse e-mail confirmée. Vous pouvez revenir à l’application et vous connecter.",
+                },
+                it: {
+                    htmlLang: "it",
+                    title: "Conferma registrazione | Smartodo",
+                    features: "Funzionalità",
+                    downloads: "Download",
+                    about: "Chi siamo",
+                    privacy: "Privacy",
+                    eyebrow: "Conferma email",
+                    heading: "Verifica il tuo account",
+                    lead: "Stiamo confermando il tuo indirizzo email. Potrebbero volerci alcuni secondi.",
+                    preparing: "Preparazione della verifica…",
+                    verifying: "Verifica del tuo indirizzo email…",
+                    missingToken: "Nel link di conferma manca il token. Richiedi una nuova email.",
+                    verificationFailed: "Il link di conferma non è valido o è scaduto.",
+                    success: "Email confermata. Puoi tornare all’app e accedere.",
+                },
+                ja: {
+                    htmlLang: "ja",
+                    title: "登録を確認 | Smartodo",
+                    features: "機能",
+                    downloads: "ダウンロード",
+                    about: "Smartodoについて",
+                    privacy: "プライバシー",
+                    eyebrow: "メールアドレスを確認",
+                    heading: "アカウントを確認してください",
+                    lead: "メールアドレスを確認しています。数秒かかる場合があります。",
+                    preparing: "確認の準備中…",
+                    verifying: "メールアドレスを確認中…",
+                    missingToken: "確認リンクにトークンがありません。新しいメールをリクエストしてください。",
+                    verificationFailed: "確認リンクが無効か、有効期限が切れています。",
+                    success: "メールアドレスを確認しました。アプリに戻ってサインインできます。",
+                },
+                ko: {
+                    htmlLang: "ko",
+                    title: "가입 확인 | Smartodo",
+                    features: "기능",
+                    downloads: "다운로드",
+                    about: "소개",
+                    privacy: "개인정보 처리방침",
+                    eyebrow: "이메일 확인",
+                    heading: "계정을 확인하세요",
+                    lead: "이메일 주소를 확인하고 있습니다. 몇 초 정도 걸릴 수 있습니다.",
+                    preparing: "확인을 준비하는 중…",
+                    verifying: "이메일 주소를 확인하는 중…",
+                    missingToken: "확인 링크에 토큰이 없습니다. 새 이메일을 요청하세요.",
+                    verificationFailed: "확인 링크가 올바르지 않거나 만료되었습니다.",
+                    success: "이메일이 확인되었습니다. 앱으로 돌아가 로그인할 수 있습니다.",
+                },
+                pt: {
+                    htmlLang: "pt",
+                    title: "Confirmar cadastro | Smartodo",
+                    features: "Recursos",
+                    downloads: "Downloads",
+                    about: "Sobre",
+                    privacy: "Privacidade",
+                    eyebrow: "Confirmar e-mail",
+                    heading: "Verifique sua conta",
+                    lead: "Estamos confirmando seu endereço de e-mail. Isso pode levar alguns segundos.",
+                    preparing: "Preparando a verificação…",
+                    verifying: "Verificando seu endereço de e-mail…",
+                    missingToken: "O link de confirmação não contém um token. Solicite um novo e-mail.",
+                    verificationFailed: "O link de confirmação é inválido ou expirou.",
+                    success: "E-mail confirmado. Você pode voltar ao aplicativo e entrar.",
+                },
+                ru: {
+                    htmlLang: "ru",
+                    title: "Подтверждение регистрации | Smartodo",
+                    features: "Возможности",
+                    downloads: "Скачать",
+                    about: "О нас",
+                    privacy: "Конфиденциальность",
+                    eyebrow: "Подтвердите электронную почту",
+                    heading: "Подтвердите свою учётную запись",
+                    lead: "Мы подтверждаем ваш адрес электронной почты. Это может занять несколько секунд.",
+                    preparing: "Подготовка к подтверждению…",
+                    verifying: "Подтверждение адреса электронной почты…",
+                    missingToken: "В ссылке подтверждения отсутствует токен. Запросите новое письмо.",
+                    verificationFailed: "Ссылка подтверждения недействительна или срок её действия истёк.",
+                    success: "Адрес электронной почты подтверждён. Вы можете вернуться в приложение и войти.",
+                },
+                zh: {
+                    htmlLang: "zh-CN",
+                    title: "确认注册 | Smartodo",
+                    features: "功能",
+                    downloads: "下载",
+                    about: "关于我们",
+                    privacy: "隐私政策",
+                    eyebrow: "确认邮箱",
+                    heading: "验证你的账户",
+                    lead: "正在确认你的邮箱地址，可能需要几秒钟。",
+                    preparing: "正在准备验证…",
+                    verifying: "正在验证你的邮箱…",
+                    missingToken: "确认链接缺少令牌，请重新请求确认邮件。",
+                    verificationFailed: "确认链接无效或已过期。",
+                    success: "邮箱已确认。你可以返回 App 并登录。",
+                },
+                zh_Hant: {
+                    htmlLang: "zh-Hant",
+                    title: "確認註冊 | Smartodo",
+                    features: "功能",
+                    downloads: "下載",
+                    about: "關於我們",
+                    privacy: "隱私權",
+                    eyebrow: "確認電子郵件",
+                    heading: "驗證你的帳戶",
+                    lead: "正在確認你的電子郵件地址，可能需要幾秒鐘。",
+                    preparing: "正在準備驗證…",
+                    verifying: "正在驗證你的電子郵件…",
+                    missingToken: "確認連結缺少權杖，請重新要求確認郵件。",
+                    verificationFailed: "確認連結無效或已過期。",
+                    success: "電子郵件已確認。你可以返回 App 並登入。",
+                },
+            };
+
+            const searchParams = new URLSearchParams(window.location.search);
+            const requestedLocale = searchParams.get("lang");
+            const locale = requestedLocale === "zh-Hant" ? "zh_Hant" : requestedLocale;
+            const text = translations[locale] ?? translations.en;
+
+            document.documentElement.lang = text.htmlLang;
+            document.title = text.title;
+            document.querySelectorAll("[data-i18n]").forEach((element) => {
+                element.textContent = text[element.dataset.i18n];
+            });
+
             const statusEl = document.getElementById("status");
 
             const setStatus = (message, type = "info") => {
@@ -60,19 +250,19 @@
                 window.history.replaceState({}, document.title, url);
             };
 
-            const getTokenFromQuery = () => new URLSearchParams(window.location.search).get("token");
-            const getTokenHashFromQuery = () => new URLSearchParams(window.location.search).get("token_hash");
+            const getTokenFromQuery = () => searchParams.get("token");
+            const getTokenHashFromQuery = () => searchParams.get("token_hash");
 
             const verifySignup = async (supabase) => {
                 const tokenHash = getTokenHashFromQuery();
                 const token = getTokenFromQuery();
 
                 if (!token && !tokenHash) {
-                    setStatus("Confirmation link is missing token. Please request a new email.", "error");
+                    setStatus(text.missingToken, "error");
                     return false;
                 }
 
-                setStatus("Verifying your email…");
+                setStatus(text.verifying);
 
                 try {
                     if (tokenHash) {
@@ -81,28 +271,28 @@
                             token_hash: tokenHash,
                         });
                         if (error) throw error;
-                        if (!data?.session) throw new Error("Verification did not return a session.");
+                        if (!data?.session) throw new Error(text.verificationFailed);
                     } else {
                         const { data, error } = await supabase.auth.verifyOtp({
                             type: "signup",
                             token,
                         });
                         if (error) throw error;
-                        if (!data?.session) throw new Error("Verification did not return a session.");
+                        if (!data?.session) throw new Error(text.verificationFailed);
                     }
 
                     cleanUrl();
-                    setStatus("Email confirmed. You can return to the app and sign in.", "success");
+                    setStatus(text.success, "success");
                     return true;
                 } catch (err) {
                     console.error(err);
-                    setStatus(err?.message || "Confirmation link is invalid or expired.", "error");
+                    setStatus(text.verificationFailed, "error");
                     return false;
                 }
             };
 
             const run = async () => {
-                setStatus("Preparing verification…");
+                setStatus(text.preparing);
                 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
                 await verifySignup(supabase);
             };
