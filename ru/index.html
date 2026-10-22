@@ -22,18 +22,18 @@
     <link rel="alternate" hreflang="zh-Hans" href="https://syntheticinsights.net/zh-hans/" />
     <link rel="alternate" hreflang="zh-Hant" href="https://syntheticinsights.net/zh-hant/" />
     <link rel="alternate" hreflang="x-default" href="https://syntheticinsights.net/" />
-    <link rel="icon" href="../smartodo_assets/icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles.css" />
-    <link rel="stylesheet" href="../task_graph.css" />
-    <link rel="stylesheet" href="../local_sync.css" />
-    <link rel="stylesheet" href="../ai_agent.css" />
-    <link rel="stylesheet" href="../filters.css" />
-    <script src="../i18n.js"></script>
-    <script src="../motion.js" defer></script>
-    <script src="../task_graph.js" defer></script>
-    <script src="../local_sync.js" defer></script>
-    <script src="../ai_agent.js" defer></script>
-    <script src="../filters.js" defer></script>
+    <link rel="icon" href="../assets/img/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/task_graph.css" />
+    <link rel="stylesheet" href="../assets/css/local_sync.css" />
+    <link rel="stylesheet" href="../assets/css/ai_agent.css" />
+    <link rel="stylesheet" href="../assets/css/filters.css" />
+    <script src="../assets/js/i18n.js"></script>
+    <script src="../assets/js/motion.js" defer></script>
+    <script src="../assets/js/task_graph.js" defer></script>
+    <script src="../assets/js/local_sync.js" defer></script>
+    <script src="../assets/js/ai_agent.js" defer></script>
+    <script src="../assets/js/filters.js" defer></script>
     <script type="application/json" id="card-text">{"sync":{"eyebrow":"Local-first синхронизация","tasks":["Набросать предложение","Купить билеты","Обновить паспорт"],"yourProvider":"Ваш {provider}","legendData":"Данные задач попадают только в ваше хранилище","legendSignal":"Наш сервер передаёт только сигнал об изменении","pending":{"one":"{count} изменение ожидает","few":"{count} изменения ожидают","many":"{count} изменений ожидают","other":"{count} изменения ожидают"},"allSynced":"Всё синхронизировано","uploading":"Отправка","received":"Получено с {device}","online":"Онлайн","offline":"Офлайн","upToDate":"Актуально","changeDetected":"Есть изменение","syncing":"Синхронизация","holdsEveryTask":"Хранит все задачи","sameTasks":"Одни и те же задачи на всех устройствах","iphoneOffline":"iPhone уходит в офлайн","savedOnDevice":"Сохранено на устройстве · 0 мс","stillWorks":"Работает и офлайн","oneChangeWaiting":"1 изменение ждёт","macEdits":"MacBook правит в то же время","iphoneReconnects":"iPhone снова онлайн","merged":"Объединено без конфликтов"},"graph":{"eyebrow":"Граф зависимостей","tasks":{"research":"Исследование","design":"Дизайн UI","api":"Сделать API","assets":"Маркетинг","frontend":"Фронтенд","qa":"Тестирование","ship":"Выпуск v1.0"},"meter":"Готово {count} / {total}","todo":"Сделать","doing":"В работе","done":"Готово","legendWaiting":"Ждёт предыдущие уровни","waitingOn":"Ждёт {count}","doingProgress":"В работе · {percent}%","shipping":"Выпускаем v1.0","shipped":"v1.0 выпущена"},"agent":{"eyebrow":"ИИ-агент","tasks":{"flights":"Купить билеты","hotel":"Забронировать отель в Синдзюку","itinerary":"Спланировать поездки","passport":"Обновить паспорт"},"promptPlan":"Спланируй мою поездку в Токио в следующем месяце","promptUrgent":"Мой паспорт скоро истекает, сделай это на этой неделе","replyPlan":"Вот план. Билеты ждут паспорт, а всё остальное идёт после билетов.","replyUrgent":"Готово. Паспорт теперь первый, срок — пятница.","boardTitle":"Поездка в Токио","empty":"Задач пока нет","legendEdits":"Каждый шаг меняет ваши настоящие задачи","legendLink":"Зависимость, связанная агентом","taskCount":{"one":"{count} задача","few":"{count} задачи","many":"{count} задач","other":"{count} задачи"},"askPlain":"Просите обычными словами","ready":"Готов","working":"Работаю…","draftsPlan":"Агент составляет план","creating":"Создаю 4 задачи","created":"Создано 4 задачи","linking":"Связываю зависимости","linkedPlan":"Связано в настоящий план","linked":"Связано 3 зависимости","waitingOn":"Ждёт: {task}","editsReal":"Меняет ваши настоящие задачи","updating":"Обновляю: {task}","updated":"Обновлено: {task}","dueFriday":"Срок: пт","summary":"4 задачи · 3 связи"},"filters":{"eyebrow":"Фильтры","tasks":{"ship":"Выпуск v1.0","login":"Исправить сбой входа","notes":"Написать примечания","qa":"Тестирование","design":"Дизайн UI","cats":"Привить котов","passport":"Обновить паспорт","dentist":"Записаться к стоматологу"},"due":{"today":"Сегодня","thu":"Чт","fri":"Пт","nextWeek":"След. нед.","nextMonth":"След. мес."},"blocks":"Мешает {task}","meter":"Задач: {count} / {total}","newFilter":"Новый фильтр","matchAll":"Все условия · И","addCondition":"+ Добавить условие","and":"И","andOr":"И / ИЛИ","legendCombine":"Сочетайте любые условия","legendFields":"Статус · важность · название · даты · зависимости","conditions":{"status":{"field":"Статус","value":"Не равно \u003cb>Готово\u003c/b>","title":"Только открытые задачи"},"blocks":{"field":"Предшествующие задачи для","value":"Все предшествующие для \u003cb>Выпуск v1.0\u003c/b>","title":"Всё, что блокирует v1.0"},"due":{"field":"Относительный срок","value":"Срок в пределах: \u003cb>Эта неделя\u003c/b>","title":"Срок на этой неделе"}},"filterName":"Блокирует v1.0 на этой неделе","saveFilter":"Сохранить фильтр","savedToFilters":"Сохранено в фильтрах","allTasks":"Все задачи","savedAsFilter":"Сохранено как фильтр","updatesAsYouWork":"Обновляется по ходу работы"}}</script>
 
     <!-- Search Engine Verification -->
@@ -59,7 +59,7 @@
     <meta property="og:description" content="Умный local-first менеджер задач со встроенными графами зависимостей задач (DAG) и визуальными рабочими процессами." />
     <meta
       property="og:image"
-      content="https://syntheticinsights.net/smartodo_assets/graph.png"
+      content="https://syntheticinsights.net/assets/img/graph.png"
     />
 
     <!-- Twitter Cards -->
@@ -69,17 +69,17 @@
     <meta name="twitter:description" content="Умный local-first менеджер задач со встроенными графами зависимостей задач (DAG) и визуальными рабочими процессами." />
     <meta
       name="twitter:image"
-      content="https://syntheticinsights.net/smartodo_assets/graph.png"
+      content="https://syntheticinsights.net/assets/img/graph.png"
     />
 
     <!-- Schema.org JSON-LD for AI & Search Engines (GEO/SEO) -->
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Smartodo","applicationCategory":"ProductivityApplication","operatingSystem":"macOS, iOS, Android, Windows, Linux","description":"Smartodo — local-first менеджер задач со встроенным графом зависимостей задач (DAG), визуальными рабочими процессами и офлайн-интеллектом для тех, кто мыслит логически.","inLanguage":"ru","url":"https://syntheticinsights.net/ru/","image":"https://syntheticinsights.net/smartodo_assets/graph.png","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Встроенный граф зависимостей задач (DAG)","Архитектура local-first и offline-first","Представления в виде графа и канбана","Кросс-платформенная синхронизация","Продуктивность с помощью ИИ"],"author":{"@type":"Organization","name":"Synthetic Insights","url":"https://syntheticinsights.net/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Smartodo","applicationCategory":"ProductivityApplication","operatingSystem":"macOS, iOS, Android, Windows, Linux","description":"Smartodo — local-first менеджер задач со встроенным графом зависимостей задач (DAG), визуальными рабочими процессами и офлайн-интеллектом для тех, кто мыслит логически.","inLanguage":"ru","url":"https://syntheticinsights.net/ru/","image":"https://syntheticinsights.net/assets/img/graph.png","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Встроенный граф зависимостей задач (DAG)","Архитектура local-first и offline-first","Представления в виде графа и канбана","Кросс-платформенная синхронизация","Продуктивность с помощью ИИ"],"author":{"@type":"Organization","name":"Synthetic Insights","url":"https://syntheticinsights.net/"}}</script>
   </head>
   <body>
     <header class="site-header">
       <div class="container">
         <div class="branding">
-          <img class="logo-mark" src="../smartodo_assets/icon.svg" alt="Значок Smartodo" />
+          <img class="logo-mark" src="../assets/img/icon.svg" alt="Значок Smartodo" />
           <span class="logo-type">Smartodo</span>
         </div>
         <div class="site-header__actions">
@@ -253,7 +253,7 @@
     <footer class="site-footer">
       <div class="container">
         <div class="footer-branding">
-          <img class="logo-mark" src="../smartodo_assets/icon.svg" alt="Значок Smartodo" />
+          <img class="logo-mark" src="../assets/img/icon.svg" alt="Значок Smartodo" />
           <span class="logo-type">Smartodo</span>
         </div>
         <div class="footer-meta">

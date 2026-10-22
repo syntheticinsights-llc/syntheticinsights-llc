@@ -102,7 +102,7 @@ const renderPage = (template, locale, text) => {
     description: text.page.ldDescription,
     inLanguage: locale.hreflang,
     url: urlOf(locale),
-    image: `${SITE_URL}smartodo_assets/graph.png`,
+    image: `${SITE_URL}assets/img/graph.png`,
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     featureList: text.page.ldFeatures,
     author: { "@type": "Organization", name: "Synthetic Insights", url: SITE_URL },
@@ -175,6 +175,6 @@ for (const locale of LOCALES) {
   await mkdir(folder, { recursive: true });
   await writeFile(join(folder, "index.html"), renderPage(template, locale, locale.text));
 }
-await writeFile(join(ROOT, "account_text.js"), renderAccountText());
+await writeFile(join(ROOT, "assets/js/account_text.js"), renderAccountText());
 await writeFile(join(ROOT, "sitemap.xml"), renderSitemap());
 console.log(`Built ${LOCALES.length} locales: ${LOCALES.map((locale) => locale.code).join(", ")}`);

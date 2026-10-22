@@ -22,18 +22,18 @@
     <link rel="alternate" hreflang="zh-Hans" href="https://syntheticinsights.net/zh-hans/" />
     <link rel="alternate" hreflang="zh-Hant" href="https://syntheticinsights.net/zh-hant/" />
     <link rel="alternate" hreflang="x-default" href="https://syntheticinsights.net/" />
-    <link rel="icon" href="../smartodo_assets/icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles.css" />
-    <link rel="stylesheet" href="../task_graph.css" />
-    <link rel="stylesheet" href="../local_sync.css" />
-    <link rel="stylesheet" href="../ai_agent.css" />
-    <link rel="stylesheet" href="../filters.css" />
-    <script src="../i18n.js"></script>
-    <script src="../motion.js" defer></script>
-    <script src="../task_graph.js" defer></script>
-    <script src="../local_sync.js" defer></script>
-    <script src="../ai_agent.js" defer></script>
-    <script src="../filters.js" defer></script>
+    <link rel="icon" href="../assets/img/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/task_graph.css" />
+    <link rel="stylesheet" href="../assets/css/local_sync.css" />
+    <link rel="stylesheet" href="../assets/css/ai_agent.css" />
+    <link rel="stylesheet" href="../assets/css/filters.css" />
+    <script src="../assets/js/i18n.js"></script>
+    <script src="../assets/js/motion.js" defer></script>
+    <script src="../assets/js/task_graph.js" defer></script>
+    <script src="../assets/js/local_sync.js" defer></script>
+    <script src="../assets/js/ai_agent.js" defer></script>
+    <script src="../assets/js/filters.js" defer></script>
     <script type="application/json" id="card-text">{"sync":{"eyebrow":"Sincronización local-first","tasks":["Redactar propuesta","Reservar vuelos","Renovar pasaporte"],"yourProvider":"Tu {provider}","legendData":"Los datos de las tareas solo van a tu almacenamiento","legendSignal":"Nuestro servidor solo transmite una señal de cambio","pending":{"one":"{count} cambio pendiente","many":"{count} cambios pendientes","other":"{count} cambios pendientes"},"allSynced":"Todo sincronizado","uploading":"Subiendo","received":"Recibido de {device}","online":"En línea","offline":"Sin conexión","upToDate":"Actualizado","changeDetected":"Cambio detectado","syncing":"Sincronizando","holdsEveryTask":"Guarda todas las tareas","sameTasks":"Las mismas tareas en cada dispositivo","iphoneOffline":"El iPhone se queda sin conexión","savedOnDevice":"Guardado en el dispositivo · 0 ms","stillWorks":"Sigue funcionando sin conexión","oneChangeWaiting":"1 cambio en espera","macEdits":"El MacBook edita a la vez","iphoneReconnects":"El iPhone se reconecta","merged":"Combinado, sin conflictos"},"graph":{"eyebrow":"Grafo de dependencias","tasks":{"research":"Investigación","design":"Diseñar la UI","api":"Crear la API","assets":"Marketing","frontend":"Frontend","qa":"Pruebas de QA","ship":"Lanzar v1.0"},"meter":"{count} / {total} hechas","todo":"Por hacer","doing":"En curso","done":"Hecho","legendWaiting":"Espera a niveles anteriores","waitingOn":"Espera a {count}","doingProgress":"En curso · {percent} %","shipping":"Lanzando la v1.0","shipped":"v1.0 lanzada"},"agent":{"eyebrow":"Agente de IA","tasks":{"flights":"Reservar vuelos","hotel":"Reservar hotel en Shinjuku","itinerary":"Planear excursiones","passport":"Renovar pasaporte"},"promptPlan":"Planifica mi viaje a Tokio el mes que viene","promptUrgent":"Mi pasaporte caduca pronto, hazlo esta semana","replyPlan":"Aquí tienes un plan. Los vuelos esperan a tu pasaporte y el resto va después de los vuelos.","replyUrgent":"Hecho. El pasaporte va primero, vence el viernes.","boardTitle":"Viaje a Tokio","empty":"Aún no hay tareas","legendEdits":"Cada paso edita tus tareas reales","legendLink":"Dependencia enlazada por el agente","taskCount":{"one":"{count} tarea","many":"{count} tareas","other":"{count} tareas"},"askPlain":"Pide con tus palabras","ready":"Listo","working":"Trabajando…","draftsPlan":"El agente prepara un plan","creating":"Creando 4 tareas","created":"4 tareas creadas","linking":"Enlazando dependencias","linkedPlan":"Enlazado en un plan real","linked":"3 dependencias enlazadas","waitingOn":"Espera a {task}","editsReal":"Edita tus tareas reales","updating":"Actualizando {task}","updated":"{task} actualizada","dueFriday":"Vence vie.","summary":"4 tareas · 3 enlaces"},"filters":{"eyebrow":"Filtros","tasks":{"ship":"Lanzar v1.0","login":"Arreglar fallo de inicio","notes":"Escribir notas de versión","qa":"Pruebas de QA","design":"Diseñar la UI","cats":"Vacunar a los gatos","passport":"Renovar pasaporte","dentist":"Pedir cita al dentista"},"due":{"today":"Hoy","thu":"Jue.","fri":"Vie.","nextWeek":"Próx. sem.","nextMonth":"Próx. mes"},"blocks":"Bloquea {task}","meter":"{count} / {total} tareas","newFilter":"Nuevo filtro","matchAll":"Cumplir todas · Y","addCondition":"+ Añadir condición","and":"Y","andOr":"Y / O","legendCombine":"Combina cualquier condición","legendFields":"Estado · importancia · título · fechas · dependencias","conditions":{"status":{"field":"Estado","value":"No igual a \u003cb>Hecho\u003c/b>","title":"Solo tareas abiertas"},"blocks":{"field":"Tareas anteriores de","value":"Todos los requisitos de \u003cb>Lanzar v1.0\u003c/b>","title":"Todo lo que bloquea la v1.0"},"due":{"field":"Fecha límite relativa","value":"Vence dentro de \u003cb>Esta semana\u003c/b>","title":"Vence esta semana"}},"filterName":"Bloquea la v1.0 esta semana","saveFilter":"Guardar filtro","savedToFilters":"Guardado en Filtros","allTasks":"Todas las tareas","savedAsFilter":"Guardado como filtro","updatesAsYouWork":"Se actualiza mientras trabajas"}}</script>
 
     <!-- Search Engine Verification -->
@@ -59,7 +59,7 @@
     <meta property="og:description" content="Un gestor de tareas inteligente y local-first con grafos de dependencias de tareas nativos (DAG) y flujos de trabajo visuales." />
     <meta
       property="og:image"
-      content="https://syntheticinsights.net/smartodo_assets/graph.png"
+      content="https://syntheticinsights.net/assets/img/graph.png"
     />
 
     <!-- Twitter Cards -->
@@ -69,17 +69,17 @@
     <meta name="twitter:description" content="Un gestor de tareas inteligente y local-first con grafos de dependencias de tareas nativos (DAG) y flujos de trabajo visuales." />
     <meta
       name="twitter:image"
-      content="https://syntheticinsights.net/smartodo_assets/graph.png"
+      content="https://syntheticinsights.net/assets/img/graph.png"
     />
 
     <!-- Schema.org JSON-LD for AI & Search Engines (GEO/SEO) -->
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Smartodo","applicationCategory":"ProductivityApplication","operatingSystem":"macOS, iOS, Android, Windows, Linux","description":"Smartodo es un gestor de tareas local-first con un grafo de dependencias de tareas nativo (DAG), flujos de trabajo visuales e inteligencia offline-first para mentes lógicas.","inLanguage":"es","url":"https://syntheticinsights.net/es/","image":"https://syntheticinsights.net/smartodo_assets/graph.png","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Grafo de dependencias de tareas nativo (DAG)","Arquitectura local-first y offline-first","Vistas de grafo y kanban","Sincronización multiplataforma","Productividad impulsada por IA"],"author":{"@type":"Organization","name":"Synthetic Insights","url":"https://syntheticinsights.net/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Smartodo","applicationCategory":"ProductivityApplication","operatingSystem":"macOS, iOS, Android, Windows, Linux","description":"Smartodo es un gestor de tareas local-first con un grafo de dependencias de tareas nativo (DAG), flujos de trabajo visuales e inteligencia offline-first para mentes lógicas.","inLanguage":"es","url":"https://syntheticinsights.net/es/","image":"https://syntheticinsights.net/assets/img/graph.png","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Grafo de dependencias de tareas nativo (DAG)","Arquitectura local-first y offline-first","Vistas de grafo y kanban","Sincronización multiplataforma","Productividad impulsada por IA"],"author":{"@type":"Organization","name":"Synthetic Insights","url":"https://syntheticinsights.net/"}}</script>
   </head>
   <body>
     <header class="site-header">
       <div class="container">
         <div class="branding">
-          <img class="logo-mark" src="../smartodo_assets/icon.svg" alt="Icono de Smartodo" />
+          <img class="logo-mark" src="../assets/img/icon.svg" alt="Icono de Smartodo" />
           <span class="logo-type">Smartodo</span>
         </div>
         <div class="site-header__actions">
@@ -253,7 +253,7 @@
     <footer class="site-footer">
       <div class="container">
         <div class="footer-branding">
-          <img class="logo-mark" src="../smartodo_assets/icon.svg" alt="Icono de Smartodo" />
+          <img class="logo-mark" src="../assets/img/icon.svg" alt="Icono de Smartodo" />
           <span class="logo-type">Smartodo</span>
         </div>
         <div class="footer-meta">

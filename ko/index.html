@@ -22,18 +22,18 @@
     <link rel="alternate" hreflang="zh-Hans" href="https://syntheticinsights.net/zh-hans/" />
     <link rel="alternate" hreflang="zh-Hant" href="https://syntheticinsights.net/zh-hant/" />
     <link rel="alternate" hreflang="x-default" href="https://syntheticinsights.net/" />
-    <link rel="icon" href="../smartodo_assets/icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles.css" />
-    <link rel="stylesheet" href="../task_graph.css" />
-    <link rel="stylesheet" href="../local_sync.css" />
-    <link rel="stylesheet" href="../ai_agent.css" />
-    <link rel="stylesheet" href="../filters.css" />
-    <script src="../i18n.js"></script>
-    <script src="../motion.js" defer></script>
-    <script src="../task_graph.js" defer></script>
-    <script src="../local_sync.js" defer></script>
-    <script src="../ai_agent.js" defer></script>
-    <script src="../filters.js" defer></script>
+    <link rel="icon" href="../assets/img/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/task_graph.css" />
+    <link rel="stylesheet" href="../assets/css/local_sync.css" />
+    <link rel="stylesheet" href="../assets/css/ai_agent.css" />
+    <link rel="stylesheet" href="../assets/css/filters.css" />
+    <script src="../assets/js/i18n.js"></script>
+    <script src="../assets/js/motion.js" defer></script>
+    <script src="../assets/js/task_graph.js" defer></script>
+    <script src="../assets/js/local_sync.js" defer></script>
+    <script src="../assets/js/ai_agent.js" defer></script>
+    <script src="../assets/js/filters.js" defer></script>
     <script type="application/json" id="card-text">{"sync":{"eyebrow":"로컬 우선 동기화","tasks":["제안서 초안 작성","항공권 예약","여권 갱신"],"yourProvider":"내 {provider}","legendData":"작업 데이터는 내 저장소로만 갑니다","legendSignal":"저희 서버는 변경 신호만 전달합니다","pending":{"other":"변경 {count}개 대기 중"},"allSynced":"모든 기기 동기화됨","uploading":"업로드 중","received":"{device}에서 받음","online":"온라인","offline":"오프라인","upToDate":"최신 상태","changeDetected":"변경 감지됨","syncing":"동기화 중","holdsEveryTask":"모든 작업 보관","sameTasks":"모든 기기에서 같은 작업","iphoneOffline":"iPhone이 오프라인 상태로","savedOnDevice":"기기에 저장됨 · 0ms","stillWorks":"오프라인에서도 작동","oneChangeWaiting":"변경 1개 대기 중","macEdits":"MacBook도 동시에 수정","iphoneReconnects":"iPhone 다시 연결됨","merged":"충돌 없이 병합됨"},"graph":{"eyebrow":"의존성 그래프","tasks":{"research":"리서치","design":"UI 디자인","api":"API 개발","assets":"마케팅","frontend":"프론트엔드","qa":"QA 테스트","ship":"v1.0 출시"},"meter":"{count} / {total} 완료","todo":"할 일","doing":"진행 중","done":"완료","legendWaiting":"이전 단계를 기다리는 중","waitingOn":"{count}개 대기 중","doingProgress":"진행 중 · {percent}%","shipping":"v1.0 출시 중","shipped":"v1.0 출시 완료"},"agent":{"eyebrow":"AI 에이전트","tasks":{"flights":"항공권 예약","hotel":"신주쿠 호텔 예약","itinerary":"당일치기 여행 계획","passport":"여권 갱신"},"promptPlan":"다음 달 도쿄 여행 계획 세워 줘","promptUrgent":"여권이 곧 만료되니까 이번 주에 처리해 줘","replyPlan":"계획을 세웠어요. 항공권은 여권 다음이고, 나머지는 항공권 다음에 진행돼요.","replyUrgent":"완료했어요. 여권을 맨 앞으로 옮기고 마감을 금요일로 정했어요.","boardTitle":"도쿄 여행","empty":"아직 작업이 없습니다","legendEdits":"각 단계가 실제 작업을 수정합니다","legendLink":"에이전트가 연결한 의존성","taskCount":{"other":"작업 {count}개"},"askPlain":"평소 말투로 요청하세요","ready":"준비됨","working":"작업 중…","draftsPlan":"에이전트가 계획을 작성","creating":"작업 4개 만드는 중","created":"작업 4개 만듦","linking":"의존성 연결 중","linkedPlan":"실제 계획으로 연결됨","linked":"의존성 3개 연결됨","waitingOn":"{task} 대기 중","editsReal":"실제 작업을 수정합니다","updating":"{task} 업데이트 중","updated":"{task} 업데이트됨","dueFriday":"마감 금","summary":"작업 4개 · 연결 3개"},"filters":{"eyebrow":"필터","tasks":{"ship":"v1.0 출시","login":"로그인 충돌 수정","notes":"릴리스 노트 작성","qa":"QA 테스트","design":"UI 디자인","cats":"고양이 예방접종","passport":"여권 갱신","dentist":"치과 예약"},"due":{"today":"오늘","thu":"목","fri":"금","nextWeek":"다음 주","nextMonth":"다음 달"},"blocks":"{task} 차단","meter":"{count} / {total}개 작업","newFilter":"새 필터","matchAll":"모두 일치 · AND","addCondition":"+ 조건 추가","and":"AND","andOr":"AND / OR","legendCombine":"어떤 조건이든 조합","legendFields":"상태 · 중요도 · 제목 · 날짜 · 의존성","conditions":{"status":{"field":"상태","value":"\u003cb>완료\u003c/b>와 같지 않음","title":"미완료 작업만"},"blocks":{"field":"~의 이전 작업","value":"\u003cb>v1.0 출시\u003c/b>의 모든 선행 작업","title":"v1.0을 막는 모든 것"},"due":{"field":"상대 마감일","value":"마감일: \u003cb>이번 주\u003c/b> 내","title":"이번 주 마감"}},"filterName":"이번 주 v1.0 차단 작업","saveFilter":"필터 저장","savedToFilters":"필터에 저장됨","allTasks":"모든 작업","savedAsFilter":"필터로 저장됨","updatesAsYouWork":"작업할 때마다 업데이트"}}</script>
 
     <!-- Search Engine Verification -->
@@ -59,7 +59,7 @@
     <meta property="og:description" content="작업 의존성 그래프(DAG)와 시각적 워크플로를 기본으로 갖춘 지능형 로컬 우선 작업 관리자입니다." />
     <meta
       property="og:image"
-      content="https://syntheticinsights.net/smartodo_assets/graph.png"
+      content="https://syntheticinsights.net/assets/img/graph.png"
     />
 
     <!-- Twitter Cards -->
@@ -69,17 +69,17 @@
     <meta name="twitter:description" content="작업 의존성 그래프(DAG)와 시각적 워크플로를 기본으로 갖춘 지능형 로컬 우선 작업 관리자입니다." />
     <meta
       name="twitter:image"
-      content="https://syntheticinsights.net/smartodo_assets/graph.png"
+      content="https://syntheticinsights.net/assets/img/graph.png"
     />
 
     <!-- Schema.org JSON-LD for AI & Search Engines (GEO/SEO) -->
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Smartodo","applicationCategory":"ProductivityApplication","operatingSystem":"macOS, iOS, Android, Windows, Linux","description":"Smartodo는 작업 의존성 그래프(DAG), 시각적 워크플로, 오프라인 우선 인텔리전스를 갖춘, 논리적으로 생각하는 사람을 위한 로컬 우선 작업 관리자입니다.","inLanguage":"ko","url":"https://syntheticinsights.net/ko/","image":"https://syntheticinsights.net/smartodo_assets/graph.png","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["기본 제공 작업 의존성 그래프(DAG)","로컬 우선·오프라인 우선 아키텍처","그래프 및 칸반 보기","크로스 플랫폼 동기화","AI 기반 생산성"],"author":{"@type":"Organization","name":"Synthetic Insights","url":"https://syntheticinsights.net/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Smartodo","applicationCategory":"ProductivityApplication","operatingSystem":"macOS, iOS, Android, Windows, Linux","description":"Smartodo는 작업 의존성 그래프(DAG), 시각적 워크플로, 오프라인 우선 인텔리전스를 갖춘, 논리적으로 생각하는 사람을 위한 로컬 우선 작업 관리자입니다.","inLanguage":"ko","url":"https://syntheticinsights.net/ko/","image":"https://syntheticinsights.net/assets/img/graph.png","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["기본 제공 작업 의존성 그래프(DAG)","로컬 우선·오프라인 우선 아키텍처","그래프 및 칸반 보기","크로스 플랫폼 동기화","AI 기반 생산성"],"author":{"@type":"Organization","name":"Synthetic Insights","url":"https://syntheticinsights.net/"}}</script>
   </head>
   <body>
     <header class="site-header">
       <div class="container">
         <div class="branding">
-          <img class="logo-mark" src="../smartodo_assets/icon.svg" alt="Smartodo 아이콘" />
+          <img class="logo-mark" src="../assets/img/icon.svg" alt="Smartodo 아이콘" />
           <span class="logo-type">Smartodo</span>
         </div>
         <div class="site-header__actions">
@@ -253,7 +253,7 @@
     <footer class="site-footer">
       <div class="container">
         <div class="footer-branding">
-          <img class="logo-mark" src="../smartodo_assets/icon.svg" alt="Smartodo 아이콘" />
+          <img class="logo-mark" src="../assets/img/icon.svg" alt="Smartodo 아이콘" />
           <span class="logo-type">Smartodo</span>
         </div>
         <div class="footer-meta">

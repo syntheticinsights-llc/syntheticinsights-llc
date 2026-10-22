@@ -22,18 +22,18 @@
     <link rel="alternate" hreflang="zh-Hans" href="https://syntheticinsights.net/zh-hans/" />
     <link rel="alternate" hreflang="zh-Hant" href="https://syntheticinsights.net/zh-hant/" />
     <link rel="alternate" hreflang="x-default" href="https://syntheticinsights.net/" />
-    <link rel="icon" href="smartodo_assets/icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="task_graph.css" />
-    <link rel="stylesheet" href="local_sync.css" />
-    <link rel="stylesheet" href="ai_agent.css" />
-    <link rel="stylesheet" href="filters.css" />
-    <script src="i18n.js"></script>
-    <script src="motion.js" defer></script>
-    <script src="task_graph.js" defer></script>
-    <script src="local_sync.js" defer></script>
-    <script src="ai_agent.js" defer></script>
-    <script src="filters.js" defer></script>
+    <link rel="icon" href="assets/img/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/task_graph.css" />
+    <link rel="stylesheet" href="assets/css/local_sync.css" />
+    <link rel="stylesheet" href="assets/css/ai_agent.css" />
+    <link rel="stylesheet" href="assets/css/filters.css" />
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/motion.js" defer></script>
+    <script src="assets/js/task_graph.js" defer></script>
+    <script src="assets/js/local_sync.js" defer></script>
+    <script src="assets/js/ai_agent.js" defer></script>
+    <script src="assets/js/filters.js" defer></script>
     <script type="application/json" id="card-text">{"sync":{"eyebrow":"Local-first sync","tasks":["Draft proposal","Book flights","Renew passport"],"yourProvider":"Your {provider}","legendData":"Task data goes only to your storage","legendSignal":"Our server only relays a change signal","pending":{"one":"{count} change pending","other":"{count} changes pending"},"allSynced":"All devices in sync","uploading":"Uploading","received":"Received from {device}","online":"Online","offline":"Offline","upToDate":"Up to date","changeDetected":"Change detected","syncing":"Syncing","holdsEveryTask":"Holds every task","sameTasks":"Same tasks on every device","iphoneOffline":"iPhone goes offline","savedOnDevice":"Saved on device · 0 ms","stillWorks":"Still works offline","oneChangeWaiting":"1 change waiting","macEdits":"MacBook edits at the same time","iphoneReconnects":"iPhone reconnects","merged":"Merged, no conflicts"},"graph":{"eyebrow":"Dependency graph","tasks":{"research":"Research","design":"Design UI","api":"Build API","assets":"Marketing","frontend":"Frontend","qa":"QA testing","ship":"Ship v1.0"},"meter":"{count} / {total} done","todo":"To do","doing":"Doing","done":"Done","legendWaiting":"Waiting on earlier levels","waitingOn":"Waiting on {count}","doingProgress":"Doing · {percent}%","shipping":"Shipping v1.0","shipped":"v1.0 shipped"},"agent":{"eyebrow":"AI agent","tasks":{"flights":"Book flights","hotel":"Book hotel in Shinjuku","itinerary":"Plan day trips","passport":"Renew passport"},"promptPlan":"Plan my Tokyo trip next month","promptUrgent":"My passport expires soon, do it this week","replyPlan":"Here's a plan. Flights wait on your passport, and the rest follow flights.","replyUrgent":"Done. Passport is now first, due Friday.","boardTitle":"Tokyo trip","empty":"No tasks yet","legendEdits":"Each step edits your real tasks","legendLink":"Dependency the agent linked","taskCount":{"one":"{count} task","other":"{count} tasks"},"askPlain":"Ask in plain words","ready":"Ready","working":"Working…","draftsPlan":"Agent drafts a plan","creating":"Creating 4 tasks","created":"Created 4 tasks","linking":"Linking dependencies","linkedPlan":"Linked into a real plan","linked":"Linked 3 dependencies","waitingOn":"Waiting on {task}","editsReal":"Edits your real tasks","updating":"Updating {task}","updated":"Updated {task}","dueFriday":"Due Fri","summary":"4 tasks · 3 links"},"filters":{"eyebrow":"Filters","tasks":{"ship":"Ship v1.0","login":"Fix login crash","notes":"Write release notes","qa":"QA testing","design":"Design UI","cats":"Vaccinate cats","passport":"Renew passport","dentist":"Book dentist"},"due":{"today":"Today","thu":"Thu","fri":"Fri","nextWeek":"Next wk","nextMonth":"Next mo"},"blocks":"Blocks {task}","meter":"{count} / {total} tasks","newFilter":"New filter","matchAll":"Match all · AND","addCondition":"+ Add condition","and":"AND","andOr":"AND / OR","legendCombine":"Combine any conditions","legendFields":"Status · importance · title · dates · dependencies","conditions":{"status":{"field":"Status","value":"Not equals \u003cb>Done\u003c/b>","title":"Only open tasks"},"blocks":{"field":"Prior tasks of","value":"All prerequisites of \u003cb>Ship v1.0\u003c/b>","title":"Everything blocking v1.0"},"due":{"field":"Relative due date","value":"Due within \u003cb>This week\u003c/b>","title":"Due this week"}},"filterName":"Blocking v1.0 this week","saveFilter":"Save filter","savedToFilters":"Saved to Filters","allTasks":"All tasks","savedAsFilter":"Saved as a filter","updatesAsYouWork":"Updates as you work"}}</script>
 
     <!-- Search Engine Verification -->
@@ -59,7 +59,7 @@
     <meta property="og:description" content="An intelligent, local-first task manager with native task dependency graphs (DAG) and visual workflows." />
     <meta
       property="og:image"
-      content="https://syntheticinsights.net/smartodo_assets/graph.png"
+      content="https://syntheticinsights.net/assets/img/graph.png"
     />
 
     <!-- Twitter Cards -->
@@ -69,17 +69,17 @@
     <meta name="twitter:description" content="An intelligent, local-first task manager with native task dependency graphs (DAG) and visual workflows." />
     <meta
       name="twitter:image"
-      content="https://syntheticinsights.net/smartodo_assets/graph.png"
+      content="https://syntheticinsights.net/assets/img/graph.png"
     />
 
     <!-- Schema.org JSON-LD for AI & Search Engines (GEO/SEO) -->
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Smartodo","applicationCategory":"ProductivityApplication","operatingSystem":"macOS, iOS, Android, Windows, Linux","description":"Smartodo is a local-first task manager featuring a native task dependency graph (DAG), visual workflows, and offline-first intelligence for logic thinkers.","inLanguage":"en","url":"https://syntheticinsights.net/","image":"https://syntheticinsights.net/smartodo_assets/graph.png","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Native Task Dependency Graph (DAG)","Local-First & Offline-First Architecture","Visual Graph and Kanban Views","Cross-Platform Sync","AI-Powered Productivity"],"author":{"@type":"Organization","name":"Synthetic Insights","url":"https://syntheticinsights.net/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Smartodo","applicationCategory":"ProductivityApplication","operatingSystem":"macOS, iOS, Android, Windows, Linux","description":"Smartodo is a local-first task manager featuring a native task dependency graph (DAG), visual workflows, and offline-first intelligence for logic thinkers.","inLanguage":"en","url":"https://syntheticinsights.net/","image":"https://syntheticinsights.net/assets/img/graph.png","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Native Task Dependency Graph (DAG)","Local-First & Offline-First Architecture","Visual Graph and Kanban Views","Cross-Platform Sync","AI-Powered Productivity"],"author":{"@type":"Organization","name":"Synthetic Insights","url":"https://syntheticinsights.net/"}}</script>
   </head>
   <body>
     <header class="site-header">
       <div class="container">
         <div class="branding">
-          <img class="logo-mark" src="smartodo_assets/icon.svg" alt="Smartodo icon" />
+          <img class="logo-mark" src="assets/img/icon.svg" alt="Smartodo icon" />
           <span class="logo-type">Smartodo</span>
         </div>
         <div class="site-header__actions">
@@ -253,7 +253,7 @@
     <footer class="site-footer">
       <div class="container">
         <div class="footer-branding">
-          <img class="logo-mark" src="smartodo_assets/icon.svg" alt="Smartodo icon" />
+          <img class="logo-mark" src="assets/img/icon.svg" alt="Smartodo icon" />
           <span class="logo-type">Smartodo</span>
         </div>
         <div class="footer-meta">

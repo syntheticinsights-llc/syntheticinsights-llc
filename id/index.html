@@ -22,18 +22,18 @@
     <link rel="alternate" hreflang="zh-Hans" href="https://syntheticinsights.net/zh-hans/" />
     <link rel="alternate" hreflang="zh-Hant" href="https://syntheticinsights.net/zh-hant/" />
     <link rel="alternate" hreflang="x-default" href="https://syntheticinsights.net/" />
-    <link rel="icon" href="../smartodo_assets/icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles.css" />
-    <link rel="stylesheet" href="../task_graph.css" />
-    <link rel="stylesheet" href="../local_sync.css" />
-    <link rel="stylesheet" href="../ai_agent.css" />
-    <link rel="stylesheet" href="../filters.css" />
-    <script src="../i18n.js"></script>
-    <script src="../motion.js" defer></script>
-    <script src="../task_graph.js" defer></script>
-    <script src="../local_sync.js" defer></script>
-    <script src="../ai_agent.js" defer></script>
-    <script src="../filters.js" defer></script>
+    <link rel="icon" href="../assets/img/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/task_graph.css" />
+    <link rel="stylesheet" href="../assets/css/local_sync.css" />
+    <link rel="stylesheet" href="../assets/css/ai_agent.css" />
+    <link rel="stylesheet" href="../assets/css/filters.css" />
+    <script src="../assets/js/i18n.js"></script>
+    <script src="../assets/js/motion.js" defer></script>
+    <script src="../assets/js/task_graph.js" defer></script>
+    <script src="../assets/js/local_sync.js" defer></script>
+    <script src="../assets/js/ai_agent.js" defer></script>
+    <script src="../assets/js/filters.js" defer></script>
     <script type="application/json" id="card-text">{"sync":{"eyebrow":"Sinkronisasi local-first","tasks":["Susun proposal","Pesan tiket pesawat","Perpanjang paspor"],"yourProvider":"{provider} Anda","legendData":"Data tugas hanya masuk ke penyimpanan Anda","legendSignal":"Server kami hanya meneruskan sinyal perubahan","pending":{"other":"{count} perubahan tertunda"},"allSynced":"Semua perangkat sinkron","uploading":"Mengunggah","received":"Diterima dari {device}","online":"Online","offline":"Offline","upToDate":"Terbaru","changeDetected":"Ada perubahan","syncing":"Menyinkronkan","holdsEveryTask":"Menyimpan semua tugas","sameTasks":"Tugas yang sama di setiap perangkat","iphoneOffline":"iPhone menjadi offline","savedOnDevice":"Tersimpan di perangkat · 0 md","stillWorks":"Tetap berfungsi offline","oneChangeWaiting":"1 perubahan menunggu","macEdits":"MacBook menyunting bersamaan","iphoneReconnects":"iPhone tersambung lagi","merged":"Tergabung, tanpa konflik"},"graph":{"eyebrow":"Grafik ketergantungan","tasks":{"research":"Riset","design":"Desain UI","api":"Bangun API","assets":"Pemasaran","frontend":"Frontend","qa":"Pengujian QA","ship":"Rilis v1.0"},"meter":"{count} / {total} selesai","todo":"Akan dikerjakan","doing":"Dikerjakan","done":"Selesai","legendWaiting":"Menunggu level sebelumnya","waitingOn":"Menunggu {count}","doingProgress":"Dikerjakan · {percent}%","shipping":"Merilis v1.0","shipped":"v1.0 dirilis"},"agent":{"eyebrow":"Agen AI","tasks":{"flights":"Pesan tiket pesawat","hotel":"Pesan hotel di Shinjuku","itinerary":"Rencanakan wisata harian","passport":"Perpanjang paspor"},"promptPlan":"Rencanakan perjalananku ke Tokyo bulan depan","promptUrgent":"Pasporku segera habis, kerjakan minggu ini","replyPlan":"Ini rencananya. Tiket pesawat menunggu paspor Anda, dan sisanya mengikuti tiket pesawat.","replyUrgent":"Selesai. Paspor kini yang pertama, tenggat hari Jumat.","boardTitle":"Perjalanan Tokyo","empty":"Belum ada tugas","legendEdits":"Setiap langkah mengubah tugas Anda yang sebenarnya","legendLink":"Ketergantungan yang ditautkan agen","taskCount":{"other":"{count} tugas"},"askPlain":"Minta dengan bahasa sehari-hari","ready":"Siap","working":"Bekerja…","draftsPlan":"Agen menyusun rencana","creating":"Membuat 4 tugas","created":"4 tugas dibuat","linking":"Menautkan ketergantungan","linkedPlan":"Tertaut menjadi rencana nyata","linked":"3 ketergantungan ditautkan","waitingOn":"Menunggu {task}","editsReal":"Mengubah tugas Anda yang sebenarnya","updating":"Memperbarui {task}","updated":"{task} diperbarui","dueFriday":"Tenggat Jum","summary":"4 tugas · 3 tautan"},"filters":{"eyebrow":"Filter","tasks":{"ship":"Rilis v1.0","login":"Perbaiki crash login","notes":"Tulis catatan rilis","qa":"Pengujian QA","design":"Desain UI","cats":"Vaksin kucing","passport":"Perpanjang paspor","dentist":"Buat janji dokter gigi"},"due":{"today":"Hari ini","thu":"Kam","fri":"Jum","nextWeek":"Mgg depan","nextMonth":"Bln depan"},"blocks":"Hambat {task}","meter":"{count} / {total} tugas","newFilter":"Filter baru","matchAll":"Cocok semua · DAN","addCondition":"+ Tambah kondisi","and":"DAN","andOr":"DAN / ATAU","legendCombine":"Gabungkan kondisi apa pun","legendFields":"Status · kepentingan · judul · tanggal · ketergantungan","conditions":{"status":{"field":"Status","value":"Tidak sama dengan \u003cb>Selesai\u003c/b>","title":"Hanya tugas terbuka"},"blocks":{"field":"Tugas sebelumnya dari","value":"Semua prasyarat \u003cb>Rilis v1.0\u003c/b>","title":"Semua yang menghambat v1.0"},"due":{"field":"Tenggat relatif","value":"Tenggat dalam \u003cb>Minggu ini\u003c/b>","title":"Tenggat minggu ini"}},"filterName":"Menghambat v1.0 minggu ini","saveFilter":"Simpan filter","savedToFilters":"Tersimpan di Filter","allTasks":"Semua tugas","savedAsFilter":"Disimpan sebagai filter","updatesAsYouWork":"Diperbarui saat Anda bekerja"}}</script>
 
     <!-- Search Engine Verification -->
@@ -59,7 +59,7 @@
     <meta property="og:description" content="Pengelola tugas cerdas dan local-first dengan grafik ketergantungan tugas bawaan (DAG) dan alur kerja visual." />
     <meta
       property="og:image"
-      content="https://syntheticinsights.net/smartodo_assets/graph.png"
+      content="https://syntheticinsights.net/assets/img/graph.png"
     />
 
     <!-- Twitter Cards -->
@@ -69,17 +69,17 @@
     <meta name="twitter:description" content="Pengelola tugas cerdas dan local-first dengan grafik ketergantungan tugas bawaan (DAG) dan alur kerja visual." />
     <meta
       name="twitter:image"
-      content="https://syntheticinsights.net/smartodo_assets/graph.png"
+      content="https://syntheticinsights.net/assets/img/graph.png"
     />
 
     <!-- Schema.org JSON-LD for AI & Search Engines (GEO/SEO) -->
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Smartodo","applicationCategory":"ProductivityApplication","operatingSystem":"macOS, iOS, Android, Windows, Linux","description":"Smartodo adalah pengelola tugas local-first dengan grafik ketergantungan tugas bawaan (DAG), alur kerja visual, dan kecerdasan offline-first untuk pemikir logis.","inLanguage":"id","url":"https://syntheticinsights.net/id/","image":"https://syntheticinsights.net/smartodo_assets/graph.png","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Grafik ketergantungan tugas bawaan (DAG)","Arsitektur local-first dan offline-first","Tampilan grafik dan Kanban","Sinkronisasi lintas platform","Produktivitas berbasis AI"],"author":{"@type":"Organization","name":"Synthetic Insights","url":"https://syntheticinsights.net/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Smartodo","applicationCategory":"ProductivityApplication","operatingSystem":"macOS, iOS, Android, Windows, Linux","description":"Smartodo adalah pengelola tugas local-first dengan grafik ketergantungan tugas bawaan (DAG), alur kerja visual, dan kecerdasan offline-first untuk pemikir logis.","inLanguage":"id","url":"https://syntheticinsights.net/id/","image":"https://syntheticinsights.net/assets/img/graph.png","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Grafik ketergantungan tugas bawaan (DAG)","Arsitektur local-first dan offline-first","Tampilan grafik dan Kanban","Sinkronisasi lintas platform","Produktivitas berbasis AI"],"author":{"@type":"Organization","name":"Synthetic Insights","url":"https://syntheticinsights.net/"}}</script>
   </head>
   <body>
     <header class="site-header">
       <div class="container">
         <div class="branding">
-          <img class="logo-mark" src="../smartodo_assets/icon.svg" alt="Ikon Smartodo" />
+          <img class="logo-mark" src="../assets/img/icon.svg" alt="Ikon Smartodo" />
           <span class="logo-type">Smartodo</span>
         </div>
         <div class="site-header__actions">
@@ -253,7 +253,7 @@
     <footer class="site-footer">
       <div class="container">
         <div class="footer-branding">
-          <img class="logo-mark" src="../smartodo_assets/icon.svg" alt="Ikon Smartodo" />
+          <img class="logo-mark" src="../assets/img/icon.svg" alt="Ikon Smartodo" />
           <span class="logo-type">Smartodo</span>
         </div>
         <div class="footer-meta">

@@ -22,18 +22,18 @@
     <link rel="alternate" hreflang="zh-Hans" href="https://syntheticinsights.net/zh-hans/" />
     <link rel="alternate" hreflang="zh-Hant" href="https://syntheticinsights.net/zh-hant/" />
     <link rel="alternate" hreflang="x-default" href="https://syntheticinsights.net/" />
-    <link rel="icon" href="../smartodo_assets/icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles.css" />
-    <link rel="stylesheet" href="../task_graph.css" />
-    <link rel="stylesheet" href="../local_sync.css" />
-    <link rel="stylesheet" href="../ai_agent.css" />
-    <link rel="stylesheet" href="../filters.css" />
-    <script src="../i18n.js"></script>
-    <script src="../motion.js" defer></script>
-    <script src="../task_graph.js" defer></script>
-    <script src="../local_sync.js" defer></script>
-    <script src="../ai_agent.js" defer></script>
-    <script src="../filters.js" defer></script>
+    <link rel="icon" href="../assets/img/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/task_graph.css" />
+    <link rel="stylesheet" href="../assets/css/local_sync.css" />
+    <link rel="stylesheet" href="../assets/css/ai_agent.css" />
+    <link rel="stylesheet" href="../assets/css/filters.css" />
+    <script src="../assets/js/i18n.js"></script>
+    <script src="../assets/js/motion.js" defer></script>
+    <script src="../assets/js/task_graph.js" defer></script>
+    <script src="../assets/js/local_sync.js" defer></script>
+    <script src="../assets/js/ai_agent.js" defer></script>
+    <script src="../assets/js/filters.js" defer></script>
     <script type="application/json" id="card-text">{"sync":{"eyebrow":"本機優先同步","tasks":["草擬提案","預訂機票","換發護照"],"yourProvider":"你的 {provider}","legendData":"任務資料只存入你自己的儲存空間","legendSignal":"我們的伺服器只轉送變更訊號","pending":{"other":"{count} 項變更待同步"},"allSynced":"所有裝置已同步","uploading":"上傳中","received":"已收到 {device} 的變更","online":"線上","offline":"離線","upToDate":"已是最新","changeDetected":"偵測到變更","syncing":"同步中","holdsEveryTask":"保存全部任務","sameTasks":"每台裝置上的任務都一樣","iphoneOffline":"iPhone 斷線了","savedOnDevice":"已儲存到裝置 · 0 毫秒","stillWorks":"離線照常使用","oneChangeWaiting":"1 項變更等待同步","macEdits":"MacBook 同時在編輯","iphoneReconnects":"iPhone 重新連線","merged":"已合併，無衝突"},"graph":{"eyebrow":"依賴圖","tasks":{"research":"研究","design":"設計介面","api":"開發 API","assets":"行銷","frontend":"前端開發","qa":"QA 測試","ship":"發布 v1.0"},"meter":"已完成 {count} / {total}","todo":"待辦","doing":"進行中","done":"已完成","legendWaiting":"等待前面的層級","waitingOn":"等待 {count} 項","doingProgress":"進行中 · {percent}%","shipping":"正在發布 v1.0","shipped":"v1.0 已發布"},"agent":{"eyebrow":"AI 助理","tasks":{"flights":"預訂機票","hotel":"預訂新宿的飯店","itinerary":"規劃一日遊","passport":"換發護照"},"promptPlan":"幫我規劃下個月的東京之旅","promptUrgent":"我的護照快到期了，這週就辦","replyPlan":"計畫排好了。機票等護照辦好，其餘事項排在機票之後。","replyUrgent":"好了。護照已排到第一位，週五截止。","boardTitle":"東京之旅","empty":"還沒有任務","legendEdits":"每一步都會修改你真實的任務","legendLink":"助理連結的依賴關係","taskCount":{"other":"{count} 個任務"},"askPlain":"用日常的話提出需求","ready":"就緒","working":"處理中…","draftsPlan":"助理草擬計畫","creating":"正在建立 4 個任務","created":"已建立 4 個任務","linking":"正在連結依賴關係","linkedPlan":"連結成真正的計畫","linked":"已連結 3 個依賴","waitingOn":"等待「{task}」","editsReal":"修改你真實的任務","updating":"正在更新「{task}」","updated":"已更新「{task}」","dueFriday":"週五截止","summary":"4 個任務 · 3 個連結"},"filters":{"eyebrow":"篩選器","tasks":{"ship":"發布 v1.0","login":"修正登入當機","notes":"撰寫版本說明","qa":"QA 測試","design":"設計介面","cats":"帶貓打疫苗","passport":"換發護照","dentist":"預約牙醫"},"due":{"today":"今天","thu":"週四","fri":"週五","nextWeek":"下週","nextMonth":"下個月"},"blocks":"卡住 {task}","meter":"{count} / {total} 個任務","newFilter":"新增篩選器","matchAll":"全部符合 · 與","addCondition":"+ 新增條件","and":"與","andOr":"與 / 或","legendCombine":"任意組合條件","legendFields":"狀態 · 重要性 · 標題 · 日期 · 依賴關係","conditions":{"status":{"field":"狀態","value":"不等於 \u003cb>已完成\u003c/b>","title":"只看未完成的任務"},"blocks":{"field":"選定任務的前置任務","value":"\u003cb>發布 v1.0\u003c/b> 的全部前置任務","title":"所有卡住 v1.0 的任務"},"due":{"field":"相對截止日期","value":"截止時間在 \u003cb>本週\u003c/b> 內","title":"本週截止"}},"filterName":"本週卡住 v1.0","saveFilter":"儲存篩選器","savedToFilters":"已儲存到篩選器","allTasks":"所有任務","savedAsFilter":"已儲存為篩選器","updatesAsYouWork":"隨工作進度即時更新"}}</script>
 
     <!-- Search Engine Verification -->
@@ -59,7 +59,7 @@
     <meta property="og:description" content="一款智慧型的本機優先任務管理工具，內建任務依賴圖（DAG）與視覺化工作流程。" />
     <meta
       property="og:image"
-      content="https://syntheticinsights.net/smartodo_assets/graph.png"
+      content="https://syntheticinsights.net/assets/img/graph.png"
     />
 
     <!-- Twitter Cards -->
@@ -69,17 +69,17 @@
     <meta name="twitter:description" content="一款智慧型的本機優先任務管理工具，內建任務依賴圖（DAG）與視覺化工作流程。" />
     <meta
       name="twitter:image"
-      content="https://syntheticinsights.net/smartodo_assets/graph.png"
+      content="https://syntheticinsights.net/assets/img/graph.png"
     />
 
     <!-- Schema.org JSON-LD for AI & Search Engines (GEO/SEO) -->
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Smartodo","applicationCategory":"ProductivityApplication","operatingSystem":"macOS, iOS, Android, Windows, Linux","description":"Smartodo 是一款本機優先的任務管理工具，內建任務依賴圖（DAG）、視覺化工作流程與離線優先的智慧功能，專為邏輯型思考者打造。","inLanguage":"zh-Hant","url":"https://syntheticinsights.net/zh-hant/","image":"https://syntheticinsights.net/smartodo_assets/graph.png","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["原生任務依賴圖（DAG）","本機優先、離線優先架構","依賴圖與看板檢視","跨平台同步","AI 驅動的生產力"],"author":{"@type":"Organization","name":"Synthetic Insights","url":"https://syntheticinsights.net/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Smartodo","applicationCategory":"ProductivityApplication","operatingSystem":"macOS, iOS, Android, Windows, Linux","description":"Smartodo 是一款本機優先的任務管理工具，內建任務依賴圖（DAG）、視覺化工作流程與離線優先的智慧功能，專為邏輯型思考者打造。","inLanguage":"zh-Hant","url":"https://syntheticinsights.net/zh-hant/","image":"https://syntheticinsights.net/assets/img/graph.png","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["原生任務依賴圖（DAG）","本機優先、離線優先架構","依賴圖與看板檢視","跨平台同步","AI 驅動的生產力"],"author":{"@type":"Organization","name":"Synthetic Insights","url":"https://syntheticinsights.net/"}}</script>
   </head>
   <body>
     <header class="site-header">
       <div class="container">
         <div class="branding">
-          <img class="logo-mark" src="../smartodo_assets/icon.svg" alt="Smartodo 圖示" />
+          <img class="logo-mark" src="../assets/img/icon.svg" alt="Smartodo 圖示" />
           <span class="logo-type">Smartodo</span>
         </div>
         <div class="site-header__actions">
@@ -253,7 +253,7 @@
     <footer class="site-footer">
       <div class="container">
         <div class="footer-branding">
-          <img class="logo-mark" src="../smartodo_assets/icon.svg" alt="Smartodo 圖示" />
+          <img class="logo-mark" src="../assets/img/icon.svg" alt="Smartodo 圖示" />
           <span class="logo-type">Smartodo</span>
         </div>
         <div class="footer-meta">
