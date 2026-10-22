@@ -15,7 +15,10 @@
     <link rel="icon" href="smartodo_assets/icon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="task_graph.css" />
+    <link rel="stylesheet" href="local_sync.css" />
+    <script src="motion.js" defer></script>
     <script src="task_graph.js" defer></script>
+    <script src="local_sync.js" defer></script>
 
     <!-- Search Engine Verification -->
     <meta name="yandex-verification" content="ea7c1844be84cdaf" />
@@ -127,19 +130,26 @@
           <p class="eyebrow">Why Smartodo</p>
           <h2>Privacy-first productivity with an AI boost</h2>
           <div class="feature-list">
-            <article class="feature-item feature-item--text-only">
+            <article class="feature-item">
               <h3 class="feature-title">Local-first</h3>
               <div class="feature-body">
+                <div class="feature-media feature-media--graph">
+                  <div
+                    data-local-sync
+                    role="img"
+                    aria-label="Animated sync: a phone keeps working offline, then its changes merge with edits from other devices through the user's own cloud storage."
+                  ></div>
+                </div>
                 <div class="feature-copy">
-                <p class="feature-lead">
-                  Smartodo is built local-first, so your work stays fast,
-                  responsive, and under your control from the start.
-                </p>
-                <ul class="feature-points">
-                  <li><strong>Use the storage you trust:</strong> sync with Google Drive or WebDAV.</li>
-                  <li><strong>Move quickly every day:</strong> local-first architecture keeps the app smooth and responsive.</li>
-                  <li><strong>Keep data protected:</strong> cloud sync stays reliable, secure, and privacy-friendly across devices.</li>
-                </ul>
+                  <p class="feature-copy__lead">Works offline. Syncs through storage you own.</p>
+                  <p class="feature-copy__body">
+                    Every edit saves on your device first, then syncs through
+                    your own Google Drive or WebDAV.
+                  </p>
+                  <p class="feature-copy__body">
+                    Our server only relays a change signal, so your devices
+                    update in real time.
+                  </p>
                 </div>
               </div>
             </article>
