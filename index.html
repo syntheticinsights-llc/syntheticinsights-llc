@@ -16,9 +16,11 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="task_graph.css" />
     <link rel="stylesheet" href="local_sync.css" />
+    <link rel="stylesheet" href="ai_agent.css" />
     <script src="motion.js" defer></script>
     <script src="task_graph.js" defer></script>
     <script src="local_sync.js" defer></script>
+    <script src="ai_agent.js" defer></script>
 
     <!-- Search Engine Verification -->
     <meta name="yandex-verification" content="ea7c1844be84cdaf" />
@@ -175,17 +177,18 @@
             <article class="feature-item">
               <h3 class="feature-title">Smart AI Agent</h3>
               <div class="feature-body">
-                <div class="feature-media">
-                  <img
-                    src="smartodo_assets/ai_agent.png"
-                    alt="Smartodo AI agent assisting with task planning"
-                  />
+                <div class="feature-media feature-media--graph">
+                  <div
+                    data-ai-agent
+                    role="img"
+                    aria-label="Animated chat: one sentence asks the AI agent to plan a trip, and it creates the tasks, links their dependencies, then reprioritizes on request."
+                  ></div>
                 </div>
                 <div class="feature-copy">
-                  <p class="feature-copy__lead">Plan faster with context-aware help.</p>
+                  <p class="feature-copy__lead">Turn one sentence into a linked plan.</p>
                   <p class="feature-copy__body">
-                    Smart AI Agent drafts plans, suggests next steps, and helps
-                    keep work aligned.
+                    Smart AI Agent creates tasks, links their dependencies, and
+                    updates priorities and due dates when you ask.
                   </p>
                 </div>
               </div>
