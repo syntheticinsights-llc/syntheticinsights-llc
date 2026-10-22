@@ -17,10 +17,12 @@
     <link rel="stylesheet" href="task_graph.css" />
     <link rel="stylesheet" href="local_sync.css" />
     <link rel="stylesheet" href="ai_agent.css" />
+    <link rel="stylesheet" href="filters.css" />
     <script src="motion.js" defer></script>
     <script src="task_graph.js" defer></script>
     <script src="local_sync.js" defer></script>
     <script src="ai_agent.js" defer></script>
+    <script src="filters.js" defer></script>
 
     <!-- Search Engine Verification -->
     <meta name="yandex-verification" content="ea7c1844be84cdaf" />
@@ -93,7 +95,7 @@
       <div class="container">
         <div class="branding">
           <img class="logo-mark" src="smartodo_assets/icon.svg" alt="Smartodo icon" />
-          <span class="logo-type">Synthetic Insights</span>
+          <span class="logo-type">Smartodo</span>
         </div>
         <nav class="site-nav">
           <a href="#features">Features</a>
@@ -109,20 +111,74 @@
           <div class="hero-content">
             <h1>Smartodo is a local-first task manager with intelligence</h1>
             <p>
-              Synthetic Insights crafts AI-native tools that respect privacy,
-              keep your data in sync locally, and empower you to focus on what
-              matters. Smartodo is the first chapter in that journey.
+              Plan work as a graph of tasks that know what blocks them, ask the
+              AI agent to build or update that plan, and keep everything on
+              your device, synced through storage you own.
             </p>
             <div class="hero-actions">
-              <a class="button primary" href="#downloads">Get Smartodo</a>
               <a class="button secondary" href="#features">Explore the features</a>
             </div>
           </div>
-          <div class="hero-visual">
-            <img
-              src="smartodo_assets/kanban.png"
-              alt="Smartodo overview Kanban board"
-            />
+          <div class="hero-download" id="downloads">
+            <h2 class="hero-download__title">Download Smartodo</h2>
+            <ul class="hero-download__list">
+              <li class="hero-download__item">
+                <span class="hero-download__platform">iOS &amp; macOS</span>
+                <a
+                  class="app-store-badge"
+                  href="https://apps.apple.com/app/apple-store/id6755520449"
+                  aria-label="Download on the App Store"
+                >
+                  <span class="app-store-badge__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" role="img">
+                      <path
+                        d="M16.2 12.7c0-2 1.1-3.6 2.7-4.4-1.2-1.7-3.1-2-3.9-2-1.7-.2-3.2 1-4.1 1s-2.3-1-3.8-1c-2 0-3.8 1.1-4.8 3-2 3.5-.5 8.7 1.4 11.6.9 1.4 2 3 3.5 2.9 1.4-.1 2-.9 3.7-.9s2.2.9 3.8.9c1.6 0 2.5-1.4 3.4-2.8 1-1.5 1.5-3 1.5-3.1-.1 0-3.4-1.3-3.4-5.1Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        d="M13.7 4.3c.7-.9 1.2-2.1 1.1-3.3-1 .1-2.2.7-2.9 1.6-.7.8-1.3 2.1-1.1 3.3 1.1.1 2.2-.6 2.9-1.6Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </span>
+                  <span class="app-store-badge__label">App Store</span>
+                </a>
+              </li>
+              <li class="hero-download__item">
+                <span class="hero-download__platform">Android</span>
+                <a
+                  class="app-store-badge"
+                  href="https://play.google.com/store/apps/details?id=net.syntheticinsights.smartodo"
+                  aria-label="Get it on Google Play"
+                >
+                  <span class="app-store-badge__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" role="img">
+                      <path
+                        d="M3.2 2.5c-.2.3-.2.8-.2 1.5v16c0 .7.1 1.2.3 1.5l9.4-9.5-9.5-9.5Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        d="M14.6 13.8 6 22.4c.5 0 1-.2 1.6-.5l10.1-5.8-3.1-2.3Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        d="M17.7 7.9 7.6 2.1c-.6-.3-1.1-.5-1.6-.5l8.7 8.6 3-2.3Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        d="M20.4 10.4c.8.5.8 1.6 0 2.1l-2.8 1.6-3.4-2.1 3.4-2.1 2.8 1.5Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </span>
+                  <span class="app-store-badge__label">Google Play</span>
+                </a>
+              </li>
+              <li class="hero-download__item hero-download__item--soon">
+                <span class="hero-download__platform">Windows</span>
+                <span class="tag">Coming soon</span>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
@@ -196,111 +252,22 @@
             <article class="feature-item">
               <h3 class="feature-title">Powerful Filters</h3>
               <div class="feature-body">
-                <div class="feature-media">
-                  <img
-                    src="smartodo_assets/filter.png"
-                    alt="Smartodo filter view highlighting task segments"
-                  />
+                <div class="feature-media feature-media--graph">
+                  <div
+                    data-filters
+                    role="img"
+                    aria-label="Animated filter: three conditions narrow eight tasks down to the open work blocking v1.0 that is due this week, the filter is saved, and its count updates when a task is finished."
+                  ></div>
                 </div>
                 <div class="feature-copy">
-                  <p class="feature-copy__lead">Focus on exactly what matters.</p>
+                  <p class="feature-copy__lead">Ask your list exactly what you need.</p>
                   <p class="feature-copy__body">
-                    Filter by status, title keywords, owners, and dependencies
-                    in seconds.
+                    Combine status, importance, title, due dates, and
+                    dependencies with AND / OR, like everything still blocking
+                    a release that's due this week.
                   </p>
                 </div>
               </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="downloads" id="downloads">
-        <div class="container">
-          <p class="eyebrow">Download Smartodo</p>
-          <h2>Start on Apple and Android devices today</h2>
-          <div class="download-grid">
-            <article>
-              <h3>iOS</h3>
-              <p>Capture tasks anywhere with widgets and voice capture.</p>
-              <a
-                class="app-store-badge"
-                href="https://apps.apple.com/app/apple-store/id6755520449"
-                aria-label="Download on the App Store"
-              >
-                <span class="app-store-badge__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" role="img">
-                    <path
-                      d="M16.2 12.7c0-2 1.1-3.6 2.7-4.4-1.2-1.7-3.1-2-3.9-2-1.7-.2-3.2 1-4.1 1s-2.3-1-3.8-1c-2 0-3.8 1.1-4.8 3-2 3.5-.5 8.7 1.4 11.6.9 1.4 2 3 3.5 2.9 1.4-.1 2-.9 3.7-.9s2.2.9 3.8.9c1.6 0 2.5-1.4 3.4-2.8 1-1.5 1.5-3 1.5-3.1-.1 0-3.4-1.3-3.4-5.1Z"
-                      fill="currentColor"
-                    />
-                    <path
-                      d="M13.7 4.3c.7-.9 1.2-2.1 1.1-3.3-1 .1-2.2.7-2.9 1.6-.7.8-1.3 2.1-1.1 3.3 1.1.1 2.2-.6 2.9-1.6Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
-                <span class="app-store-badge__label">App Store</span>
-              </a>
-            </article>
-            <article>
-              <h3>macOS</h3>
-              <p>Optimized for Sonoma and Ventura with native shortcuts.</p>
-              <a
-                class="app-store-badge"
-                href="https://apps.apple.com/app/apple-store/id6755520449"
-                aria-label="Download on the App Store"
-              >
-                <span class="app-store-badge__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" role="img">
-                    <path
-                      d="M16.2 12.7c0-2 1.1-3.6 2.7-4.4-1.2-1.7-3.1-2-3.9-2-1.7-.2-3.2 1-4.1 1s-2.3-1-3.8-1c-2 0-3.8 1.1-4.8 3-2 3.5-.5 8.7 1.4 11.6.9 1.4 2 3 3.5 2.9 1.4-.1 2-.9 3.7-.9s2.2.9 3.8.9c1.6 0 2.5-1.4 3.4-2.8 1-1.5 1.5-3 1.5-3.1-.1 0-3.4-1.3-3.4-5.1Z"
-                      fill="currentColor"
-                    />
-                    <path
-                      d="M13.7 4.3c.7-.9 1.2-2.1 1.1-3.3-1 .1-2.2.7-2.9 1.6-.7.8-1.3 2.1-1.1 3.3 1.1.1 2.2-.6 2.9-1.6Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
-                <span class="app-store-badge__label">App Store</span>
-              </a>
-            </article>
-            <article>
-              <h3>Android</h3>
-              <p>Get Smartodo on Google Play for Android phones and tablets.</p>
-              <a
-                class="app-store-badge"
-                href="https://play.google.com/store/apps/details?id=net.syntheticinsights.smartodo"
-                aria-label="Get it on Google Play"
-              >
-                <span class="app-store-badge__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" role="img">
-                    <path
-                      d="M3.2 2.5c-.2.3-.2.8-.2 1.5v16c0 .7.1 1.2.3 1.5l9.4-9.5-9.5-9.5Z"
-                      fill="currentColor"
-                    />
-                    <path
-                      d="M14.6 13.8 6 22.4c.5 0 1-.2 1.6-.5l10.1-5.8-3.1-2.3Z"
-                      fill="currentColor"
-                    />
-                    <path
-                      d="M17.7 7.9 7.6 2.1c-.6-.3-1.1-.5-1.6-.5l8.7 8.6 3-2.3Z"
-                      fill="currentColor"
-                    />
-                    <path
-                      d="M20.4 10.4c.8.5.8 1.6 0 2.1l-2.8 1.6-3.4-2.1 3.4-2.1 2.8 1.5Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
-                <span class="app-store-badge__label">Google Play</span>
-              </a>
-            </article>
-            <article class="coming-soon">
-              <h3>Windows</h3>
-              <p>Currently in development. Join the waitlist to hear first.</p>
-              <span class="tag">Coming soon</span>
             </article>
           </div>
         </div>
@@ -312,7 +279,7 @@
       <div class="container">
         <div class="footer-branding">
           <img class="logo-mark" src="smartodo_assets/icon.svg" alt="Smartodo icon" />
-          <span class="logo-type">Synthetic Insights</span>
+          <span class="logo-type">Smartodo</span>
         </div>
         <div class="footer-meta">
           <p>&copy; 2025 Synthetic Insights LLC. All rights reserved.</p>
