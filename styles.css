@@ -396,6 +396,12 @@ ul {
   box-shadow: 0 16px 32px rgba(15, 23, 42, 0.14);
 }
 
+.features .feature-media--graph {
+  overflow: visible;
+  border: none;
+  box-shadow: none;
+}
+
 .features .feature-media img {
   display: block;
   width: 100%;

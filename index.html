@@ -14,6 +14,8 @@
     />
     <link rel="icon" href="smartodo_assets/icon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="task_graph.css" />
+    <script src="task_graph.js" defer></script>
 
     <!-- Search Engine Verification -->
     <meta name="yandex-verification" content="ea7c1844be84cdaf" />
@@ -144,11 +146,12 @@
             <article class="feature-item">
               <h3 class="feature-title">Dependency graph</h3>
               <div class="feature-body">
-                <div class="feature-media">
-                  <img
-                    src="smartodo_assets/graph.png"
-                    alt="Dependency graph view of Smartodo tasks"
-                  />
+                <div class="feature-media feature-media--graph">
+                  <div
+                    data-task-graph
+                    role="img"
+                    aria-label="Animated dependency graph: finishing a task automatically unlocks the tasks that depend on it."
+                  ></div>
                 </div>
                 <div class="feature-copy">
                   <p class="feature-copy__lead">See blockers before they slow work down.</p>
