@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="{{meta.htmlLang}}" data-locale="{{locale}}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{page.title}}</title>
+    <meta name="description" content="{{page.description}}" />
+    <meta name="keywords" content="{{page.keywords}}" />
+    <link rel="canonical" href="{{url}}" />
+{{alternates}}
+    <link rel="icon" href="{{base}}smartodo_assets/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="{{base}}styles.css" />
+    <link rel="stylesheet" href="{{base}}task_graph.css" />
+    <link rel="stylesheet" href="{{base}}local_sync.css" />
+    <link rel="stylesheet" href="{{base}}ai_agent.css" />
+    <link rel="stylesheet" href="{{base}}filters.css" />
+    <script src="{{base}}i18n.js"></script>
+    <script src="{{base}}motion.js" defer></script>
+    <script src="{{base}}task_graph.js" defer></script>
+    <script src="{{base}}local_sync.js" defer></script>
+    <script src="{{base}}ai_agent.js" defer></script>
+    <script src="{{base}}filters.js" defer></script>
+    <script type="application/json" id="card-text">{{cards}}</script>
+
+    <!-- Search Engine Verification -->
+    <meta name="yandex-verification" content="ea7c1844be84cdaf" />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{url}}" />
+    <meta property="og:locale" content="{{meta.ogLocale}}" />
+{{ogLocaleAlternates}}
+    <meta property="og:title" content="{{page.ogTitle}}" />
+    <meta property="og:description" content="{{page.ogDescription}}" />
+    <meta
+      property="og:image"
+      content="https://syntheticinsights.net/smartodo_assets/graph.png"
+    />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="{{url}}" />
+    <meta name="twitter:title" content="{{page.ogTitle}}" />
+    <meta name="twitter:description" content="{{page.ogDescription}}" />
+    <meta
+      name="twitter:image"
+      content="https://syntheticinsights.net/smartodo_assets/graph.png"
+    />
+
+    <!-- Schema.org JSON-LD for AI & Search Engines (GEO/SEO) -->
+    <script type="application/ld+json">{{jsonLd}}</script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <div class="branding">
+          <img class="logo-mark" src="{{base}}smartodo_assets/icon.svg" alt="{{page.logoAlt}}" />
+          <span class="logo-type">Smartodo</span>
+        </div>
+        <div class="site-header__actions">
+          <nav class="site-nav">
+            <a href="#features">{{page.navFeatures}}</a>
+            <a href="#downloads">{{page.navDownloads}}</a>
+            <a href="{{base}}privacy.html">{{page.navPrivacy}}</a>
+          </nav>
+          <details class="lang-menu">
+            <summary class="lang-menu__toggle" aria-label="{{page.languageLabel}}">
+              <svg class="lang-menu__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z" />
+              </svg>
+              <span>{{meta.name}}</span>
+            </summary>
+            <ul class="lang-menu__list">
+{{languageLinks}}
+            </ul>
+          </details>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="container">
+          <div class="hero-content">
+            <h1>{{page.heroTitle}}</h1>
+            <p>{{page.heroBody}}</p>
+            <div class="hero-actions">
+              <a class="button secondary" href="#features">{{page.heroCta}}</a>
+            </div>
+          </div>
+          <div class="hero-download" id="downloads">
+            <h2 class="hero-download__title">{{page.downloadTitle}}</h2>
+            <ul class="hero-download__list">
+              <li class="hero-download__item">
+                <span class="hero-download__platform">iOS &amp; macOS</span>
+                <a
+                  class="app-store-badge"
+                  href="https://apps.apple.com/app/apple-store/id6755520449"
+                  aria-label="{{page.appStoreLabel}}"
+                >
+                  <span class="app-store-badge__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" role="img">
+                      <path
+                        d="M16.2 12.7c0-2 1.1-3.6 2.7-4.4-1.2-1.7-3.1-2-3.9-2-1.7-.2-3.2 1-4.1 1s-2.3-1-3.8-1c-2 0-3.8 1.1-4.8 3-2 3.5-.5 8.7 1.4 11.6.9 1.4 2 3 3.5 2.9 1.4-.1 2-.9 3.7-.9s2.2.9 3.8.9c1.6 0 2.5-1.4 3.4-2.8 1-1.5 1.5-3 1.5-3.1-.1 0-3.4-1.3-3.4-5.1Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        d="M13.7 4.3c.7-.9 1.2-2.1 1.1-3.3-1 .1-2.2.7-2.9 1.6-.7.8-1.3 2.1-1.1 3.3 1.1.1 2.2-.6 2.9-1.6Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </span>
+                  <span class="app-store-badge__label">App Store</span>
+                </a>
+              </li>
+              <li class="hero-download__item">
+                <span class="hero-download__platform">Android</span>
+                <a
+                  class="app-store-badge"
+                  href="https://play.google.com/store/apps/details?id=net.syntheticinsights.smartodo"
+                  aria-label="{{page.googlePlayLabel}}"
+                >
+                  <span class="app-store-badge__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" role="img">
+                      <path
+                        d="M3.2 2.5c-.2.3-.2.8-.2 1.5v16c0 .7.1 1.2.3 1.5l9.4-9.5-9.5-9.5Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        d="M14.6 13.8 6 22.4c.5 0 1-.2 1.6-.5l10.1-5.8-3.1-2.3Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        d="M17.7 7.9 7.6 2.1c-.6-.3-1.1-.5-1.6-.5l8.7 8.6 3-2.3Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        d="M20.4 10.4c.8.5.8 1.6 0 2.1l-2.8 1.6-3.4-2.1 3.4-2.1 2.8 1.5Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </span>
+                  <span class="app-store-badge__label">Google Play</span>
+                </a>
+              </li>
+              <li class="hero-download__item hero-download__item--soon">
+                <span class="hero-download__platform">Windows</span>
+                <span class="tag">{{page.comingSoon}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="features" id="features">
+        <div class="container">
+          <p class="eyebrow">{{page.featuresEyebrow}}</p>
+          <h2>{{page.featuresTitle}}</h2>
+          <div class="feature-list">
+            <article class="feature-item">
+              <h3 class="feature-title">{{page.localTitle}}</h3>
+              <div class="feature-body">
+                <div class="feature-media feature-media--graph">
+                  <div data-local-sync role="img" aria-label="{{page.localAria}}"></div>
+                </div>
+                <div class="feature-copy">
+                  <p class="feature-copy__lead">{{page.localLead}}</p>
+                  <p class="feature-copy__body">{{page.localBody1}}</p>
+                  <p class="feature-copy__body">{{page.localBody2}}</p>
+                </div>
+              </div>
+            </article>
+            <article class="feature-item">
+              <h3 class="feature-title">{{page.graphTitle}}</h3>
+              <div class="feature-body">
+                <div class="feature-media feature-media--graph">
+                  <div data-task-graph role="img" aria-label="{{page.graphAria}}"></div>
+                </div>
+                <div class="feature-copy">
+                  <p class="feature-copy__lead">{{page.graphLead}}</p>
+                  <p class="feature-copy__body">{{page.graphBody}}</p>
+                </div>
+              </div>
+            </article>
+            <article class="feature-item">
+              <h3 class="feature-title">{{page.agentTitle}}</h3>
+              <div class="feature-body">
+                <div class="feature-media feature-media--graph">
+                  <div data-ai-agent role="img" aria-label="{{page.agentAria}}"></div>
+                </div>
+                <div class="feature-copy">
+                  <p class="feature-copy__lead">{{page.agentLead}}</p>
+                  <p class="feature-copy__body">{{page.agentBody}}</p>
+                </div>
+              </div>
+            </article>
+            <article class="feature-item">
+              <h3 class="feature-title">{{page.filtersTitle}}</h3>
+              <div class="feature-body">
+                <div class="feature-media feature-media--graph">
+                  <div data-filters role="img" aria-label="{{page.filtersAria}}"></div>
+                </div>
+                <div class="feature-copy">
+                  <p class="feature-copy__lead">{{page.filtersLead}}</p>
+                  <p class="feature-copy__body">{{page.filtersBody}}</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-branding">
+          <img class="logo-mark" src="{{base}}smartodo_assets/icon.svg" alt="{{page.logoAlt}}" />
+          <span class="logo-type">Smartodo</span>
+        </div>
+        <div class="footer-meta">
+          <p>{{page.footerRights}}</p>
+          <p>{{page.footerTagline}}</p>
+          <p>
+            <a href="{{base}}privacy.html">{{page.footerPrivacy}}</a>
+          </p>
+          <p>
+            <a href="{{base}}delete_account.html{{langQuery}}">{{page.footerDelete}}</a>
+          </p>
+          <p>
+            {{page.footerContact}}
+            <a href="mailto:hello@syntheticinsights.net">hello@syntheticinsights.net</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

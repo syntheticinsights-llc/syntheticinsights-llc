@@ -1,12 +1,13 @@
 (() => {
+  const TEXT = CARD_TEXT.graph;
   const TASKS = [
-    { id: "research", title: "Research", deps: [], duration: 1600 },
-    { id: "design", title: "Design UI", deps: ["research"], duration: 2000 },
-    { id: "api", title: "Build API", deps: ["research"], duration: 3200 },
-    { id: "assets", title: "Marketing", deps: ["design"], duration: 2200 },
-    { id: "frontend", title: "Frontend", deps: ["design", "api"], duration: 2200 },
-    { id: "qa", title: "QA testing", deps: ["frontend"], duration: 1800 },
-    { id: "ship", title: "Ship v1.0", deps: ["assets", "qa"], duration: 1400 },
+    { id: "research", title: TEXT.tasks.research, deps: [], duration: 1600 },
+    { id: "design", title: TEXT.tasks.design, deps: ["research"], duration: 2000 },
+    { id: "api", title: TEXT.tasks.api, deps: ["research"], duration: 3200 },
+    { id: "assets", title: TEXT.tasks.assets, deps: ["design"], duration: 2200 },
+    { id: "frontend", title: TEXT.tasks.frontend, deps: ["design", "api"], duration: 2200 },
+    { id: "qa", title: TEXT.tasks.qa, deps: ["frontend"], duration: 1800 },
+    { id: "ship", title: TEXT.tasks.ship, deps: ["assets", "qa"], duration: 1400 },
   ];
 
   const LAYOUTS = [
@@ -68,11 +69,11 @@
       this.root.innerHTML = `
         <div class="tg-header">
           <div class="tg-heading">
-            <span class="tg-eyebrow">Dependency graph</span>
+            <span class="tg-eyebrow">${TEXT.eyebrow}</span>
             <span class="tg-title"></span>
           </div>
           <div class="tg-meter">
-            <span class="tg-meter__count"><b>0</b> / ${TASKS.length} done</span>
+            <span class="tg-meter__count">${format(TEXT.meter, { count: "<b>0</b>", total: TASKS.length })}</span>
             <span class="tg-meter__track"><span class="tg-meter__fill"></span></span>
           </div>
         </div>
@@ -82,10 +83,10 @@
           </div>
         </div>
         <div class="tg-legend">
-          <span class="tg-legend__item" data-state="todo">${STATUS_ICON}To do</span>
-          <span class="tg-legend__item" data-state="doing">${STATUS_ICON}Doing</span>
-          <span class="tg-legend__item" data-state="done">${STATUS_ICON}Done</span>
-          <span class="tg-legend__item"><span class="tg-level">L2</span>Waiting on earlier levels</span>
+          <span class="tg-legend__item" data-state="todo">${STATUS_ICON}${TEXT.todo}</span>
+          <span class="tg-legend__item" data-state="doing">${STATUS_ICON}${TEXT.doing}</span>
+          <span class="tg-legend__item" data-state="done">${STATUS_ICON}${TEXT.done}</span>
+          <span class="tg-legend__item"><span class="tg-level">L2</span>${TEXT.legendWaiting}</span>
         </div>`;
       this.title = this.root.querySelector(".tg-title");
       this.meterCount = this.root.querySelector(".tg-meter__count b");
@@ -302,9 +303,9 @@
       const waitingOn = node.incoming.filter((edge) => !edge.filled).length;
       node.status.textContent = {
         hidden: "",
-        todo: node.level > 1 ? `Waiting on ${waitingOn}` : "To do",
-        doing: `Doing · ${Math.round(node.progress * 100)}%`,
-        done: "Done",
+        todo: node.level > 1 ? format(TEXT.waitingOn, { count: waitingOn }) : TEXT.todo,
+        doing: format(TEXT.doingProgress, { percent: Math.round(node.progress * 100) }),
+        done: TEXT.done,
       }[node.state];
     }
 
@@ -332,7 +333,7 @@
     }
 
     reset() {
-      this.title.textContent = "Shipping v1.0";
+      this.title.textContent = TEXT.shipping;
       for (const node of this.nodes.values()) {
         node.started = false;
         node.element.classList.remove("is-celebrating", "is-unblocked");
@@ -407,7 +408,7 @@
     async celebrate() {
       const finale = [...this.nodes.values()].find((node) => !node.outgoing.length);
       finale.element.classList.add("is-celebrating");
-      this.title.textContent = "v1.0 shipped";
+      this.title.textContent = TEXT.shipped;
       await this.clock.wait(3200);
     }
 
@@ -417,7 +418,7 @@
     }
 
     showFinished() {
-      this.title.textContent = "v1.0 shipped";
+      this.title.textContent = TEXT.shipped;
       for (const edge of this.edges) {
         edge.filled = true;
         edge.base.style.strokeDashoffset = 0;

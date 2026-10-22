@@ -1,5 +1,6 @@
 (() => {
-  const TASKS = ["Draft proposal", "Book flights", "Renew passport"];
+  const TEXT = CARD_TEXT.sync;
+  const TASKS = TEXT.tasks;
   const PROVIDERS = ["Google Drive", "WebDAV"];
 
   const LAPTOP_ICON = `
@@ -82,7 +83,7 @@
       this.root.innerHTML = `
         <div class="tg-header">
           <div class="tg-heading">
-            <span class="tg-eyebrow">Local-first sync</span>
+            <span class="tg-eyebrow">${TEXT.eyebrow}</span>
             <span class="tg-title"></span>
           </div>
           <span class="ls-pending"></span>
@@ -93,7 +94,7 @@
               <div class="ls-hub">
                 <span class="ls-hub__icon">${CLOUD_ICON}</span>
                 <span class="ls-hub__text">
-                  <span class="ls-hub__title">Your <b class="ls-hub__provider"></b></span>
+                  <span class="ls-hub__title">${format(TEXT.yourProvider, { provider: '<b class="ls-hub__provider"></b>' })}</span>
                   <span class="ls-hub__caption"></span>
                 </span>
               </div>
@@ -101,8 +102,8 @@
           </div>
         </div>
         <div class="tg-legend">
-          <span class="tg-legend__item"><span class="ls-swatch ls-swatch--data"></span>Task data goes only to your storage</span>
-          <span class="tg-legend__item"><span class="ls-swatch ls-swatch--signal"></span>Our server only relays a change signal</span>
+          <span class="tg-legend__item"><span class="ls-swatch ls-swatch--data"></span>${TEXT.legendData}</span>
+          <span class="tg-legend__item"><span class="ls-swatch ls-swatch--signal"></span>${TEXT.legendSignal}</span>
         </div>`;
       this.title = this.root.querySelector(".tg-title");
       this.pending = this.root.querySelector(".ls-pending");
@@ -224,9 +225,7 @@
       const anywhere = TASKS.filter((_, index) => sets.some((set) => set.has(index))).length;
       const count = anywhere - everywhere;
       this.pending.dataset.state = count ? "pending" : "synced";
-      this.pending.textContent = count
-        ? `${count} change${count > 1 ? "s" : ""} pending`
-        : "All devices in sync";
+      this.pending.textContent = count ? plural(TEXT.pending, count) : TEXT.allSynced;
     }
 
     async packet(device, direction) {
@@ -246,37 +245,37 @@
     }
 
     async upload(device) {
-      this.setNet(device, "syncing", "Uploading");
+      this.setNet(device, "syncing", TEXT.uploading);
       await this.packet(device, "up");
-      this.setHub(`Received from ${device.name}`, true);
-      this.setNet(device, "online", "Online");
-      this.setFoot(device, "Up to date");
+      this.setHub(format(TEXT.received, { device: device.name }), true);
+      this.setNet(device, "online", TEXT.online);
+      this.setFoot(device, TEXT.upToDate);
       await this.clock.wait(500);
     }
 
     async download(device, indexes) {
-      this.setNet(device, "syncing", "Change detected");
+      this.setNet(device, "syncing", TEXT.changeDetected);
       await this.clock.wait(550);
-      device.netLabel.textContent = "Syncing";
+      device.netLabel.textContent = TEXT.syncing;
       await this.packet(device, "down");
       for (const index of indexes) this.complete(device, index);
-      this.setNet(device, "online", "Online");
-      this.setFoot(device, "Up to date");
+      this.setNet(device, "online", TEXT.online);
+      this.setFoot(device, TEXT.upToDate);
     }
 
     reset(provider) {
       this.provider.textContent = provider;
-      this.setHub("Holds every task");
+      this.setHub(TEXT.holdsEveryTask);
       this.root.classList.remove("is-leaving", "is-complete");
-      this.setTitle("Same tasks on every device");
+      this.setTitle(TEXT.sameTasks);
       for (const device of this.devices.values()) {
         device.done.clear();
         for (const row of device.rows) {
           row.dataset.state = "todo";
           row.classList.remove("is-changed");
         }
-        this.setNet(device, "online", "Online");
-        this.setFoot(device, "Up to date");
+        this.setNet(device, "online", TEXT.online);
+        this.setFoot(device, TEXT.upToDate);
       }
       this.updatePending();
     }
@@ -287,36 +286,36 @@
         this.reset(PROVIDERS[round % PROVIDERS.length]);
         await this.clock.wait(1600);
 
-        this.setTitle("iPhone goes offline");
-        this.setNet(iphone, "offline", "Offline");
+        this.setTitle(TEXT.iphoneOffline);
+        this.setNet(iphone, "offline", TEXT.offline);
         await this.clock.wait(1000);
         this.complete(iphone, 1);
-        this.setFoot(iphone, "Saved on device · 0 ms");
-        this.setTitle("Still works offline");
+        this.setFoot(iphone, TEXT.savedOnDevice);
+        this.setTitle(TEXT.stillWorks);
         await this.clock.wait(1400);
-        this.setFoot(iphone, "1 change waiting");
+        this.setFoot(iphone, TEXT.oneChangeWaiting);
 
-        this.setTitle("MacBook edits at the same time");
+        this.setTitle(TEXT.macEdits);
         this.complete(mac, 0);
-        this.setFoot(mac, "Saved on device · 0 ms");
+        this.setFoot(mac, TEXT.savedOnDevice);
         await this.clock.wait(900);
         await this.upload(mac);
-        this.setHub("Holds every task");
+        this.setHub(TEXT.holdsEveryTask);
         await this.download(android, [0]);
         await this.clock.wait(1200);
 
-        this.setTitle("iPhone reconnects");
-        this.setNet(iphone, "online", "Online");
+        this.setTitle(TEXT.iphoneReconnects);
+        this.setNet(iphone, "online", TEXT.online);
         await this.clock.wait(600);
         await this.upload(iphone);
-        this.setHub("Holds every task");
+        this.setHub(TEXT.holdsEveryTask);
         await Promise.all([
           this.download(mac, [1]),
           this.download(android, [1]),
           this.download(iphone, [0]),
         ]);
 
-        this.setTitle("Merged, no conflicts");
+        this.setTitle(TEXT.merged);
         this.root.classList.add("is-complete");
         await this.clock.wait(3400);
         this.root.classList.add("is-leaving");
@@ -333,7 +332,7 @@
         }
       }
       this.updatePending();
-      this.setTitle("Merged, no conflicts");
+      this.setTitle(TEXT.merged);
       this.root.classList.add("is-complete");
     }
   }

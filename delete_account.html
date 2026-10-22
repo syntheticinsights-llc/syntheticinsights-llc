@@ -6,19 +6,20 @@
     <title>Delete Account | Smartodo</title>
     <link rel="icon" href="smartodo_assets/icon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
+    <script src="account_text.js"></script>
+    <script src="i18n.js"></script>
   </head>
   <body>
     <header class="site-header">
       <div class="container">
         <div class="branding">
-          <img class="logo-mark" src="smartodo_assets/icon.svg" alt="Smartodo icon" />
+          <img class="logo-mark" src="smartodo_assets/icon.svg" alt="Smartodo icon" data-i18n-alt="logoAlt" />
           <span class="logo-type">Smartodo</span>
         </div>
         <nav class="site-nav">
-          <a href="index.html#features">Features</a>
-          <a href="index.html#downloads">Downloads</a>
-          <a href="index.html#about">About</a>
-          <a href="privacy.html">Privacy</a>
+          <a href="index.html#features" data-landing-link="#features" data-i18n="navFeatures">Features</a>
+          <a href="index.html#downloads" data-landing-link="#downloads" data-i18n="navDownloads">Downloads</a>
+          <a href="privacy.html" data-i18n="navPrivacy">Privacy</a>
         </nav>
       </div>
     </header>
@@ -26,16 +27,16 @@
     <main class="auth-page">
       <div class="container">
         <div class="auth-card">
-          <p class="eyebrow">Account removal</p>
-          <h1>Delete account</h1>
-          <p class="lead">
+          <p class="eyebrow" data-i18n="delete.eyebrow">Account removal</p>
+          <h1 data-i18n="delete.heading">Delete account</h1>
+          <p class="lead" data-i18n="delete.lead">
             This is the official Smartodo account deletion page provided by
             Synthetic Insights LLC.
           </p>
 
           <div class="info-panel warning-panel">
-            <div class="info-panel__title">Important</div>
-            <p>
+            <div class="info-panel__title" data-i18n="delete.importantTitle">Important</div>
+            <p data-i18n="delete.importantBody">
               This action is permanent. Sign in with your Smartodo account email and
               password, then type <strong>confirm delete</strong> to proceed.
             </p>
@@ -43,58 +44,60 @@
 
           <div class="info-grid">
             <section class="info-panel">
-              <div class="info-panel__title">How it works</div>
+              <div class="info-panel__title" data-i18n="delete.howTitle">How it works</div>
               <div class="step-list">
                 <div class="step-item">
                   <div class="step-item__index">1</div>
-                  <p>Sign in with your Smartodo account email and password.</p>
+                  <p data-i18n="delete.step1">Sign in with your Smartodo account email and password.</p>
                 </div>
                 <div class="step-item">
                   <div class="step-item__index">2</div>
-                  <p>Type <strong>confirm delete</strong> and submit the request.</p>
+                  <p data-i18n="delete.step2">Type <strong>confirm delete</strong> and submit the request.</p>
                 </div>
                 <div class="step-item">
                   <div class="step-item__index">3</div>
-                  <p>Your Smartodo account and account-related data will be permanently deleted.</p>
+                  <p data-i18n="delete.step3">Your Smartodo account and account-related data will be permanently deleted.</p>
                 </div>
               </div>
             </section>
 
             <section class="info-panel">
-              <div class="info-panel__title">What gets deleted</div>
+              <div class="info-panel__title" data-i18n="delete.whatTitle">What gets deleted</div>
               <ul class="info-list">
-                <li>Account-related Smartodo data associated with your account will be deleted.</li>
-                <li>Active subscriptions must be managed separately in the App Store or Google Play.</li>
-                <li>Task data and files stored locally on your devices or in your own cloud storage remain under your control and are not automatically removed by deleting your account.</li>
+                <li data-i18n="delete.what1">Account-related Smartodo data associated with your account will be deleted.</li>
+                <li data-i18n="delete.what2">Active subscriptions must be managed separately in the App Store or Google Play.</li>
+                <li data-i18n="delete.what3">Task data and files stored locally on your devices or in your own cloud storage remain under your control and are not automatically removed by deleting your account.</li>
               </ul>
             </section>
           </div>
 
           <div class="form-block">
-            <div class="form-block__title">Confirm your account</div>
+            <div class="form-block__title" data-i18n="delete.formTitle">Confirm your account</div>
 
             <div class="field">
-              <label for="email">Email</label>
+              <label for="email" data-i18n="delete.emailLabel">Email</label>
               <input
                 id="email"
                 type="email"
                 placeholder="Enter your account email"
+                data-i18n-placeholder="delete.emailPlaceholder"
                 autocomplete="email"
               />
             </div>
 
             <div class="field">
-              <label for="password">Password</label>
+              <label for="password" data-i18n="delete.passwordLabel">Password</label>
               <input
                 id="password"
                 type="password"
                 placeholder="Enter your password"
+                data-i18n-placeholder="delete.passwordPlaceholder"
                 autocomplete="current-password"
               />
             </div>
 
             <div class="field">
-              <label for="confirm">Confirmation phrase</label>
+              <label for="confirm" data-i18n="delete.phraseLabel">Confirmation phrase</label>
               <input
                 id="confirm"
                 type="text"
@@ -104,7 +107,7 @@
             </div>
 
             <div class="form-actions">
-              <button id="submit" class="button primary" type="button">
+              <button id="submit" class="button primary" type="button" data-i18n="delete.submit">
                 Delete account
               </button>
             </div>
@@ -118,12 +121,12 @@
     <footer class="site-footer">
       <div class="container">
         <div class="footer-branding">
-          <img class="logo-mark" src="smartodo_assets/icon.svg" alt="Smartodo icon" />
+          <img class="logo-mark" src="smartodo_assets/icon.svg" alt="Smartodo icon" data-i18n-alt="logoAlt" />
           <span class="logo-type">Smartodo</span>
         </div>
         <div class="footer-meta">
-          <p>&copy; 2025 Synthetic Insights LLC. All rights reserved.</p>
-          <p><a href="privacy.html">Privacy policy</a></p>
+          <p data-i18n="footerRights">&copy; 2025 Synthetic Insights LLC. All rights reserved.</p>
+          <p><a href="privacy.html" data-i18n="footerPrivacy">Privacy policy</a></p>
         </div>
       </div>
     </footer>
@@ -135,6 +138,7 @@
       const SUPABASE_ANON_KEY =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhqc3loZWphY2ZuZHJhcnl5cWFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU4MjcxODAsImV4cCI6MjA2MTQwMzE4MH0.xaY6wwxMZqi_zkICjXS4H3IDNwV9z3YGGXIBzve2eEM";
 
+      const text = applyAccountText("delete");
       const statusEl = document.getElementById("status");
       const emailInput = document.getElementById("email");
       const passwordInput = document.getElementById("password");
@@ -168,7 +172,7 @@
         } catch (_) {
           // Fall back to generic message below.
         }
-        return "Could not delete your account. Please try again.";
+        return text.deleteFailed;
       };
 
       submitBtn.addEventListener("click", async () => {
@@ -177,21 +181,21 @@
         const confirmation = confirmInput.value.trim().toLowerCase();
 
         if (!email) {
-          setStatus("Enter the email address for the account you want to delete.", "error");
+          setStatus(text.missingEmail, "error");
           return;
         }
         if (!password) {
-          setStatus("Enter your password.", "error");
+          setStatus(text.missingPassword, "error");
           return;
         }
         if (confirmation !== confirmationKeyword) {
-          setStatus(`Type "${confirmationKeyword}" exactly to continue.`, "error");
+          setStatus(text.wrongPhrase, "error");
           return;
         }
 
         toggleForm(false);
-        submitBtn.textContent = "Deleting…";
-        setStatus("Signing in and deleting your account…");
+        submitBtn.textContent = text.submitting;
+        setStatus(text.working);
 
         const { data, error } = await supabase.auth.signInWithPassword({
           email,
@@ -199,9 +203,9 @@
         });
 
         if (error || !data.session?.access_token) {
-          setStatus(error?.message || "Could not verify your account credentials.", "error");
+          setStatus(text.signInFailed, "error");
           toggleForm(true);
-          submitBtn.textContent = "Delete account";
+          submitBtn.textContent = text.submit;
           return;
         }
 
@@ -218,14 +222,14 @@
           const message = await readMessage(response);
           setStatus(message, "error");
           toggleForm(true);
-          submitBtn.textContent = "Delete account";
+          submitBtn.textContent = text.submit;
           await supabase.auth.signOut();
           return;
         }
 
         await supabase.auth.signOut();
-        setStatus("Your account has been permanently deleted.", "success");
-        submitBtn.textContent = "Deleted";
+        setStatus(text.success, "success");
+        submitBtn.textContent = text.submitted;
       });
     </script>
   </body>

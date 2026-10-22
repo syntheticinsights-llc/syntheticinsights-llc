@@ -1,10 +1,264 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://syntheticinsights.net/</loc>
     <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://syntheticinsights.net/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://syntheticinsights.net/de/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://syntheticinsights.net/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://syntheticinsights.net/fr/" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://syntheticinsights.net/id/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://syntheticinsights.net/it/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://syntheticinsights.net/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://syntheticinsights.net/ko/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://syntheticinsights.net/pt/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://syntheticinsights.net/ru/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://syntheticinsights.net/tr/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://syntheticinsights.net/zh-hans/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://syntheticinsights.net/zh-hant/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://syntheticinsights.net/" />
+  </url>
+  <url>
+    <loc>https://syntheticinsights.net/de/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://syntheticinsights.net/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://syntheticinsights.net/de/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://syntheticinsights.net/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://syntheticinsights.net/fr/" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://syntheticinsights.net/id/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://syntheticinsights.net/it/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://syntheticinsights.net/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://syntheticinsights.net/ko/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://syntheticinsights.net/pt/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://syntheticinsights.net/ru/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://syntheticinsights.net/tr/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://syntheticinsights.net/zh-hans/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://syntheticinsights.net/zh-hant/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://syntheticinsights.net/" />
+  </url>
+  <url>
+    <loc>https://syntheticinsights.net/es/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://syntheticinsights.net/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://syntheticinsights.net/de/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://syntheticinsights.net/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://syntheticinsights.net/fr/" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://syntheticinsights.net/id/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://syntheticinsights.net/it/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://syntheticinsights.net/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://syntheticinsights.net/ko/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://syntheticinsights.net/pt/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://syntheticinsights.net/ru/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://syntheticinsights.net/tr/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://syntheticinsights.net/zh-hans/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://syntheticinsights.net/zh-hant/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://syntheticinsights.net/" />
+  </url>
+  <url>
+    <loc>https://syntheticinsights.net/fr/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://syntheticinsights.net/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://syntheticinsights.net/de/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://syntheticinsights.net/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://syntheticinsights.net/fr/" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://syntheticinsights.net/id/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://syntheticinsights.net/it/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://syntheticinsights.net/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://syntheticinsights.net/ko/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://syntheticinsights.net/pt/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://syntheticinsights.net/ru/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://syntheticinsights.net/tr/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://syntheticinsights.net/zh-hans/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://syntheticinsights.net/zh-hant/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://syntheticinsights.net/" />
+  </url>
+  <url>
+    <loc>https://syntheticinsights.net/id/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://syntheticinsights.net/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://syntheticinsights.net/de/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://syntheticinsights.net/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://syntheticinsights.net/fr/" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://syntheticinsights.net/id/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://syntheticinsights.net/it/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://syntheticinsights.net/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://syntheticinsights.net/ko/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://syntheticinsights.net/pt/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://syntheticinsights.net/ru/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://syntheticinsights.net/tr/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://syntheticinsights.net/zh-hans/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://syntheticinsights.net/zh-hant/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://syntheticinsights.net/" />
+  </url>
+  <url>
+    <loc>https://syntheticinsights.net/it/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://syntheticinsights.net/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://syntheticinsights.net/de/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://syntheticinsights.net/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://syntheticinsights.net/fr/" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://syntheticinsights.net/id/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://syntheticinsights.net/it/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://syntheticinsights.net/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://syntheticinsights.net/ko/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://syntheticinsights.net/pt/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://syntheticinsights.net/ru/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://syntheticinsights.net/tr/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://syntheticinsights.net/zh-hans/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://syntheticinsights.net/zh-hant/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://syntheticinsights.net/" />
+  </url>
+  <url>
+    <loc>https://syntheticinsights.net/ja/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://syntheticinsights.net/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://syntheticinsights.net/de/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://syntheticinsights.net/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://syntheticinsights.net/fr/" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://syntheticinsights.net/id/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://syntheticinsights.net/it/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://syntheticinsights.net/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://syntheticinsights.net/ko/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://syntheticinsights.net/pt/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://syntheticinsights.net/ru/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://syntheticinsights.net/tr/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://syntheticinsights.net/zh-hans/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://syntheticinsights.net/zh-hant/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://syntheticinsights.net/" />
+  </url>
+  <url>
+    <loc>https://syntheticinsights.net/ko/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://syntheticinsights.net/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://syntheticinsights.net/de/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://syntheticinsights.net/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://syntheticinsights.net/fr/" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://syntheticinsights.net/id/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://syntheticinsights.net/it/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://syntheticinsights.net/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://syntheticinsights.net/ko/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://syntheticinsights.net/pt/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://syntheticinsights.net/ru/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://syntheticinsights.net/tr/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://syntheticinsights.net/zh-hans/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://syntheticinsights.net/zh-hant/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://syntheticinsights.net/" />
+  </url>
+  <url>
+    <loc>https://syntheticinsights.net/pt/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://syntheticinsights.net/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://syntheticinsights.net/de/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://syntheticinsights.net/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://syntheticinsights.net/fr/" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://syntheticinsights.net/id/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://syntheticinsights.net/it/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://syntheticinsights.net/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://syntheticinsights.net/ko/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://syntheticinsights.net/pt/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://syntheticinsights.net/ru/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://syntheticinsights.net/tr/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://syntheticinsights.net/zh-hans/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://syntheticinsights.net/zh-hant/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://syntheticinsights.net/" />
+  </url>
+  <url>
+    <loc>https://syntheticinsights.net/ru/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://syntheticinsights.net/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://syntheticinsights.net/de/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://syntheticinsights.net/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://syntheticinsights.net/fr/" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://syntheticinsights.net/id/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://syntheticinsights.net/it/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://syntheticinsights.net/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://syntheticinsights.net/ko/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://syntheticinsights.net/pt/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://syntheticinsights.net/ru/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://syntheticinsights.net/tr/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://syntheticinsights.net/zh-hans/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://syntheticinsights.net/zh-hant/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://syntheticinsights.net/" />
+  </url>
+  <url>
+    <loc>https://syntheticinsights.net/tr/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://syntheticinsights.net/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://syntheticinsights.net/de/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://syntheticinsights.net/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://syntheticinsights.net/fr/" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://syntheticinsights.net/id/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://syntheticinsights.net/it/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://syntheticinsights.net/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://syntheticinsights.net/ko/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://syntheticinsights.net/pt/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://syntheticinsights.net/ru/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://syntheticinsights.net/tr/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://syntheticinsights.net/zh-hans/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://syntheticinsights.net/zh-hant/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://syntheticinsights.net/" />
+  </url>
+  <url>
+    <loc>https://syntheticinsights.net/zh-hans/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://syntheticinsights.net/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://syntheticinsights.net/de/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://syntheticinsights.net/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://syntheticinsights.net/fr/" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://syntheticinsights.net/id/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://syntheticinsights.net/it/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://syntheticinsights.net/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://syntheticinsights.net/ko/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://syntheticinsights.net/pt/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://syntheticinsights.net/ru/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://syntheticinsights.net/tr/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://syntheticinsights.net/zh-hans/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://syntheticinsights.net/zh-hant/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://syntheticinsights.net/" />
+  </url>
+  <url>
+    <loc>https://syntheticinsights.net/zh-hant/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://syntheticinsights.net/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://syntheticinsights.net/de/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://syntheticinsights.net/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://syntheticinsights.net/fr/" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://syntheticinsights.net/id/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://syntheticinsights.net/it/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://syntheticinsights.net/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://syntheticinsights.net/ko/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://syntheticinsights.net/pt/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://syntheticinsights.net/ru/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://syntheticinsights.net/tr/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://syntheticinsights.net/zh-hans/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://syntheticinsights.net/zh-hant/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://syntheticinsights.net/" />
   </url>
   <url>
     <loc>https://syntheticinsights.net/privacy.html</loc>

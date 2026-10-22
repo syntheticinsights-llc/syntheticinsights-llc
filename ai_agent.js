@@ -1,10 +1,6 @@
 (() => {
-  const TASKS = [
-    { id: "flights", title: "Book flights" },
-    { id: "hotel", title: "Book hotel in Shinjuku" },
-    { id: "itinerary", title: "Plan day trips" },
-    { id: "passport", title: "Renew passport" },
-  ];
+  const TEXT = CARD_TEXT.agent;
+  const TASKS = ["flights", "hotel", "itinerary", "passport"].map((id) => ({ id, title: TEXT.tasks[id] }));
   const LINKS = [
     ["passport", "flights"],
     ["flights", "hotel"],
@@ -12,14 +8,13 @@
   ];
   const FINAL_ORDER = ["passport", "flights", "hotel", "itinerary"];
 
-  const PROMPTS = {
-    plan: "Plan my Tokyo trip next month",
-    urgent: "My passport expires soon, do it this week",
-  };
-  const REPLIES = {
-    plan: "Here's a plan. Flights wait on your passport, and the rest follow flights.",
-    urgent: "Done. Passport is now first, due Friday.",
-  };
+  const PROMPTS = { plan: TEXT.promptPlan, urgent: TEXT.promptUrgent };
+  const REPLIES = { plan: TEXT.replyPlan, urgent: TEXT.replyUrgent };
+  const WAITING_ON_PASSPORT = format(TEXT.waitingOn, { task: TEXT.tasks.passport });
+  const WAITING_ON_FLIGHTS = format(TEXT.waitingOn, { task: TEXT.tasks.flights });
+  const UPDATING_PASSPORT = format(TEXT.updating, { task: TEXT.tasks.passport });
+  const UPDATED_PASSPORT = format(TEXT.updated, { task: TEXT.tasks.passport });
+  const wordSegmenter = new Intl.Segmenter(document.documentElement.lang, { granularity: "word" });
 
   const ROW_STRIDE = 54;
   const ICON_Y = 16;
@@ -75,7 +70,7 @@
       this.root.innerHTML = `
         <div class="tg-header">
           <div class="tg-heading">
-            <span class="tg-eyebrow">AI agent</span>
+            <span class="tg-eyebrow">${TEXT.eyebrow}</span>
             <span class="tg-title"></span>
           </div>
           <span class="aa-status"></span>
@@ -92,19 +87,19 @@
               </div>
               <div class="aa-board">
                 <div class="aa-board__head">
-                  <span class="aa-board__title">Tokyo trip</span>
+                  <span class="aa-board__title">${TEXT.boardTitle}</span>
                   <span class="aa-board__count"></span>
                 </div>
                 <div class="aa-list">
-                  <span class="aa-list__empty">No tasks yet</span>
+                  <span class="aa-list__empty">${TEXT.empty}</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="tg-legend">
-          <span class="tg-legend__item"><span class="aa-chip aa-chip--legend" data-state="done">${STATUS_ICON}</span>Each step edits your real tasks</span>
-          <span class="tg-legend__item"><span class="aa-swatch"></span>Dependency the agent linked</span>
+          <span class="tg-legend__item"><span class="aa-chip aa-chip--legend" data-state="done">${STATUS_ICON}</span>${TEXT.legendEdits}</span>
+          <span class="tg-legend__item"><span class="aa-swatch"></span>${TEXT.legendLink}</span>
         </div>`;
       this.title = this.root.querySelector(".tg-title");
       this.status = this.root.querySelector(".aa-status");
@@ -218,7 +213,7 @@
 
     updateCount() {
       const shown = [...this.tasks.values()].filter((task) => task.element.dataset.state === "todo").length;
-      this.count.textContent = `${shown} task${shown === 1 ? "" : "s"}`;
+      this.count.textContent = plural(TEXT.taskCount, shown);
       this.board.classList.toggle("is-empty", shown === 0);
     }
 
@@ -356,9 +351,10 @@
 
     async stream(body, text) {
       const element = this.addText(body, "");
-      const words = text.split(" ");
+      const words = [...wordSegmenter.segment(text)].filter((part) => part.isWordLike).map((part) => part.index);
       await this.clock.tween(words.length * 70, (progress) => {
-        element.textContent = words.slice(0, Math.ceil(progress * words.length)).join(" ");
+        const shown = Math.ceil(progress * words.length);
+        element.textContent = shown < words.length ? text.slice(0, words[shown]).trimEnd() : text;
       });
     }
 
@@ -366,8 +362,8 @@
       this.root.classList.remove("is-leaving", "is-complete");
       this.thread.replaceChildren();
       this.composerText.textContent = "";
-      this.setTitle("Ask in plain words");
-      this.setStatus("idle", "Ready");
+      this.setTitle(TEXT.askPlain);
+      this.setStatus("idle", TEXT.ready);
       for (const task of this.tasks.values()) {
         task.y = 0;
         task.element.dataset.state = "hidden";
@@ -391,47 +387,47 @@
         await this.clock.wait(900);
 
         await this.typeInComposer(PROMPTS.plan);
-        this.setTitle("Agent drafts a plan");
-        this.setStatus("working", "Working…");
+        this.setTitle(TEXT.draftsPlan);
+        this.setStatus("working", TEXT.working);
         let body = this.addAgent();
         await this.think(body);
 
-        const createChip = this.addChip(body, "Creating 4 tasks");
+        const createChip = this.addChip(body, TEXT.creating);
         await this.flowPacket();
         for (const [index, task] of TASKS.entries()) {
           this.showTask(this.tasks.get(task.id), index);
           await this.clock.wait(200);
         }
-        this.resolveChip(createChip, "Created 4 tasks");
+        this.resolveChip(createChip, TEXT.created);
         await this.clock.wait(500);
 
-        const linkChip = this.addChip(body, "Linking dependencies");
-        this.setTitle("Linked into a real plan");
+        const linkChip = this.addChip(body, TEXT.linking);
+        this.setTitle(TEXT.linkedPlan);
         await this.flowPacket();
-        this.setDependency(flights, 2, "Waiting on Renew passport");
+        this.setDependency(flights, 2, WAITING_ON_PASSPORT);
         await this.drawLink(this.links[0]);
-        this.setDependency(hotel, 3, "Waiting on Book flights");
+        this.setDependency(hotel, 3, WAITING_ON_FLIGHTS);
         await this.drawLink(this.links[1]);
-        this.setDependency(itinerary, 3, "Waiting on Book flights");
+        this.setDependency(itinerary, 3, WAITING_ON_FLIGHTS);
         await this.drawLink(this.links[2]);
-        this.resolveChip(linkChip, "Linked 3 dependencies");
+        this.resolveChip(linkChip, TEXT.linked);
         await this.stream(body, REPLIES.plan);
-        this.setStatus("idle", "Ready");
+        this.setStatus("idle", TEXT.ready);
         await this.clock.wait(1600);
 
-        this.setTitle("Edits your real tasks");
+        this.setTitle(TEXT.editsReal);
         await this.typeInComposer(PROMPTS.urgent);
-        this.setStatus("working", "Working…");
+        this.setStatus("working", TEXT.working);
         body = this.addAgent();
         await this.think(body);
-        const updateChip = this.addChip(body, "Updating Renew passport");
+        const updateChip = this.addChip(body, UPDATING_PASSPORT);
         await this.flowPacket();
         await this.reorder(FINAL_ORDER);
-        this.setDue(passport, "Due Fri");
-        this.resolveChip(updateChip, "Updated Renew passport");
+        this.setDue(passport, TEXT.dueFriday);
+        this.resolveChip(updateChip, UPDATED_PASSPORT);
         await this.stream(body, REPLIES.urgent);
 
-        this.setStatus("done", "4 tasks · 3 links");
+        this.setStatus("done", TEXT.summary);
         this.root.classList.add("is-complete");
         await this.clock.wait(3400);
         this.root.classList.add("is-leaving");
@@ -444,25 +440,25 @@
       const { flights, hotel, itinerary, passport } = Object.fromEntries(this.tasks);
       this.addUser(PROMPTS.plan);
       let body = this.addAgent();
-      this.addChip(body, "Created 4 tasks", "done");
-      this.addChip(body, "Linked 3 dependencies", "done");
+      this.addChip(body, TEXT.created, "done");
+      this.addChip(body, TEXT.linked, "done");
       this.addText(body, REPLIES.plan);
       this.addUser(PROMPTS.urgent);
       body = this.addAgent();
-      this.addChip(body, "Updated Renew passport", "done");
+      this.addChip(body, UPDATED_PASSPORT, "done");
       this.addText(body, REPLIES.urgent);
       for (const [index, id] of FINAL_ORDER.entries()) this.showTask(this.tasks.get(id), index);
-      this.setDependency(flights, 2, "Waiting on Renew passport");
-      this.setDependency(hotel, 3, "Waiting on Book flights");
-      this.setDependency(itinerary, 3, "Waiting on Book flights");
-      this.setDue(passport, "Due Fri");
+      this.setDependency(flights, 2, WAITING_ON_PASSPORT);
+      this.setDependency(hotel, 3, WAITING_ON_FLIGHTS);
+      this.setDependency(itinerary, 3, WAITING_ON_FLIGHTS);
+      this.setDue(passport, TEXT.dueFriday);
       for (const link of this.links) {
         link.group.dataset.state = "linked";
         link.path.style.strokeDashoffset = 0;
       }
       this.layoutRows();
-      this.setTitle("Edits your real tasks");
-      this.setStatus("done", "4 tasks · 3 links");
+      this.setTitle(TEXT.editsReal);
+      this.setStatus("done", TEXT.summary);
       this.root.classList.add("is-complete");
     }
   }

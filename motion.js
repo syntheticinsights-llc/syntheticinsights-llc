@@ -60,3 +60,10 @@ const STATUS_ICON = `
     <circle class="tg-icon__dot" cx="12" cy="12" r="4.3" />
     <path class="tg-icon__check" d="M7.8 12.3l2.9 2.9 5.5-5.8" pathLength="1" />
   </svg>`;
+
+const CARD_TEXT = JSON.parse(document.getElementById("card-text").textContent);
+const pluralRules = new Intl.PluralRules(document.documentElement.lang);
+
+const format = (template, values) => template.replace(/\{(\w+)\}/g, (_, key) => values[key]);
+
+const plural = (forms, count) => format(forms[pluralRules.select(count)] ?? forms.other, { count });

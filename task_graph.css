@@ -474,6 +474,11 @@
     padding: 1rem;
   }
 
+  .tg-header {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
   .tg-viewport {
     padding: 1.25rem 0.75rem;
   }

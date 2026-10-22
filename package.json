@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "i18n": "node ./scripts/build-i18n.mjs",
     "store-promotion:serve": "node ./scripts/store-promotion-server.mjs",
     "store-promotion:export": "node ./scripts/export-store-promotion.mjs"
   },

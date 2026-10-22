@@ -1,42 +1,37 @@
 (() => {
+  const TEXT = CARD_TEXT.filters;
   const TASKS = [
-    { id: "ship", title: "Ship v1.0", state: "todo", important: true, due: "Fri" },
-    { id: "login", title: "Fix login crash", state: "doing", important: true, due: "Today", blocks: "v1.0" },
-    { id: "notes", title: "Write release notes", state: "todo", due: "Thu", blocks: "v1.0" },
-    { id: "qa", title: "QA testing", state: "todo", due: "Next wk", blocks: "v1.0" },
-    { id: "design", title: "Design UI", state: "done", blocks: "QA" },
-    { id: "cats", title: "Vaccinate cats", state: "todo", due: "Today" },
-    { id: "passport", title: "Renew passport", state: "todo", important: true, due: "Next mo" },
-    { id: "dentist", title: "Book dentist", state: "done" },
-  ];
+    { id: "ship", state: "todo", important: true, due: "fri" },
+    { id: "login", state: "doing", important: true, due: "today", blocks: "v1.0" },
+    { id: "notes", state: "todo", due: "thu", blocks: "v1.0" },
+    { id: "qa", state: "todo", due: "nextWeek", blocks: "v1.0" },
+    { id: "design", state: "done", blocks: "QA" },
+    { id: "cats", state: "todo", due: "today" },
+    { id: "passport", state: "todo", important: true, due: "nextMonth" },
+    { id: "dentist", state: "done" },
+  ].map((task) => ({ ...task, title: TEXT.tasks[task.id] }));
 
   const PREREQUISITES_OF_SHIP = new Set(["login", "notes", "qa", "design"]);
-  const DUE_THIS_WEEK = new Set(["Today", "Thu", "Fri"]);
+  const DUE_THIS_WEEK = new Set(["today", "thu", "fri"]);
 
   const CONDITIONS = [
     {
       kind: "status",
-      field: "Status",
-      value: "Not equals <b>Done</b>",
-      title: "Only open tasks",
+      ...TEXT.conditions.status,
       keep: (task) => task.state !== "done",
     },
     {
       kind: "blocks",
-      field: "Prior tasks of",
-      value: "All prerequisites of <b>Ship v1.0</b>",
-      title: "Everything blocking v1.0",
+      ...TEXT.conditions.blocks,
       keep: (task) => PREREQUISITES_OF_SHIP.has(task.id),
     },
     {
       kind: "due",
-      field: "Relative due date",
-      value: "Due within <b>This week</b>",
-      title: "Due this week",
+      ...TEXT.conditions.due,
       keep: (task) => DUE_THIS_WEEK.has(task.due),
     },
   ];
-  const FILTER_NAME = "Blocking v1.0 this week";
+  const FILTER_NAME = TEXT.filterName;
 
   const ROW_STRIDE = 34;
 
@@ -100,11 +95,11 @@
       this.root.innerHTML = `
         <div class="tg-header">
           <div class="tg-heading">
-            <span class="tg-eyebrow">Filters</span>
+            <span class="tg-eyebrow">${TEXT.eyebrow}</span>
             <span class="tg-title"></span>
           </div>
           <div class="tg-meter">
-            <span class="tg-meter__count"><b></b> / ${TASKS.length} tasks</span>
+            <span class="tg-meter__count">${format(TEXT.meter, { count: "<b></b>", total: TASKS.length })}</span>
             <span class="tg-meter__track"><span class="tg-meter__fill"></span></span>
           </div>
         </div>
@@ -113,11 +108,11 @@
             <div class="tg-stage">
               <div class="pf-builder">
                 <div class="pf-builder__head">
-                  <span class="pf-builder__title">New filter</span>
-                  <span class="pf-logic">Match all · AND</span>
+                  <span class="pf-builder__title">${TEXT.newFilter}</span>
+                  <span class="pf-logic">${TEXT.matchAll}</span>
                 </div>
                 <div class="pf-conds"></div>
-                <div class="pf-add">+ Add condition</div>
+                <div class="pf-add">${TEXT.addCondition}</div>
                 <div class="pf-save">
                   <span class="pf-save__label"></span>
                 </div>
@@ -133,8 +128,8 @@
           </div>
         </div>
         <div class="tg-legend">
-          <span class="tg-legend__item"><span class="pf-logic pf-logic--legend">AND / OR</span>Combine any conditions</span>
-          <span class="tg-legend__item">Status · importance · title · dates · dependencies</span>
+          <span class="tg-legend__item"><span class="pf-logic pf-logic--legend">${TEXT.andOr}</span>${TEXT.legendCombine}</span>
+          <span class="tg-legend__item">${TEXT.legendFields}</span>
         </div>`;
       this.title = this.root.querySelector(".tg-title");
       this.meterCount = this.root.querySelector(".tg-meter__count b");
@@ -169,8 +164,8 @@
       element.innerHTML = `
         ${STATUS_ICON}
         <span class="pf-row__title">${task.important ? STAR_ICON : ""}<span>${task.title}</span></span>
-        <span class="pf-tag pf-tag--blocks">${task.blocks ? `${LINK_ICON}Blocks ${task.blocks}` : ""}</span>
-        <span class="pf-tag pf-tag--due">${task.due ?? ""}</span>`;
+        <span class="pf-tag pf-tag--blocks">${task.blocks ? `${LINK_ICON}${format(TEXT.blocks, { task: task.blocks })}` : ""}</span>
+        <span class="pf-tag pf-tag--due">${task.due ? TEXT.due[task.due] : ""}</span>`;
       this.list.append(element);
       return { ...task, initialState: task.state, element, shown: true, y: 0 };
     }
@@ -236,7 +231,7 @@
       element.dataset.state = "editing";
       element.dataset.kind = condition.kind;
       element.innerHTML = `
-        ${index ? '<span class="pf-cond__and">AND</span>' : ""}
+        ${index ? `<span class="pf-cond__and">${TEXT.and}</span>` : ""}
         <span class="pf-cond__icon">${CONDITION_ICONS[condition.kind]}</span>
         <span class="pf-cond__text">
           <span class="pf-cond__field">${condition.field}</span>
@@ -268,8 +263,8 @@
     setSaved(saved) {
       this.results.classList.toggle("is-saved", saved);
       this.save.dataset.state = saved ? "saved" : "idle";
-      this.saveLabel.textContent = saved ? "Saved to Filters" : "Save filter";
-      this.resultsName.textContent = saved ? FILTER_NAME : "All tasks";
+      this.saveLabel.textContent = saved ? TEXT.savedToFilters : TEXT.saveFilter;
+      this.resultsName.textContent = saved ? FILTER_NAME : TEXT.allTasks;
     }
 
     async press(element) {
@@ -287,7 +282,7 @@
       }
       this.applyFilter([]);
       this.setSaved(false);
-      this.setTitle("All tasks");
+      this.setTitle(TEXT.allTasks);
     }
 
     async loop() {
@@ -313,10 +308,10 @@
 
         await this.press(this.save);
         this.setSaved(true);
-        this.setTitle("Saved as a filter");
+        this.setTitle(TEXT.savedAsFilter);
         await this.clock.wait(2000);
 
-        this.setTitle("Updates as you work");
+        this.setTitle(TEXT.updatesAsYouWork);
         this.setRowState(login, "done");
         flash(login.element);
         await this.clock.wait(1000);
@@ -336,7 +331,7 @@
       }
       this.applyFilter(CONDITIONS);
       this.setSaved(true);
-      this.setTitle("Saved as a filter");
+      this.setTitle(TEXT.savedAsFilter);
       this.root.classList.add("is-complete");
     }
   }

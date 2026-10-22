@@ -6,6 +6,8 @@
         <title>Reset Password | Smartodo</title>
         <link rel="icon" href="smartodo_assets/icon.svg" type="image/svg+xml" />
         <link rel="stylesheet" href="styles.css" />
+        <script src="account_text.js"></script>
+        <script src="i18n.js"></script>
     </head>
     <body>
         <header class="site-header">
@@ -15,14 +17,14 @@
                         class="logo-mark"
                         src="smartodo_assets/icon.svg"
                         alt="Smartodo icon"
+                        data-i18n-alt="logoAlt"
                     />
                     <span class="logo-type">Smartodo</span>
                 </div>
                 <nav class="site-nav">
-                    <a href="index.html#features">Features</a>
-                    <a href="index.html#downloads">Downloads</a>
-                    <a href="index.html#about">About</a>
-                    <a href="privacy.html">Privacy</a>
+                    <a href="index.html#features" data-landing-link="#features" data-i18n="navFeatures">Features</a>
+                    <a href="index.html#downloads" data-landing-link="#downloads" data-i18n="navDownloads">Downloads</a>
+                    <a href="privacy.html" data-i18n="navPrivacy">Privacy</a>
                 </nav>
             </div>
         </header>
@@ -30,32 +32,34 @@
         <main class="auth-page">
             <div class="container">
                 <div class="auth-card">
-                    <p class="eyebrow">Reset password</p>
-                    <h1>Set a new password</h1>
-                    <p class="lead">Update your Smartodo password and sign in again.</p>
+                    <p class="eyebrow" data-i18n="reset.eyebrow">Reset password</p>
+                    <h1 data-i18n="reset.heading">Set a new password</h1>
+                    <p class="lead" data-i18n="reset.lead">Update your Smartodo password and sign in again.</p>
 
                     <div class="field">
-                        <label for="password">New password</label>
+                        <label for="password" data-i18n="reset.passwordLabel">New password</label>
                         <input
                             id="password"
                             type="password"
                             placeholder="Enter a new password"
+                            data-i18n-placeholder="reset.passwordPlaceholder"
                             autocomplete="new-password"
                         />
                     </div>
 
                     <div class="field">
-                        <label for="confirm">Confirm new password</label>
+                        <label for="confirm" data-i18n="reset.confirmLabel">Confirm new password</label>
                         <input
                             id="confirm"
                             type="password"
                             placeholder="Re-enter the password"
+                            data-i18n-placeholder="reset.confirmPlaceholder"
                             autocomplete="new-password"
                         />
                     </div>
 
                     <div class="form-actions">
-                        <button id="submit" class="button primary" type="button">
+                        <button id="submit" class="button primary" type="button" data-i18n="reset.submit">
                             Update password
                         </button>
                     </div>
@@ -73,6 +77,7 @@
             const SUPABASE_ANON_KEY =
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhqc3loZWphY2ZuZHJhcnl5cWFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU4MjcxODAsImV4cCI6MjA2MTQwMzE4MH0.xaY6wwxMZqi_zkICjXS4H3IDNwV9z3YGGXIBzve2eEM";
 
+            const text = applyAccountText("reset");
             const statusEl = document.getElementById("status");
             const passwordInput = document.getElementById("password");
             const confirmInput = document.getElementById("confirm");
@@ -104,12 +109,12 @@
                 const token = getTokenFromQuery();
 
                 if (!token && !tokenHash) {
-                    setStatus("Reset link is missing token. Request a new reset email.", "error");
+                    setStatus(text.missingToken, "error");
                     toggleForm(false);
                     return false;
                 }
 
-                setStatus("Verifying reset link…");
+                setStatus(text.verifying);
 
                 // Try token_hash first (preferred), then token (short OTP style)
                 try {
@@ -131,12 +136,12 @@
 
                     // Remove tokens from URL for privacy
                     cleanUrl();
-                    setStatus("Link verified. Please enter a new password.");
+                    setStatus(text.verified);
                     toggleForm(true);
                     return true;
                 } catch (err) {
                     console.error(err);
-                    setStatus(err?.message || "Reset link is invalid or expired.", "error");
+                    setStatus(text.invalidLink, "error");
                     toggleForm(false);
                     return false;
                 }
@@ -145,7 +150,7 @@
             const run = async () => {
                 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
                 toggleForm(false);
-                setStatus("Checking reset link...");
+                setStatus(text.checking);
 
                 const ok = await validateRecoveryLink(supabase);
                 if (!ok) return;
@@ -155,28 +160,28 @@
                     const confirm = confirmInput.value.trim();
 
                     if (password.length < 8) {
-                        setStatus("Password must be at least 8 characters.", "error");
+                        setStatus(text.tooShort, "error");
                         return;
                     }
                     if (password !== confirm) {
-                        setStatus("Passwords do not match.", "error");
+                        setStatus(text.mismatch, "error");
                         return;
                     }
 
                     toggleForm(false);
-                    submitBtn.textContent = "Updating…";
+                    submitBtn.textContent = text.submitting;
 
                     const { error } = await supabase.auth.updateUser({ password });
                     if (error) {
                         console.error(error);
-                        setStatus(error.message || "Could not update password. Try again.", "error");
+                        setStatus(text.updateFailed, "error");
                         toggleForm(true);
-                        submitBtn.textContent = "Update password";
+                        submitBtn.textContent = text.submit;
                         return;
                     }
 
-                    setStatus("Password updated. You can close this page and sign in again.", "success");
-                    submitBtn.textContent = "Updated";
+                    setStatus(text.success, "success");
+                    submitBtn.textContent = text.submitted;
                 });
             };
 
