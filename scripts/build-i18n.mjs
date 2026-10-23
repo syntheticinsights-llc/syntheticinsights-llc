@@ -102,7 +102,7 @@ const renderPage = (template, locale, text) => {
     description: text.page.ldDescription,
     inLanguage: locale.hreflang,
     url: urlOf(locale),
-    image: `${SITE_URL}assets/img/graph.png`,
+    image: `${SITE_URL}assets/img/share/smartodo-${locale.code}.png`,
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     featureList: text.page.ldFeatures,
     author: { "@type": "Organization", name: "Synthetic Insights", url: SITE_URL },

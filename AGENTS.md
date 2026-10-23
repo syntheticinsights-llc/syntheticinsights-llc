@@ -11,6 +11,7 @@ The `store_promotion/` workspace is a separate static tool for generating App St
 The site needs no install step, but the localized landing pages are built from source. Use a local static server for preview:
 
 - `npm run i18n` — regenerate the localized landing pages after changing `i18n/` (needs Node, no dependencies).
+- `npm run share-preview` — re-render the per-language social share cards into `assets/img/share/` after changing `scripts/share-preview.template.html` (uses a local Chromium; set `CHROME_PATH` if it is not in `/Applications`).
 - `python3 -m http.server 8000` — serve the repository root for general page review.
 - `open http://localhost:8000/` — open the landing site in a browser.
 - `./open_store_promotion.command` — launch the screenshot workspace with an available local port and open `/store_promotion/` in Chrome.
