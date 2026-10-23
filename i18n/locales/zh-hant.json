@@ -5,10 +5,10 @@
     "ogLocale": "zh_TW"
   },
   "page": {
-    "title": "Smartodo | 具備任務依賴圖的本機優先任務管理工具",
-    "description": "Smartodo (Smart To Do) 是一款智慧型的本機優先任務管理工具，內建任務依賴圖（DAG）、視覺化工作流程與離線優先的隱私保護，專為邏輯型思考者打造。",
+    "title": "Smartodo —— 具備任務依賴的 Smart Todo 應用程式",
+    "description": "Smartodo 是一款智慧型的本機優先任務管理工具，內建任務依賴圖（DAG）、視覺化工作流程與離線優先的隱私保護，專為邏輯型思考者打造。",
     "keywords": "Smartodo, 任務依賴圖, DAG, 本機優先待辦, 任務管理, 視覺化工作流程, 生產力工具, GTD, smart to do, smart todo",
-    "ogTitle": "Smartodo - 具備任務依賴圖的本機優先任務管理工具",
+    "ogTitle": "Smartodo —— 具備任務依賴的 Smart Todo 應用程式",
     "ogDescription": "一款智慧型的本機優先任務管理工具，內建任務依賴圖（DAG）與視覺化工作流程。",
     "ldDescription": "Smartodo 是一款本機優先的任務管理工具，內建任務依賴圖（DAG）、視覺化工作流程與離線優先的智慧功能，專為邏輯型思考者打造。",
     "ldFeatures": [

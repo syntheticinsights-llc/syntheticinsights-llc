@@ -5,10 +5,10 @@
     "ogLocale": "pt_BR"
   },
   "page": {
-    "title": "Smartodo | Gerenciador de tarefas local-first com grafo de dependências",
-    "description": "Smartodo (Smart To Do) é um gerenciador de tarefas inteligente e local-first, com grafo nativo de dependências entre tarefas (DAG), fluxos de trabalho visuais e privacidade offline-first para mentes lógicas.",
+    "title": "Smartodo — um Smart Todo App com dependências de tarefas",
+    "description": "Smartodo é um gerenciador de tarefas inteligente e local-first, com grafo nativo de dependências entre tarefas (DAG), fluxos de trabalho visuais e privacidade offline-first para mentes lógicas.",
     "keywords": "Smartodo, grafo de dependências de tarefas, DAG, lista de tarefas local-first, gerenciador de tarefas, fluxo de trabalho visual, produtividade, GTD, smart to do, smart todo",
-    "ogTitle": "Smartodo – Gerenciador de tarefas local-first com grafo de dependências",
+    "ogTitle": "Smartodo — um Smart Todo App com dependências de tarefas",
     "ogDescription": "Um gerenciador de tarefas inteligente e local-first, com grafos nativos de dependências entre tarefas (DAG) e fluxos de trabalho visuais.",
     "ldDescription": "Smartodo é um gerenciador de tarefas local-first com grafo nativo de dependências entre tarefas (DAG), fluxos de trabalho visuais e inteligência offline-first para mentes lógicas.",
     "ldFeatures": [

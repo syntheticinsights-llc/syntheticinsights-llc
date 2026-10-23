@@ -5,10 +5,10 @@
     "ogLocale": "zh_CN"
   },
   "page": {
-    "title": "Smartodo | 带任务依赖图的本地优先任务管理器",
-    "description": "Smartodo (Smart To Do) 是一款智能的本地优先任务管理器，内置任务依赖图（DAG）、可视化工作流和离线优先的隐私保护，专为逻辑型思考者打造。",
+    "title": "Smartodo —— 带任务依赖的 Smart Todo 应用",
+    "description": "Smartodo 是一款智能的本地优先任务管理器，内置任务依赖图（DAG）、可视化工作流和离线优先的隐私保护，专为逻辑型思考者打造。",
     "keywords": "Smartodo, 任务依赖图, DAG, 本地优先待办, 任务管理, 可视化工作流, 效率工具, GTD, smart to do, smart todo",
-    "ogTitle": "Smartodo - 带任务依赖图的本地优先任务管理器",
+    "ogTitle": "Smartodo —— 带任务依赖的 Smart Todo 应用",
     "ogDescription": "一款智能的本地优先任务管理器，内置任务依赖图（DAG）和可视化工作流。",
     "ldDescription": "Smartodo 是一款本地优先的任务管理器，内置任务依赖图（DAG）、可视化工作流和离线优先的智能功能，专为逻辑型思考者打造。",
     "ldFeatures": [

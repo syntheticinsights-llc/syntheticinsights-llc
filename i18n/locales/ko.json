@@ -5,10 +5,10 @@
     "ogLocale": "ko_KR"
   },
   "page": {
-    "title": "Smartodo | 의존성 그래프를 갖춘 로컬 우선 작업 관리자",
-    "description": "Smartodo (Smart To Do)는 작업 의존성 그래프(DAG), 시각적 워크플로, 오프라인 우선 개인정보 보호를 갖춘, 논리적으로 생각하는 사람을 위한 지능형 로컬 우선 작업 관리자입니다.",
+    "title": "Smartodo — 작업 의존성을 갖춘 Smart Todo 앱",
+    "description": "Smartodo는 작업 의존성 그래프(DAG), 시각적 워크플로, 오프라인 우선 개인정보 보호를 갖춘, 논리적으로 생각하는 사람을 위한 지능형 로컬 우선 작업 관리자입니다.",
     "keywords": "Smartodo, 작업 의존성 그래프, DAG, 로컬 우선 할 일, 작업 관리자, 시각적 워크플로, 생산성, GTD, smart to do, smart todo",
-    "ogTitle": "Smartodo – 의존성 그래프를 갖춘 로컬 우선 작업 관리자",
+    "ogTitle": "Smartodo — 작업 의존성을 갖춘 Smart Todo 앱",
     "ogDescription": "작업 의존성 그래프(DAG)와 시각적 워크플로를 기본으로 갖춘 지능형 로컬 우선 작업 관리자입니다.",
     "ldDescription": "Smartodo는 작업 의존성 그래프(DAG), 시각적 워크플로, 오프라인 우선 인텔리전스를 갖춘, 논리적으로 생각하는 사람을 위한 로컬 우선 작업 관리자입니다.",
     "ldFeatures": [

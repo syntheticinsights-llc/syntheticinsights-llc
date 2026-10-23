@@ -5,10 +5,10 @@
     "ogLocale": "tr_TR"
   },
   "page": {
-    "title": "Smartodo | Bağımlılık grafiğine sahip local-first görev yöneticisi",
-    "description": "Smartodo (Smart To Do); yerleşik görev bağımlılık grafiği (DAG), görsel iş akışları ve çevrimdışı öncelikli gizlilik sunan, mantıkla düşünenler için akıllı, local-first bir görev yöneticisidir.",
+    "title": "Smartodo — görev bağımlılıkları olan Smart Todo uygulaması",
+    "description": "Smartodo; yerleşik görev bağımlılık grafiği (DAG), görsel iş akışları ve çevrimdışı öncelikli gizlilik sunan, mantıkla düşünenler için akıllı, local-first bir görev yöneticisidir.",
     "keywords": "Smartodo, görev bağımlılık grafiği, DAG, local-first yapılacaklar, görev yöneticisi, görsel iş akışı, verimlilik, GTD, smart to do, smart todo",
-    "ogTitle": "Smartodo – Bağımlılık grafiğine sahip local-first görev yöneticisi",
+    "ogTitle": "Smartodo — görev bağımlılıkları olan Smart Todo uygulaması",
     "ogDescription": "Yerleşik görev bağımlılık grafikleri (DAG) ve görsel iş akışları sunan akıllı, local-first bir görev yöneticisi.",
     "ldDescription": "Smartodo; yerleşik görev bağımlılık grafiği (DAG), görsel iş akışları ve çevrimdışı öncelikli zekâ sunan, mantıkla düşünenler için local-first bir görev yöneticisidir.",
     "ldFeatures": [

@@ -5,10 +5,10 @@
     "ogLocale": "de_DE"
   },
   "page": {
-    "title": "Smartodo | Local-first-Aufgabenverwaltung mit Abhängigkeitsgraph",
-    "description": "Smartodo (Smart To Do) ist eine intelligente Local-first-Aufgabenverwaltung mit nativem Abhängigkeitsgraphen (DAG), visuellen Workflows und Offline-first-Datenschutz für strukturierte Denker.",
+    "title": "Smartodo — eine Smart-Todo-App mit Aufgabenabhängigkeiten",
+    "description": "Smartodo ist eine intelligente Local-first-Aufgabenverwaltung mit nativem Abhängigkeitsgraphen (DAG), visuellen Workflows und Offline-first-Datenschutz für strukturierte Denker.",
     "keywords": "Smartodo, Abhängigkeitsgraph, Aufgabenabhängigkeiten, DAG, Local-first To-do, Aufgabenverwaltung, visueller Workflow, Produktivität, GTD, smart to do, smart todo",
-    "ogTitle": "Smartodo – Local-first-Aufgabenverwaltung mit Abhängigkeitsgraph",
+    "ogTitle": "Smartodo — eine Smart-Todo-App mit Aufgabenabhängigkeiten",
     "ogDescription": "Eine intelligente Local-first-Aufgabenverwaltung mit nativen Abhängigkeitsgraphen (DAG) und visuellen Workflows.",
     "ldDescription": "Smartodo ist eine Local-first-Aufgabenverwaltung mit nativem Abhängigkeitsgraphen (DAG), visuellen Workflows und Offline-first-Intelligenz für strukturierte Denker.",
     "ldFeatures": [

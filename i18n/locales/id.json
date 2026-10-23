@@ -5,10 +5,10 @@
     "ogLocale": "id_ID"
   },
   "page": {
-    "title": "Smartodo | Pengelola tugas local-first dengan grafik ketergantungan",
-    "description": "Smartodo (Smart To Do) adalah pengelola tugas cerdas dan local-first dengan grafik ketergantungan tugas bawaan (DAG), alur kerja visual, dan privasi offline-first untuk pemikir logis.",
+    "title": "Smartodo — Smart Todo App dengan dependensi tugas",
+    "description": "Smartodo adalah pengelola tugas cerdas dan local-first dengan grafik ketergantungan tugas bawaan (DAG), alur kerja visual, dan privasi offline-first untuk pemikir logis.",
     "keywords": "Smartodo, grafik ketergantungan tugas, DAG, daftar tugas local-first, pengelola tugas, alur kerja visual, produktivitas, GTD, smart to do, smart todo",
-    "ogTitle": "Smartodo – Pengelola tugas local-first dengan grafik ketergantungan",
+    "ogTitle": "Smartodo — Smart Todo App dengan dependensi tugas",
     "ogDescription": "Pengelola tugas cerdas dan local-first dengan grafik ketergantungan tugas bawaan (DAG) dan alur kerja visual.",
     "ldDescription": "Smartodo adalah pengelola tugas local-first dengan grafik ketergantungan tugas bawaan (DAG), alur kerja visual, dan kecerdasan offline-first untuk pemikir logis.",
     "ldFeatures": [

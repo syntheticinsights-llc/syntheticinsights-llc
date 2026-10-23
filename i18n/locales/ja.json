@@ -5,10 +5,10 @@
     "ogLocale": "ja_JP"
   },
   "page": {
-    "title": "Smartodo | 依存関係グラフを備えたローカルファーストのタスク管理",
-    "description": "Smartodo (Smart To Do) は、タスクの依存関係グラフ（DAG）、ビジュアルなワークフロー、オフラインファーストのプライバシーを備えた、論理的に考える人のためのインテリジェントなローカルファーストのタスク管理アプリです。",
+    "title": "Smartodo — タスク依存関係を備えた Smart Todo アプリ",
+    "description": "Smartodo は、タスクの依存関係グラフ（DAG）、ビジュアルなワークフロー、オフラインファーストのプライバシーを備えた、論理的に考える人のためのインテリジェントなローカルファーストのタスク管理アプリです。",
     "keywords": "Smartodo, タスク 依存関係 グラフ, DAG, ローカルファースト ToDo, タスク管理, ビジュアル ワークフロー, 生産性, GTD, smart to do, smart todo",
-    "ogTitle": "Smartodo – 依存関係グラフを備えたローカルファーストのタスク管理",
+    "ogTitle": "Smartodo — タスク依存関係を備えた Smart Todo アプリ",
     "ogDescription": "タスクの依存関係グラフ（DAG）とビジュアルなワークフローを備えた、インテリジェントなローカルファーストのタスク管理アプリ。",
     "ldDescription": "Smartodo は、タスクの依存関係グラフ（DAG）、ビジュアルなワークフロー、オフラインファーストの AI 機能を備えた、論理的に考える人のためのローカルファーストのタスク管理アプリです。",
     "ldFeatures": [
