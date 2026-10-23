@@ -429,6 +429,13 @@ ul {
   color: var(--text-muted);
 }
 
+.hero .hero-alias {
+  margin-top: 0.9rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  opacity: 0.85;
+}
+
 .hero-actions {
   display: flex;
   gap: 1rem;

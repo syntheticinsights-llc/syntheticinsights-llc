@@ -97,6 +97,11 @@ const renderPage = (template, locale, text) => {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "Smartodo",
+    alternateName: ["Smart To Do", "Smart Todo"],
+    sameAs: [
+      "https://apps.apple.com/app/id6755520449",
+      "https://play.google.com/store/apps/details?id=net.syntheticinsights.smartodo",
+    ],
     applicationCategory: "ProductivityApplication",
     operatingSystem: "macOS, iOS, Android, Windows, Linux",
     description: text.page.ldDescription,
