@@ -1,10 +1,9 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
+      /* Fixed light background: the site swaps this file for icon_dark.svg based on
+         the page theme, so the icon must not follow the OS preference on its own. */
       .bg { fill: #F8F9FA; }
-      @media (prefers-color-scheme: dark) {
-        .bg { fill: #202124; }
-      }
     </style>
 
     <!-- 对勾紫色渐变 -->
