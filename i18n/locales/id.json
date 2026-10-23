@@ -53,16 +53,23 @@
     "footerTagline": "Dibuat dengan menjaga privasi, untuk Anda yang peduli pada fokus.",
     "footerPrivacy": "Kebijakan Privasi",
     "footerDelete": "Hapus Akun",
-    "footerContact": "Kontak:"
+    "footerContact": "Kontak:",
+    "themeToggleLabel": "Ganti tema"
   },
   "cards": {
     "sync": {
       "eyebrow": "Sinkronisasi local-first",
-      "tasks": ["Susun proposal", "Pesan tiket pesawat", "Perpanjang paspor"],
+      "tasks": [
+        "Susun proposal",
+        "Pesan tiket pesawat",
+        "Perpanjang paspor"
+      ],
       "yourProvider": "{provider} Anda",
       "legendData": "Data tugas hanya masuk ke penyimpanan Anda",
       "legendSignal": "Server kami hanya meneruskan sinyal perubahan",
-      "pending": { "other": "{count} perubahan tertunda" },
+      "pending": {
+        "other": "{count} perubahan tertunda"
+      },
       "allSynced": "Semua perangkat sinkron",
       "uploading": "Mengunggah",
       "received": "Diterima dari {device}",
@@ -118,7 +125,9 @@
       "empty": "Belum ada tugas",
       "legendEdits": "Setiap langkah mengubah tugas Anda yang sebenarnya",
       "legendLink": "Ketergantungan yang ditautkan agen",
-      "taskCount": { "other": "{count} tugas" },
+      "taskCount": {
+        "other": "{count} tugas"
+      },
       "askPlain": "Minta dengan bahasa sehari-hari",
       "ready": "Siap",
       "working": "Bekerja…",
@@ -259,6 +268,7 @@
       "signInFailed": "Kredensial akun Anda tidak dapat diverifikasi.",
       "deleteFailed": "Akun Anda tidak dapat dihapus. Silakan coba lagi.",
       "success": "Akun Anda telah dihapus secara permanen."
-    }
+    },
+    "themeToggleLabel": "Ganti tema"
   }
 }

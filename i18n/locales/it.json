@@ -53,16 +53,25 @@
     "footerTagline": "Creato con la privacy in mente, per chi tiene alla concentrazione.",
     "footerPrivacy": "Informativa sulla privacy",
     "footerDelete": "Elimina account",
-    "footerContact": "Contatti:"
+    "footerContact": "Contatti:",
+    "themeToggleLabel": "Cambia tema"
   },
   "cards": {
     "sync": {
       "eyebrow": "Sync local-first",
-      "tasks": ["Scrivere la proposta", "Prenotare i voli", "Rinnovare il passaporto"],
+      "tasks": [
+        "Scrivere la proposta",
+        "Prenotare i voli",
+        "Rinnovare il passaporto"
+      ],
       "yourProvider": "Il tuo {provider}",
       "legendData": "I dati delle attività vanno solo nel tuo spazio",
       "legendSignal": "Il nostro server inoltra solo un segnale di modifica",
-      "pending": { "one": "{count} modifica in attesa", "many": "{count} modifiche in attesa", "other": "{count} modifiche in attesa" },
+      "pending": {
+        "one": "{count} modifica in attesa",
+        "many": "{count} modifiche in attesa",
+        "other": "{count} modifiche in attesa"
+      },
       "allSynced": "Tutto sincronizzato",
       "uploading": "Caricamento",
       "received": "Ricevuto da {device}",
@@ -118,7 +127,11 @@
       "empty": "Ancora nessuna attività",
       "legendEdits": "Ogni passaggio modifica le tue attività reali",
       "legendLink": "Dipendenza collegata dall’agente",
-      "taskCount": { "one": "{count} attività", "many": "{count} attività", "other": "{count} attività" },
+      "taskCount": {
+        "one": "{count} attività",
+        "many": "{count} attività",
+        "other": "{count} attività"
+      },
       "askPlain": "Chiedi con parole tue",
       "ready": "Pronto",
       "working": "Al lavoro…",
@@ -259,6 +272,7 @@
       "signInFailed": "Impossibile verificare le credenziali del tuo account.",
       "deleteFailed": "Impossibile eliminare il tuo account. Riprova.",
       "success": "Il tuo account è stato eliminato definitivamente."
-    }
+    },
+    "themeToggleLabel": "Cambia tema"
   }
 }

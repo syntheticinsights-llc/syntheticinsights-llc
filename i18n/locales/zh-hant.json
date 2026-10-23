@@ -53,16 +53,23 @@
     "footerTagline": "以隱私為本，為重視專注的人而打造。",
     "footerPrivacy": "隱私權政策",
     "footerDelete": "刪除帳戶",
-    "footerContact": "聯絡我們："
+    "footerContact": "聯絡我們：",
+    "themeToggleLabel": "切換主題"
   },
   "cards": {
     "sync": {
       "eyebrow": "本機優先同步",
-      "tasks": ["草擬提案", "預訂機票", "換發護照"],
+      "tasks": [
+        "草擬提案",
+        "預訂機票",
+        "換發護照"
+      ],
       "yourProvider": "你的 {provider}",
       "legendData": "任務資料只存入你自己的儲存空間",
       "legendSignal": "我們的伺服器只轉送變更訊號",
-      "pending": { "other": "{count} 項變更待同步" },
+      "pending": {
+        "other": "{count} 項變更待同步"
+      },
       "allSynced": "所有裝置已同步",
       "uploading": "上傳中",
       "received": "已收到 {device} 的變更",
@@ -118,7 +125,9 @@
       "empty": "還沒有任務",
       "legendEdits": "每一步都會修改你真實的任務",
       "legendLink": "助理連結的依賴關係",
-      "taskCount": { "other": "{count} 個任務" },
+      "taskCount": {
+        "other": "{count} 個任務"
+      },
       "askPlain": "用日常的話提出需求",
       "ready": "就緒",
       "working": "處理中…",
@@ -259,6 +268,7 @@
       "signInFailed": "無法驗證你的帳戶憑證。",
       "deleteFailed": "無法刪除你的帳戶，請再試一次。",
       "success": "你的帳戶已被永久刪除。"
-    }
+    },
+    "themeToggleLabel": "切換主題"
   }
 }

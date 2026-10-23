@@ -6,6 +6,26 @@
   --tg-ink: var(--text, #0f172a);
   --tg-muted: #8f8a9c;
   --tg-line: #e4e0ec;
+  --tg-surface: #ffffff;
+  --tg-surface-card: #ffffff;
+  --tg-surface-elevated: #faf9fc;
+  --tg-surface-subtle: #f4f1f8;
+  --tg-border-subtle: #ebe7f2;
+  --tg-divider: #f0edf5;
+  --tg-input-bg: #f3f1f6;
+  --tg-badge-bg: #ece8f2;
+  --tg-viewport-dot: rgba(15, 23, 42, 0.085);
+  --tg-viewport-bg1: #fbfaff;
+  --tg-viewport-bg2: #f7f5fc;
+  --tg-viewport-border: #efecf5;
+  --tg-edge-base: #d6d1e0;
+  --tg-port-fill: #ffffff;
+  --tg-port-stroke: #cfc9da;
+  --tg-meter-track: #f0edf5;
+  --tg-card-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 6px 16px -10px rgba(15, 23, 42, 0.18);
+  --tg-node-blocked-bg: #fcfbfe;
+  --tg-node-done-bg: #f8f7fa;
+  --tg-node-done-border: #ebe8f0;
   --tg-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
   position: relative;
   display: flex;
@@ -13,11 +33,42 @@
   gap: 1rem;
   padding: 1.25rem;
   border-radius: var(--radius-lg, 24px);
-  background: #fff;
+  background: var(--tg-surface);
   border: 1px solid rgba(var(--tg-accent-rgb), 0.12);
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 24px 48px -24px rgba(var(--tg-accent-rgb), 0.28);
   color: var(--tg-ink);
   font-variant-numeric: tabular-nums;
+}
+
+[data-theme="dark"] .tg {
+  --tg-variant: #b5afc4;
+  --tg-outline: #777286;
+  --tg-ink: var(--text, #f3f0fa);
+  --tg-muted: #9590a3;
+  --tg-line: rgba(170, 119, 255, 0.16);
+  --tg-surface: #151224;
+  --tg-surface-card: #1c182e;
+  --tg-surface-elevated: #221e38;
+  --tg-surface-subtle: #24203a;
+  --tg-border-subtle: rgba(170, 119, 255, 0.14);
+  --tg-divider: rgba(170, 119, 255, 0.12);
+  --tg-input-bg: #201c36;
+  --tg-badge-bg: #282342;
+  --tg-viewport-dot: rgba(255, 255, 255, 0.08);
+  --tg-viewport-bg1: #110e1d;
+  --tg-viewport-bg2: #0e0c18;
+  --tg-viewport-border: rgba(170, 119, 255, 0.15);
+  --tg-edge-base: #393352;
+  --tg-port-fill: #1c182e;
+  --tg-port-stroke: #4e476d;
+  --tg-meter-track: #26213d;
+  --tg-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 8px 20px -8px rgba(0, 0, 0, 0.6);
+  --tg-node-blocked-bg: #191629;
+  --tg-node-done-bg: #141122;
+  --tg-node-done-border: #231f36;
+  background: var(--tg-surface);
+  border-color: rgba(var(--tg-accent-rgb), 0.18);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 24px 48px -24px rgba(0, 0, 0, 0.7);
 }
 
 .tg-header {
@@ -85,7 +136,7 @@
   width: 132px;
   height: 6px;
   border-radius: 999px;
-  background: #f0edf5;
+  background: var(--tg-meter-track);
   overflow: hidden;
 }
 
@@ -103,9 +154,9 @@
   padding: 1.75rem 1.25rem;
   border-radius: var(--radius-md, 16px);
   background:
-    radial-gradient(circle, rgba(15, 23, 42, 0.085) 1px, transparent 1.4px) 0 0 / 20px 20px,
-    linear-gradient(180deg, #fbfaff, #f7f5fc);
-  border: 1px solid #efecf5;
+    radial-gradient(circle, var(--tg-viewport-dot) 1px, transparent 1.4px) 0 0 / 20px 20px,
+    linear-gradient(180deg, var(--tg-viewport-bg1), var(--tg-viewport-bg2));
+  border: 1px solid var(--tg-viewport-border);
 }
 
 .tg-fit {
@@ -140,7 +191,7 @@
 }
 
 .tg-edge__base {
-  stroke: #d6d1e0;
+  stroke: var(--tg-edge-base);
   stroke-width: 1.5;
 }
 
@@ -155,8 +206,8 @@
 }
 
 .tg-port {
-  fill: #fff;
-  stroke: #cfc9da;
+  fill: var(--tg-port-fill);
+  stroke: var(--tg-port-stroke);
   stroke-width: 1.5;
   opacity: 0;
   transition: opacity 0.3s ease, fill 0.3s ease, stroke 0.3s ease;
@@ -169,12 +220,12 @@
 .tg-edge[data-state="active"] .tg-port--start,
 .tg-edge.is-filled .tg-port--end {
   fill: var(--tg-accent);
-  stroke: #fff;
+  stroke: var(--tg-surface);
 }
 
 .tg-edge[data-state="done"] .tg-port {
   fill: #c9b3f0;
-  stroke: #fff;
+  stroke: var(--tg-surface);
 }
 
 .tg-edge__head {
@@ -200,9 +251,9 @@
   gap: 0.65rem;
   padding: 0 0.75rem 0 0.85rem;
   border-radius: 14px;
-  background: #fff;
+  background: var(--tg-surface);
   border: 1px solid var(--tg-line);
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 6px 16px -10px rgba(15, 23, 42, 0.18);
+  box-shadow: var(--tg-card-shadow);
   transition: opacity 0.45s var(--tg-ease), transform 0.45s var(--tg-ease),
     border-color 0.35s ease, box-shadow 0.35s ease, background-color 0.35s ease;
 }
@@ -226,7 +277,7 @@
 }
 
 .tg-node.is-blocked {
-  background: #fcfbfe;
+  background: var(--tg-node-blocked-bg);
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
 }
 
@@ -242,8 +293,8 @@
 }
 
 .tg-node[data-state="done"] {
-  background: #f8f7fa;
-  border-color: #ebe8f0;
+  background: var(--tg-node-done-bg);
+  border-color: var(--tg-node-done-border);
   box-shadow: none;
 }
 
@@ -319,7 +370,7 @@
   height: 18px;
   padding: 0 6px;
   border-radius: 7px;
-  background: #ece8f2;
+  background: var(--tg-badge-bg);
   color: var(--tg-variant);
   font-size: 10px;
   font-weight: 600;

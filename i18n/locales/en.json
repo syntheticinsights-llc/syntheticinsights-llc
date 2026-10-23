@@ -53,16 +53,24 @@
     "footerTagline": "Built with privacy, for people who care about focus.",
     "footerPrivacy": "Privacy Policy",
     "footerDelete": "Delete Account",
-    "footerContact": "Contact:"
+    "footerContact": "Contact:",
+    "themeToggleLabel": "Switch theme"
   },
   "cards": {
     "sync": {
       "eyebrow": "Local-first sync",
-      "tasks": ["Draft proposal", "Book flights", "Renew passport"],
+      "tasks": [
+        "Draft proposal",
+        "Book flights",
+        "Renew passport"
+      ],
       "yourProvider": "Your {provider}",
       "legendData": "Task data goes only to your storage",
       "legendSignal": "Our server only relays a change signal",
-      "pending": { "one": "{count} change pending", "other": "{count} changes pending" },
+      "pending": {
+        "one": "{count} change pending",
+        "other": "{count} changes pending"
+      },
       "allSynced": "All devices in sync",
       "uploading": "Uploading",
       "received": "Received from {device}",
@@ -118,7 +126,10 @@
       "empty": "No tasks yet",
       "legendEdits": "Each step edits your real tasks",
       "legendLink": "Dependency the agent linked",
-      "taskCount": { "one": "{count} task", "other": "{count} tasks" },
+      "taskCount": {
+        "one": "{count} task",
+        "other": "{count} tasks"
+      },
       "askPlain": "Ask in plain words",
       "ready": "Ready",
       "working": "Working…",
@@ -259,6 +270,7 @@
       "signInFailed": "Could not verify your account credentials.",
       "deleteFailed": "Could not delete your account. Please try again.",
       "success": "Your account has been permanently deleted."
-    }
+    },
+    "themeToggleLabel": "Switch theme"
   }
 }

@@ -53,16 +53,24 @@
     "footerTagline": "Odaklanmayı önemseyenler için gizlilik gözetilerek geliştirildi.",
     "footerPrivacy": "Gizlilik Politikası",
     "footerDelete": "Hesabı Sil",
-    "footerContact": "İletişim:"
+    "footerContact": "İletişim:",
+    "themeToggleLabel": "Temayı değiştir"
   },
   "cards": {
     "sync": {
       "eyebrow": "Local-first eşitleme",
-      "tasks": ["Teklif taslağı hazırla", "Uçak bileti al", "Pasaportu yenile"],
+      "tasks": [
+        "Teklif taslağı hazırla",
+        "Uçak bileti al",
+        "Pasaportu yenile"
+      ],
       "yourProvider": "Sizin {provider}",
       "legendData": "Görev verileri yalnızca sizin depolama alanınıza gider",
       "legendSignal": "Sunucumuz yalnızca bir değişiklik sinyali iletir",
-      "pending": { "one": "{count} değişiklik bekliyor", "other": "{count} değişiklik bekliyor" },
+      "pending": {
+        "one": "{count} değişiklik bekliyor",
+        "other": "{count} değişiklik bekliyor"
+      },
       "allSynced": "Tüm cihazlar eşit",
       "uploading": "Yükleniyor",
       "received": "{device} cihazından alındı",
@@ -118,7 +126,10 @@
       "empty": "Henüz görev yok",
       "legendEdits": "Her adım gerçek görevlerinizi düzenler",
       "legendLink": "Ajanın bağladığı bağımlılık",
-      "taskCount": { "one": "{count} görev", "other": "{count} görev" },
+      "taskCount": {
+        "one": "{count} görev",
+        "other": "{count} görev"
+      },
       "askPlain": "Sade bir dille sorun",
       "ready": "Hazır",
       "working": "Çalışıyor…",
@@ -259,6 +270,7 @@
       "signInFailed": "Hesap bilgileriniz doğrulanamadı.",
       "deleteFailed": "Hesabınız silinemedi. Lütfen tekrar deneyin.",
       "success": "Hesabınız kalıcı olarak silindi."
-    }
+    },
+    "themeToggleLabel": "Temayı değiştir"
   }
 }

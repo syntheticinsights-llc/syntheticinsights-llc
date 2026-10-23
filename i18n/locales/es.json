@@ -53,16 +53,25 @@
     "footerTagline": "Creado con privacidad, para quienes valoran la concentración.",
     "footerPrivacy": "Política de privacidad",
     "footerDelete": "Eliminar cuenta",
-    "footerContact": "Contacto:"
+    "footerContact": "Contacto:",
+    "themeToggleLabel": "Cambiar tema"
   },
   "cards": {
     "sync": {
       "eyebrow": "Sincronización local-first",
-      "tasks": ["Redactar propuesta", "Reservar vuelos", "Renovar pasaporte"],
+      "tasks": [
+        "Redactar propuesta",
+        "Reservar vuelos",
+        "Renovar pasaporte"
+      ],
       "yourProvider": "Tu {provider}",
       "legendData": "Los datos de las tareas solo van a tu almacenamiento",
       "legendSignal": "Nuestro servidor solo transmite una señal de cambio",
-      "pending": { "one": "{count} cambio pendiente", "many": "{count} cambios pendientes", "other": "{count} cambios pendientes" },
+      "pending": {
+        "one": "{count} cambio pendiente",
+        "many": "{count} cambios pendientes",
+        "other": "{count} cambios pendientes"
+      },
       "allSynced": "Todo sincronizado",
       "uploading": "Subiendo",
       "received": "Recibido de {device}",
@@ -118,7 +127,11 @@
       "empty": "Aún no hay tareas",
       "legendEdits": "Cada paso edita tus tareas reales",
       "legendLink": "Dependencia enlazada por el agente",
-      "taskCount": { "one": "{count} tarea", "many": "{count} tareas", "other": "{count} tareas" },
+      "taskCount": {
+        "one": "{count} tarea",
+        "many": "{count} tareas",
+        "other": "{count} tareas"
+      },
       "askPlain": "Pide con tus palabras",
       "ready": "Listo",
       "working": "Trabajando…",
@@ -259,6 +272,7 @@
       "signInFailed": "No se pudieron verificar las credenciales de tu cuenta.",
       "deleteFailed": "No se pudo eliminar tu cuenta. Inténtalo de nuevo.",
       "success": "Tu cuenta se ha eliminado de forma permanente."
-    }
+    },
+    "themeToggleLabel": "Cambiar tema"
   }
 }

@@ -53,16 +53,23 @@
     "footerTagline": "집중을 중요하게 여기는 분들을 위해 개인정보 보호를 기본으로 만들었습니다.",
     "footerPrivacy": "개인정보 처리방침",
     "footerDelete": "계정 삭제",
-    "footerContact": "문의:"
+    "footerContact": "문의:",
+    "themeToggleLabel": "테마 전환"
   },
   "cards": {
     "sync": {
       "eyebrow": "로컬 우선 동기화",
-      "tasks": ["제안서 초안 작성", "항공권 예약", "여권 갱신"],
+      "tasks": [
+        "제안서 초안 작성",
+        "항공권 예약",
+        "여권 갱신"
+      ],
       "yourProvider": "내 {provider}",
       "legendData": "작업 데이터는 내 저장소로만 갑니다",
       "legendSignal": "저희 서버는 변경 신호만 전달합니다",
-      "pending": { "other": "변경 {count}개 대기 중" },
+      "pending": {
+        "other": "변경 {count}개 대기 중"
+      },
       "allSynced": "모든 기기 동기화됨",
       "uploading": "업로드 중",
       "received": "{device}에서 받음",
@@ -118,7 +125,9 @@
       "empty": "아직 작업이 없습니다",
       "legendEdits": "각 단계가 실제 작업을 수정합니다",
       "legendLink": "에이전트가 연결한 의존성",
-      "taskCount": { "other": "작업 {count}개" },
+      "taskCount": {
+        "other": "작업 {count}개"
+      },
       "askPlain": "평소 말투로 요청하세요",
       "ready": "준비됨",
       "working": "작업 중…",
@@ -259,6 +268,7 @@
       "signInFailed": "계정 정보를 확인하지 못했습니다.",
       "deleteFailed": "계정을 삭제하지 못했습니다. 다시 시도하세요.",
       "success": "계정이 영구적으로 삭제되었습니다."
-    }
+    },
+    "themeToggleLabel": "테마 전환"
   }
 }

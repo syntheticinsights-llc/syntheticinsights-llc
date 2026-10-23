@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Privacy Policy | Smartodo</title>
     <link rel="icon" href="assets/img/icon.svg" type="image/svg+xml" />
+    <script src="assets/js/theme.js"></script>
     <link rel="stylesheet" href="assets/css/styles.css" />
     <style>
       main {
         max-width: 900px;
         margin: 0 auto;
-        padding: 80px 20px 100px;
+        padding: 60px 20px 100px;
       }
       h1 {
         margin-bottom: 16px;
@@ -19,7 +20,7 @@
         margin-top: 32px;
       }
       .muted {
-        color: #6b7280;
+        color: var(--text-muted);
         font-size: 14px;
       }
       h2 {
@@ -31,11 +32,41 @@
       ul {
         list-style: disc;
         padding-left: 1.2rem;
-        color: #475569;
+        color: var(--text-muted);
       }
     </style>
   </head>
   <body>
+    <header class="site-header">
+      <div class="container">
+        <a class="branding" href="index.html">
+          <img class="logo-mark" src="assets/img/icon.svg" alt="Smartodo icon" />
+          <span class="logo-type">Smartodo</span>
+        </a>
+        <div class="site-header__actions">
+          <nav class="site-nav">
+            <a href="index.html#features">Features</a>
+            <a href="index.html#downloads">Downloads</a>
+            <a href="privacy.html">Privacy</a>
+          </nav>
+          <button
+            type="button"
+            class="theme-toggle"
+            data-theme-toggle
+            aria-label="Switch theme"
+            title="Switch theme"
+          >
+            <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </svg>
+            <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
     <main>
       <h1>Privacy Policy</h1>
       <p class="muted">Last updated: March 10, 2025</p>

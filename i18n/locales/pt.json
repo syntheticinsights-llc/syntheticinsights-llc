@@ -53,16 +53,25 @@
     "footerTagline": "Feito com privacidade, para quem valoriza o foco.",
     "footerPrivacy": "Política de privacidade",
     "footerDelete": "Excluir conta",
-    "footerContact": "Contato:"
+    "footerContact": "Contato:",
+    "themeToggleLabel": "Alternar tema"
   },
   "cards": {
     "sync": {
       "eyebrow": "Sincronização local-first",
-      "tasks": ["Redigir proposta", "Reservar voos", "Renovar passaporte"],
+      "tasks": [
+        "Redigir proposta",
+        "Reservar voos",
+        "Renovar passaporte"
+      ],
       "yourProvider": "Seu {provider}",
       "legendData": "Os dados das tarefas vão só para o seu armazenamento",
       "legendSignal": "Nosso servidor só repassa um sinal de alteração",
-      "pending": { "one": "{count} alteração pendente", "many": "{count} alterações pendentes", "other": "{count} alterações pendentes" },
+      "pending": {
+        "one": "{count} alteração pendente",
+        "many": "{count} alterações pendentes",
+        "other": "{count} alterações pendentes"
+      },
       "allSynced": "Tudo sincronizado",
       "uploading": "Enviando",
       "received": "Recebido de {device}",
@@ -118,7 +127,11 @@
       "empty": "Nenhuma tarefa ainda",
       "legendEdits": "Cada passo altera suas tarefas reais",
       "legendLink": "Dependência ligada pelo agente",
-      "taskCount": { "one": "{count} tarefa", "many": "{count} tarefas", "other": "{count} tarefas" },
+      "taskCount": {
+        "one": "{count} tarefa",
+        "many": "{count} tarefas",
+        "other": "{count} tarefas"
+      },
       "askPlain": "Peça com suas palavras",
       "ready": "Pronto",
       "working": "Trabalhando…",
@@ -259,6 +272,7 @@
       "signInFailed": "Não foi possível verificar as credenciais da sua conta.",
       "deleteFailed": "Não foi possível excluir sua conta. Tente novamente.",
       "success": "Sua conta foi excluída permanentemente."
-    }
+    },
+    "themeToggleLabel": "Alternar tema"
   }
 }

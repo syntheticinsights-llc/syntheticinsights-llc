@@ -53,16 +53,23 @@
     "footerTagline": "以隐私为本，为重视专注的人而打造。",
     "footerPrivacy": "隐私政策",
     "footerDelete": "删除账户",
-    "footerContact": "联系我们："
+    "footerContact": "联系我们：",
+    "themeToggleLabel": "切换主题"
   },
   "cards": {
     "sync": {
       "eyebrow": "本地优先同步",
-      "tasks": ["起草方案", "预订机票", "更新护照"],
+      "tasks": [
+        "起草方案",
+        "预订机票",
+        "更新护照"
+      ],
       "yourProvider": "你的 {provider}",
       "legendData": "任务数据只存入你自己的存储",
       "legendSignal": "我们的服务器只转发变更信号",
-      "pending": { "other": "{count} 项更改待同步" },
+      "pending": {
+        "other": "{count} 项更改待同步"
+      },
       "allSynced": "所有设备已同步",
       "uploading": "上传中",
       "received": "已收到 {device} 的更改",
@@ -118,7 +125,9 @@
       "empty": "还没有任务",
       "legendEdits": "每一步都会修改你真实的任务",
       "legendLink": "智能体关联的依赖关系",
-      "taskCount": { "other": "{count} 个任务" },
+      "taskCount": {
+        "other": "{count} 个任务"
+      },
       "askPlain": "用日常的话提出需求",
       "ready": "就绪",
       "working": "处理中…",
@@ -259,6 +268,7 @@
       "signInFailed": "无法验证你的账户凭据。",
       "deleteFailed": "无法删除你的账户，请重试。",
       "success": "你的账户已被永久删除。"
-    }
+    },
+    "themeToggleLabel": "切换主题"
   }
 }

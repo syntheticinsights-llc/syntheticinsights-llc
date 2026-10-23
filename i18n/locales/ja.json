@@ -53,16 +53,23 @@
     "footerTagline": "集中を大切にする人のために、プライバシーを前提に開発しています。",
     "footerPrivacy": "プライバシーポリシー",
     "footerDelete": "アカウントの削除",
-    "footerContact": "お問い合わせ："
+    "footerContact": "お問い合わせ：",
+    "themeToggleLabel": "テーマを切り替え"
   },
   "cards": {
     "sync": {
       "eyebrow": "ローカルファースト同期",
-      "tasks": ["企画書の下書き", "航空券を予約", "パスポートを更新"],
+      "tasks": [
+        "企画書の下書き",
+        "航空券を予約",
+        "パスポートを更新"
+      ],
       "yourProvider": "あなたの {provider}",
       "legendData": "タスクのデータはあなたのストレージにだけ届きます",
       "legendSignal": "当社サーバーは変更の通知を中継するだけ",
-      "pending": { "other": "{count} 件の変更が未同期" },
+      "pending": {
+        "other": "{count} 件の変更が未同期"
+      },
       "allSynced": "全デバイス同期済み",
       "uploading": "アップロード中",
       "received": "{device} から受信",
@@ -118,7 +125,9 @@
       "empty": "タスクはまだありません",
       "legendEdits": "各ステップで実際のタスクを編集",
       "legendLink": "エージェントがつないだ依存関係",
-      "taskCount": { "other": "{count} 件のタスク" },
+      "taskCount": {
+        "other": "{count} 件のタスク"
+      },
       "askPlain": "ふだんの言葉で頼むだけ",
       "ready": "待機中",
       "working": "処理中…",
@@ -259,6 +268,7 @@
       "signInFailed": "アカウントの認証情報を確認できませんでした。",
       "deleteFailed": "アカウントを削除できませんでした。もう一度お試しください。",
       "success": "アカウントは完全に削除されました。"
-    }
+    },
+    "themeToggleLabel": "テーマを切り替え"
   }
 }

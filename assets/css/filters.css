@@ -4,9 +4,9 @@
   display: flex;
   flex-direction: column;
   border-radius: 14px;
-  background: #fff;
+  background: var(--tg-surface-card);
   border: 1px solid var(--tg-line);
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 6px 16px -10px rgba(15, 23, 42, 0.18);
+  box-shadow: var(--tg-card-shadow);
   transition: border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
@@ -23,7 +23,7 @@
   gap: 0.5rem;
   flex: none;
   padding: 0 0.15rem 0.55rem;
-  border-bottom: 1px solid #f0edf5;
+  border-bottom: 1px solid var(--tg-divider);
 }
 
 .pf-builder__title,
@@ -71,14 +71,14 @@
   height: 46px;
   padding: 0 0.7rem;
   border-radius: 10px;
-  background: #faf9fc;
-  border: 1px solid #ebe7f2;
+  background: var(--tg-surface-elevated);
+  border: 1px solid var(--tg-border-subtle);
   animation: pf-in 0.35s var(--tg-ease) both;
   transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
 .pf-cond[data-state="editing"] {
-  background: #fff;
+  background: var(--tg-surface);
   border-color: rgba(var(--tg-accent-rgb), 0.6);
   box-shadow: 0 0 0 3px rgba(var(--tg-accent-rgb), 0.1);
 }
@@ -89,7 +89,7 @@
   left: 0.7rem;
   padding: 0 0.3rem;
   border-radius: 5px;
-  background: #fff;
+  background: var(--tg-surface);
   color: var(--tg-accent);
   font-size: 0.58rem;
   font-weight: 700;
@@ -151,7 +151,7 @@
   height: 36px;
   padding: 0 0.75rem;
   border-radius: 10px;
-  border: 1.5px dashed #ddd8e6;
+  border: 1.5px dashed var(--tg-border-subtle);
   color: var(--tg-muted);
   font-size: 0.78rem;
   font-weight: 600;
@@ -230,7 +230,7 @@
   height: 20px;
   padding: 0 0.45rem;
   border-radius: 999px;
-  background: #ece8f2;
+  background: var(--tg-badge-bg);
   color: var(--tg-variant);
   font-size: 0.7rem;
   font-weight: 600;
@@ -331,7 +331,7 @@
 }
 
 .pf-tag:not(:empty) {
-  background: #f4f1f8;
+  background: var(--tg-surface-subtle);
 }
 
 .pf-tag .pf-glyph {
@@ -360,7 +360,7 @@
 
 .pf-edge__line {
   fill: none;
-  stroke: #d6d1e0;
+  stroke: var(--tg-edge-base);
   stroke-width: 1.5;
   transition: stroke 0.3s ease;
 }

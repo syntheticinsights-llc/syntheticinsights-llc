@@ -23,6 +23,7 @@
     <link rel="alternate" hreflang="zh-Hant" href="https://syntheticinsights.net/zh-hant/" />
     <link rel="alternate" hreflang="x-default" href="https://syntheticinsights.net/" />
     <link rel="icon" href="../assets/img/icon.svg" type="image/svg+xml" />
+    <script src="../assets/js/theme.js"></script>
     <link rel="stylesheet" href="../assets/css/styles.css" />
     <link rel="stylesheet" href="../assets/css/task_graph.css" />
     <link rel="stylesheet" href="../assets/css/local_sync.css" />
@@ -88,6 +89,21 @@
             <a href="#downloads">Downloads</a>
             <a href="../privacy.html">Datenschutz</a>
           </nav>
+          <button
+            type="button"
+            class="theme-toggle"
+            data-theme-toggle
+            aria-label="Design wechseln"
+            title="Design wechseln"
+          >
+            <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </svg>
+            <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+            </svg>
+          </button>
           <details class="lang-menu">
             <summary class="lang-menu__toggle" aria-label="Sprache">
               <svg class="lang-menu__icon" viewBox="0 0 24 24" aria-hidden="true">

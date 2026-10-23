@@ -5,7 +5,7 @@
   flex: none;
   padding: 0.3rem 0.7rem;
   border-radius: 999px;
-  background: #f4f1f8;
+  background: var(--tg-badge-bg);
   color: var(--tg-variant);
   font-size: 0.78rem;
   font-weight: 600;
@@ -30,9 +30,9 @@
 .ls-device {
   position: absolute;
   border-radius: 14px;
-  background: #fff;
+  background: var(--tg-surface-card);
   border: 1px solid var(--tg-line);
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 6px 16px -10px rgba(15, 23, 42, 0.18);
+  box-shadow: var(--tg-card-shadow);
   transition: border-color 0.35s ease, box-shadow 0.35s ease, opacity 0.35s ease;
 }
 
@@ -107,7 +107,7 @@
 }
 
 .ls-device[data-net="offline"] {
-  background: #fcfbfe;
+  background: var(--tg-node-blocked-bg);
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
 }
 
@@ -218,7 +218,7 @@
 
 .ls-edge__line {
   fill: none;
-  stroke: #d6d1e0;
+  stroke: var(--tg-edge-base);
   stroke-width: 1.5;
   transition: stroke 0.3s ease, opacity 0.3s ease;
 }
@@ -243,7 +243,7 @@
 
 .ls-edge.is-flowing .tg-port {
   fill: var(--tg-accent);
-  stroke: #fff;
+  stroke: var(--tg-surface);
 }
 
 .ls-edge.is-flowing .tg-edge__head {

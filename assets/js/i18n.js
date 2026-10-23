@@ -46,8 +46,17 @@ if (document.documentElement.dataset.locale) {
 }
 
 // Account pages: ?lang= from the app wins, then the saved choice, then the browser.
-// Elements name their text with data-i18n (content), data-i18n-placeholder or data-i18n-alt,
-// as "key" for shared text or "page.key" for this page's text.
+// Elements name their text with a data-i18n-* attribute, as "key" for shared text or
+// "page.key" for this page's text. data-i18n writes HTML into the element, the others
+// set a plain attribute.
+const I18N_ATTRIBUTES = [
+  ["i18n", (element, value) => (element.innerHTML = value)],
+  ["i18nPlaceholder", (element, value) => (element.placeholder = value)],
+  ["i18nAlt", (element, value) => (element.alt = value)],
+  ["i18nAriaLabel", (element, value) => element.setAttribute("aria-label", value)],
+  ["i18nTitle", (element, value) => (element.title = value)],
+];
+
 const applyAccountText = (page) => {
   const locale = matchLocale(new URLSearchParams(location.search).get("lang")) ?? preferredLocale();
   const shared = ACCOUNT_TEXT[locale];
@@ -58,14 +67,11 @@ const applyAccountText = (page) => {
   };
   document.documentElement.lang = shared.htmlLang;
   document.title = text.title;
-  for (const element of document.querySelectorAll("[data-i18n]")) {
-    element.innerHTML = lookup(element.dataset.i18n);
-  }
-  for (const element of document.querySelectorAll("[data-i18n-placeholder]")) {
-    element.placeholder = lookup(element.dataset.i18nPlaceholder);
-  }
-  for (const element of document.querySelectorAll("[data-i18n-alt]")) {
-    element.alt = lookup(element.dataset.i18nAlt);
+  for (const [dataKey, apply] of I18N_ATTRIBUTES) {
+    const selector = `[data-${dataKey.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)}]`;
+    for (const element of document.querySelectorAll(selector)) {
+      apply(element, lookup(element.dataset[dataKey]));
+    }
   }
   for (const link of document.querySelectorAll("[data-landing-link]")) {
     link.href = `${landingPath(locale)}${link.dataset.landingLink}`;

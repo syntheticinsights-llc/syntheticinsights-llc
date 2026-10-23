@@ -53,16 +53,25 @@
     "footerTagline": "Conçu dans le respect de la vie privée, pour celles et ceux qui tiennent à leur concentration.",
     "footerPrivacy": "Politique de confidentialité",
     "footerDelete": "Supprimer le compte",
-    "footerContact": "Contact :"
+    "footerContact": "Contact :",
+    "themeToggleLabel": "Changer de thème"
   },
   "cards": {
     "sync": {
       "eyebrow": "Synchro local-first",
-      "tasks": ["Rédiger la proposition", "Réserver les vols", "Renouveler le passeport"],
+      "tasks": [
+        "Rédiger la proposition",
+        "Réserver les vols",
+        "Renouveler le passeport"
+      ],
       "yourProvider": "Votre {provider}",
       "legendData": "Les données des tâches vont uniquement dans votre stockage",
       "legendSignal": "Notre serveur ne relaie qu’un signal de modification",
-      "pending": { "one": "{count} modification en attente", "many": "{count} modifications en attente", "other": "{count} modifications en attente" },
+      "pending": {
+        "one": "{count} modification en attente",
+        "many": "{count} modifications en attente",
+        "other": "{count} modifications en attente"
+      },
       "allSynced": "Tout est synchronisé",
       "uploading": "Envoi",
       "received": "Reçu de {device}",
@@ -118,7 +127,11 @@
       "empty": "Aucune tâche pour l’instant",
       "legendEdits": "Chaque étape modifie vos vraies tâches",
       "legendLink": "Dépendance reliée par l’agent",
-      "taskCount": { "one": "{count} tâche", "many": "{count} tâches", "other": "{count} tâches" },
+      "taskCount": {
+        "one": "{count} tâche",
+        "many": "{count} tâches",
+        "other": "{count} tâches"
+      },
       "askPlain": "Demandez avec vos mots",
       "ready": "Prêt",
       "working": "En cours…",
@@ -259,6 +272,7 @@
       "signInFailed": "Impossible de vérifier les identifiants de votre compte.",
       "deleteFailed": "Impossible de supprimer votre compte. Veuillez réessayer.",
       "success": "Votre compte a été définitivement supprimé."
-    }
+    },
+    "themeToggleLabel": "Changer de thème"
   }
 }

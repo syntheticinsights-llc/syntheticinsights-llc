@@ -53,16 +53,24 @@
     "footerTagline": "Mit Datenschutz gebaut, für alle, denen Fokus wichtig ist.",
     "footerPrivacy": "Datenschutzerklärung",
     "footerDelete": "Konto löschen",
-    "footerContact": "Kontakt:"
+    "footerContact": "Kontakt:",
+    "themeToggleLabel": "Design wechseln"
   },
   "cards": {
     "sync": {
       "eyebrow": "Local-first-Sync",
-      "tasks": ["Angebot entwerfen", "Flüge buchen", "Reisepass erneuern"],
+      "tasks": [
+        "Angebot entwerfen",
+        "Flüge buchen",
+        "Reisepass erneuern"
+      ],
       "yourProvider": "Dein {provider}",
       "legendData": "Aufgabendaten gehen nur in deinen Speicher",
       "legendSignal": "Unser Server leitet nur ein Änderungssignal weiter",
-      "pending": { "one": "{count} Änderung ausstehend", "other": "{count} Änderungen ausstehend" },
+      "pending": {
+        "one": "{count} Änderung ausstehend",
+        "other": "{count} Änderungen ausstehend"
+      },
       "allSynced": "Alle Geräte synchron",
       "uploading": "Lädt hoch",
       "received": "Empfangen von {device}",
@@ -118,7 +126,10 @@
       "empty": "Noch keine Aufgaben",
       "legendEdits": "Jeder Schritt ändert deine echten Aufgaben",
       "legendLink": "Vom Agenten verknüpfte Abhängigkeit",
-      "taskCount": { "one": "{count} Aufgabe", "other": "{count} Aufgaben" },
+      "taskCount": {
+        "one": "{count} Aufgabe",
+        "other": "{count} Aufgaben"
+      },
       "askPlain": "Frag in einfachen Worten",
       "ready": "Bereit",
       "working": "Arbeitet…",
@@ -259,6 +270,7 @@
       "signInFailed": "Deine Kontodaten konnten nicht bestätigt werden.",
       "deleteFailed": "Dein Konto konnte nicht gelöscht werden. Bitte versuche es erneut.",
       "success": "Dein Konto wurde endgültig gelöscht."
-    }
+    },
+    "themeToggleLabel": "Design wechseln"
   }
 }

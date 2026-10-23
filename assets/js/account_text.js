@@ -72,7 +72,8 @@ const ACCOUNT_TEXT = {
       "signInFailed": "Could not verify your account credentials.",
       "deleteFailed": "Could not delete your account. Please try again.",
       "success": "Your account has been permanently deleted."
-    }
+    },
+    "themeToggleLabel": "Switch theme"
   },
   "de": {
     "htmlLang": "de",
@@ -146,7 +147,8 @@ const ACCOUNT_TEXT = {
       "signInFailed": "Deine Kontodaten konnten nicht bestätigt werden.",
       "deleteFailed": "Dein Konto konnte nicht gelöscht werden. Bitte versuche es erneut.",
       "success": "Dein Konto wurde endgültig gelöscht."
-    }
+    },
+    "themeToggleLabel": "Design wechseln"
   },
   "es": {
     "htmlLang": "es",
@@ -220,7 +222,8 @@ const ACCOUNT_TEXT = {
       "signInFailed": "No se pudieron verificar las credenciales de tu cuenta.",
       "deleteFailed": "No se pudo eliminar tu cuenta. Inténtalo de nuevo.",
       "success": "Tu cuenta se ha eliminado de forma permanente."
-    }
+    },
+    "themeToggleLabel": "Cambiar tema"
   },
   "fr": {
     "htmlLang": "fr",
@@ -294,7 +297,8 @@ const ACCOUNT_TEXT = {
       "signInFailed": "Impossible de vérifier les identifiants de votre compte.",
       "deleteFailed": "Impossible de supprimer votre compte. Veuillez réessayer.",
       "success": "Votre compte a été définitivement supprimé."
-    }
+    },
+    "themeToggleLabel": "Changer de thème"
   },
   "id": {
     "htmlLang": "id",
@@ -368,7 +372,8 @@ const ACCOUNT_TEXT = {
       "signInFailed": "Kredensial akun Anda tidak dapat diverifikasi.",
       "deleteFailed": "Akun Anda tidak dapat dihapus. Silakan coba lagi.",
       "success": "Akun Anda telah dihapus secara permanen."
-    }
+    },
+    "themeToggleLabel": "Ganti tema"
   },
   "it": {
     "htmlLang": "it",
@@ -442,7 +447,8 @@ const ACCOUNT_TEXT = {
       "signInFailed": "Impossibile verificare le credenziali del tuo account.",
       "deleteFailed": "Impossibile eliminare il tuo account. Riprova.",
       "success": "Il tuo account è stato eliminato definitivamente."
-    }
+    },
+    "themeToggleLabel": "Cambia tema"
   },
   "ja": {
     "htmlLang": "ja",
@@ -516,7 +522,8 @@ const ACCOUNT_TEXT = {
       "signInFailed": "アカウントの認証情報を確認できませんでした。",
       "deleteFailed": "アカウントを削除できませんでした。もう一度お試しください。",
       "success": "アカウントは完全に削除されました。"
-    }
+    },
+    "themeToggleLabel": "テーマを切り替え"
   },
   "ko": {
     "htmlLang": "ko",
@@ -590,7 +597,8 @@ const ACCOUNT_TEXT = {
       "signInFailed": "계정 정보를 확인하지 못했습니다.",
       "deleteFailed": "계정을 삭제하지 못했습니다. 다시 시도하세요.",
       "success": "계정이 영구적으로 삭제되었습니다."
-    }
+    },
+    "themeToggleLabel": "테마 전환"
   },
   "pt": {
     "htmlLang": "pt-BR",
@@ -664,7 +672,8 @@ const ACCOUNT_TEXT = {
       "signInFailed": "Não foi possível verificar as credenciais da sua conta.",
       "deleteFailed": "Não foi possível excluir sua conta. Tente novamente.",
       "success": "Sua conta foi excluída permanentemente."
-    }
+    },
+    "themeToggleLabel": "Alternar tema"
   },
   "ru": {
     "htmlLang": "ru",
@@ -738,7 +747,8 @@ const ACCOUNT_TEXT = {
       "signInFailed": "Не удалось проверить данные для входа.",
       "deleteFailed": "Не удалось удалить аккаунт. Попробуйте ещё раз.",
       "success": "Ваш аккаунт удалён навсегда."
-    }
+    },
+    "themeToggleLabel": "Сменить тему"
   },
   "tr": {
     "htmlLang": "tr",
@@ -812,7 +822,8 @@ const ACCOUNT_TEXT = {
       "signInFailed": "Hesap bilgileriniz doğrulanamadı.",
       "deleteFailed": "Hesabınız silinemedi. Lütfen tekrar deneyin.",
       "success": "Hesabınız kalıcı olarak silindi."
-    }
+    },
+    "themeToggleLabel": "Temayı değiştir"
   },
   "zh-hans": {
     "htmlLang": "zh-Hans",
@@ -886,7 +897,8 @@ const ACCOUNT_TEXT = {
       "signInFailed": "无法验证你的账户凭据。",
       "deleteFailed": "无法删除你的账户，请重试。",
       "success": "你的账户已被永久删除。"
-    }
+    },
+    "themeToggleLabel": "切换主题"
   },
   "zh-hant": {
     "htmlLang": "zh-Hant",
@@ -960,6 +972,7 @@ const ACCOUNT_TEXT = {
       "signInFailed": "無法驗證你的帳戶憑證。",
       "deleteFailed": "無法刪除你的帳戶，請再試一次。",
       "success": "你的帳戶已被永久刪除。"
-    }
+    },
+    "themeToggleLabel": "切換主題"
   }
 };

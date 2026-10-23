@@ -5,7 +5,7 @@
   flex: none;
   padding: 0.3rem 0.7rem;
   border-radius: 999px;
-  background: #f4f1f8;
+  background: var(--tg-badge-bg);
   color: var(--tg-variant);
   font-size: 0.78rem;
   font-weight: 600;
@@ -38,9 +38,9 @@
   display: flex;
   flex-direction: column;
   border-radius: 14px;
-  background: #fff;
+  background: var(--tg-surface-card);
   border: 1px solid var(--tg-line);
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 6px 16px -10px rgba(15, 23, 42, 0.18);
+  box-shadow: var(--tg-card-shadow);
 }
 
 .aa-chat {
@@ -141,8 +141,8 @@
   gap: 0.4rem;
   padding: 0.22rem 0.6rem 0.22rem 0.45rem;
   border-radius: 8px;
-  background: #f4f1f8;
-  border: 1px solid #ebe7f2;
+  background: var(--tg-surface-subtle);
+  border: 1px solid var(--tg-border-subtle);
   color: var(--tg-variant);
   font-size: 0.72rem;
   font-weight: 600;
@@ -185,7 +185,7 @@
   height: 36px;
   padding: 0 0.6rem 0 0.85rem;
   border-radius: 999px;
-  background: #f3f1f6;
+  background: var(--tg-input-bg);
   font-size: 0.8rem;
   transition: box-shadow 0.3s ease;
 }
@@ -243,7 +243,7 @@
   align-items: center;
   justify-content: space-between;
   padding-bottom: 0.55rem;
-  border-bottom: 1px solid #f0edf5;
+  border-bottom: 1px solid var(--tg-divider);
 }
 
 .aa-board__title {
@@ -257,7 +257,7 @@
   height: 20px;
   padding: 0 0.5rem;
   border-radius: 999px;
-  background: #ece8f2;
+  background: var(--tg-badge-bg);
   color: var(--tg-variant);
   font-size: 0.7rem;
   font-weight: 600;
@@ -315,14 +315,14 @@
 }
 
 .aa-link__port {
-  fill: #fff;
+  fill: var(--tg-port-fill);
   stroke: rgba(var(--tg-accent-rgb), 0.6);
   stroke-width: 1.5;
 }
 
 .aa-link__port--to {
   fill: var(--tg-accent);
-  stroke: #fff;
+  stroke: var(--tg-surface);
 }
 
 .aa-task {
@@ -421,7 +421,7 @@
 
 .aa-edge__line {
   fill: none;
-  stroke: #d6d1e0;
+  stroke: var(--tg-edge-base);
   stroke-width: 1.5;
   transition: stroke 0.3s ease;
 }
