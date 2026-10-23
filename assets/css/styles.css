@@ -429,11 +429,22 @@ ul {
   color: var(--text-muted);
 }
 
-.hero .hero-alias {
-  margin-top: 0.9rem;
-  font-size: 0.95rem;
+.vision {
+  padding: 5rem 0;
+}
+
+.vision .container {
+  max-width: 52rem;
+}
+
+.vision h2 {
+  margin-bottom: 1.5rem;
+}
+
+.vision p:not(.eyebrow) {
+  margin-bottom: 1rem;
   color: var(--text-muted);
-  opacity: 0.85;
+  line-height: 1.75;
 }
 
 .hero-actions {
